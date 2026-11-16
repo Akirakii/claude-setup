@@ -1,0 +1,295 @@
+<title>Friendslop Playbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: reading column; works = teal, fails = ember, idea cards = violet. */
+:root {
+  --bg: #f4f4f8; --surface: #ffffff; --ink: #181b2a; --muted: #5b6074; --line: #dcdfe9;
+  --works: #0a7c76; --fails: #c64a12; --idea: #7a45c2; --accent: #3550c8; --warn: #a86400;
+  --chip-works: #e1f2f0; --chip-fails: #f9e3d8; --chip-idea: #efe6fa; --chip-warn: #f8ecd6;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12131b; --surface: #1a1c27; --ink: #e7e8f0; --muted: #9da1b5; --line: #2c2f40;
+    --works: #3fc8bd; --fails: #ff8a4f; --idea: #b993ff; --accent: #8ea3ff; --warn: #f0b04a;
+    --chip-works: #173230; --chip-fails: #3d2418; --chip-idea: #2c2140; --chip-warn: #3a2d14;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12131b; --surface: #1a1c27; --ink: #e7e8f0; --muted: #9da1b5; --line: #2c2f40;
+  --works: #3fc8bd; --fails: #ff8a4f; --idea: #b993ff; --accent: #8ea3ff; --warn: #f0b04a;
+  --chip-works: #173230; --chip-fails: #3d2418; --chip-idea: #2c2140; --chip-warn: #3a2d14;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px; }
+main { max-width: 1040px; margin: 0 auto; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); font-weight: 800; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+blockquote { margin: 0; padding-left: 14px; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+.eyebrow { font: 500 0.75rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 66ch; }
+.note { font-size: 0.9rem; color: var(--muted); max-width: 84ch; }
+.prose { max-width: 74ch; }
+section { display: grid; gap: 18px; }
+header { display: grid; gap: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font: 400 0.85rem var(--f-mono); color: var(--muted); }
+.findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.findings li { display: grid; grid-template-columns: 2.2rem 1fr; gap: 12px; align-items: baseline; }
+.findings li > span { font: 600 0.9rem var(--f-mono); color: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 0.72rem var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; }
+td.nowrap { white-space: nowrap; }
+.chip { display: inline-block; font: 500 0.72rem/1 var(--f-mono); padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+.chip.works { background: var(--chip-works); color: var(--works); }
+.chip.fails { background: var(--chip-fails); color: var(--fails); }
+.chip.idea { background: var(--chip-idea); color: var(--idea); }
+.chip.warn { background: var(--chip-warn); color: var(--warn); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.panel.w { border-top: 3px solid var(--works); }
+.panel.f { border-top: 3px solid var(--fails); }
+.panel.i { border-top: 3px solid var(--idea); }
+.panel ul, .panel ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 8px; }
+.panel dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 0.92rem; }
+.panel dt { font: 500 0.72rem/1.9 var(--f-mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.panel dd { margin: 0; min-width: 0; }
+.ideas { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 12px; }
+.sources { columns: 2 320px; column-gap: 32px; font-size: 0.85rem; }
+.sources ul { margin: 0; padding-left: 1rem; }
+.sources li { break-inside: avoid; }
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Design · marketing · ideas · cheap online co-op</span>
+    <h1>Friendslop playbook</h1>
+    <p class="lede">What truly works and what doesn’t when making and marketing a friendslop game, backed by developer interviews, Steam reviews and launch data, plus five idea directions checked against the competition.</p>
+    <div class="meta"><span>2026-11-02</span><span>~15 marketing cases · reviews from 17 games · developer quotes</span><span>part of <a href="https://claude.ai/artifact/Agz4e6F81mKfxM3n2An8jU">Friendslop radar</a> · <a href="https://claude.ai/artifact/H67qBKAgvTRqNjgue5ZMGq">Friendslop pulse</a></span></div>
+    <p class="note">Review evidence comes from samples of about 20 Steam reviews per game, so counts are rough. Sales and wishlist figures are GameDiscoverCo or developer estimates unless marked. The idea directions are options to test, not finished designs.</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">Summary</span>
+    <h2>Eight things that truly matter</h2>
+    <ol class="findings">
+      <li><span>1</span><p><b>Failing is the funny part, and someone must be to blame.</b> Every hit makes failure visible and caused by a player. Flops fail “by some unseen force or jank”.</p></li>
+      <li><span>2</span><p><b>Build friction that forces talking.</b> PEAK: you can’t take items out of your own backpack; one guidebook only one player can read aloud.</p></li>
+      <li><span>3</span><p><b>Give every tool a tempting, dumb use.</b> PEAK’s developer: almost every item has “a built-in failure point”.</p></li>
+      <li><span>4</span><p><b>A situation people can read in 3 seconds,</b> like a TV format. The situation is the content; streamers make it.</p></li>
+      <li><span>5</span><p><b>Content for 3–6 hours plus a replay layer</b> (daily map, endless mode, random roles). About 2 hours gets “too short”; one gimmick gets “abandoned”.</p></li>
+      <li><span>6</span><p><b>Public lobbies from day one,</b> 3–4 players as the sweet spot, dead players still in voice chat.</p></li>
+      <li><span>7</span><p><b>Short video and a demo before launch, then streamers.</b> Next Fest is getting weaker; paid ads and press show no friendslop wins.</p></li>
+      <li><span>8</span><p><b>$5–10 with a launch discount.</b> Cheaper games convert wishlists better; $20+ co-op games make up most of the failures.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="eyebrow">Design</span>
+    <h2>The hooks behind the hits</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Hook</th><th>Example</th><th>The funny situation</th><th>What players write</th></tr></thead>
+      <tbody>
+        <tr><td>Tied together</td><td>Chained Together</td><td>Every fall is someone’s fault.</td><td>“need a replay to identify who is to blame”, “will end all of your friendships”</td></tr>
+        <tr><td>Shared scarce resource + tempting tools</td><td>PEAK</td><td>One stamina bar; items that invite dumb moves.</td><td>failure anecdotes in 30–50% of reviews</td></tr>
+        <tr><td>Fragile loot + physics</td><td>R.E.P.O., Content Warning</td><td>Valuables break, ragdolls flop.</td><td>“the money bag had a mind of its own and jumped into the lava”</td></tr>
+        <tr><td>Panic under a quota</td><td>Lethal Company</td><td>Losing contact right after a friend yells.</td><td>“genuine horror, Looney Tunes slapstick, Scooby-Doo chase”</td></tr>
+        <tr><td>Communication handicap</td><td>BOMBANANA!</td><td>Random roles: blind, deaf, mute.</td><td>“the deaf lead the blind”, “pioneering sign language”</td></tr>
+        <tr><td>Voice as input</td><td>Mage Arena, YAPYAP</td><td>Screaming spell names.</td><td>“screaming FIREBALL in increasing desperation”, but “shallow” after hours</td></tr>
+        <tr><td>Betrayal and bluffing</td><td>Liar’s Bar, Gamble With Your Friends</td><td>Losing to a friend’s lie or greed.</td><td>“my best friend sold my virtual kidney”</td></tr>
+        <tr><td>Familiar format + chaos</td><td>Super Battle Golf, MECCHA CHAMELEON, How to Fish</td><td>Everyone knows golf / hide-and-seek / fishing, then it breaks.</td><td>no tutorial needed; “everyone disguises themselves super badly… that’s the point”</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="panel w"><h3>Design rules that recur in hits</h3><ul>
+        <li><b>Readable blame.</b> Physics can be loose, but the cause of each fail must be visible. The clearest line in the data, from a Frog Sqwad review: <i>“In REPO it feels like it was my fault when I fail. Frog Sqwad feels like I fail by some unseen force or jank.”</i></li>
+        <li><b>Social friction by design.</b> Things you can’t do alone; information only one player has.</li>
+        <li><b>Dead players stay in the fun:</b> PEAK’s ghosts keep their voice; BOMBANANA!’s spare player “just laughs at everyone else”.</li>
+        <li><b>Short rounds inside a run, with pressure on top</b> (quota, money to double, a climb that loses progress). But hard timers draw complaints.</li>
+        <li><b>Variety from randomness:</b> PEAK’s daily map became a shared talking point (“the map is bullshit today, right guys?”).</li>
+        <li><b>3–4 players</b> as the sweet spot; big lobbies need public matchmaking or they die.</li>
+        <li><b>Solo works as a fallback,</b> not the pitch. A public lobby browser is what saves players without friends who own it.</li>
+        <li><b>One simple idea polished “to a very high level”</b> (Super Battle Golf’s publisher).</li>
+      </ul></div>
+      <div class="panel f"><h3>What flops get wrong</h3><ul>
+        <li><b>Unfair-feeling jank:</b> floaty movement and fails nobody caused (Frog Sqwad, 73% positive, the only real design flop in the sample).</li>
+        <li><b>Needs a full lobby, no public matchmaking</b> (Frog Sqwad, early Mage Arena and Liar’s Bar).</li>
+        <li><b>One gimmick and nothing behind it:</b> YAPYAP “stale after about 5 hours”, “shallow as a kiddie pool”; its developer: “it’s hard to make it deep”.</li>
+        <li><b>Too short or too easy:</b> Trash Day, 96% positive but “completed in just over 2 hours”.</li>
+        <li><b>Host leaving kills the session; griefers in public lobbies.</b></li>
+        <li><b>No controller support or rebinding; motion-sick camera.</b></li>
+        <li><b>Theme alone:</b> loved animal games (Trash Day, Pawperty Damage) stayed small without a strong shared-failure hook.</li>
+        <li>Not found: “too complex” never came up in the review samples.</li>
+      </ul></div>
+    </div>
+    <div class="panel"><h3>In the developers’ words</h3>
+      <blockquote>“The fun comes from stupid stuff you and your friends do… failing is the funny part.” · “Almost every item we add is meant to be tempting to use in a way that’s dumb.” — Galen Drew, Aggro Crab (PEAK)</blockquote>
+      <blockquote>“You can’t get items out of your backpack on your own… one more layer of friction that means you have to interact socially.” · “We throw rocks at the wall and pray… more compelling than any level design we do by hand.” — Nick Kaman, Aggro Crab (PEAK)</blockquote>
+      <blockquote>“We design it so that it’s funny, and you laugh about it with your friends, but… it’s hard to make it deep.” — Maison Bap (YAPYAP)</blockquote>
+      <blockquote>“Doesn’t have strong, rigid game design, but it works because of the situations it creates.” — GameDiscoverCo on MECCHA CHAMELEON</blockquote>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Marketing</span>
+    <h2>What works, what doesn’t</h2>
+    <div class="two">
+      <div class="panel w"><h3>Works (cases supporting it)</h3><ol>
+        <li><b>A hook that reads in 3 seconds and is fun to watch</b> (11 cases). The game is a “TV format”; streamers make the content.</li>
+        <li><b>Low price, $3–10</b> (9). Games over $10 convert wishlists to first-week sales at 0.10× against 0.15× overall.</li>
+        <li><b>Short video before launch</b> (5). TikTok for the youngest players, where friendslop lives; Reels skews older; Shorts did nothing for CloverPit.</li>
+        <li><b>An existing audience or reused tech</b> (5). The only reason PEAK’s surprise launch worked.</li>
+        <li><b>A playable demo or playtest before Next Fest</b> (5). In the Haystack case, a clone that shipped a demo first overtook the original.</li>
+        <li><b>Creators early and wide</b> (4). CloverPit: 600+ creator keys, one big creator weeks early, zero paid ads.</li>
+        <li><b>A specialist publisher</b> (4): Oro, Future Friends, Landfall.</li>
+        <li><b>A launch-week discount</b> (2): PEAK $8 → $5.</li>
+      </ol></div>
+      <div class="panel f"><h3>Doesn’t work</h3><ol>
+        <li><b>Twitch hype that doesn’t convert:</b> The Skin Stapler and Gas Station Case drew viewers but ~200 players.</li>
+        <li><b>Copying a viral trailer:</b> Banana Airways got 11 followers copying Dear Passengers.</li>
+        <li><b>Launching by surprise without an audience:</b> you miss Popular Upcoming, New &amp; Trending and Next Fest.</li>
+        <li><b>A demo with a strong hook but thin game:</b> some demos out-drew their full launch.</li>
+        <li><b>Expecting Next Fest to create hype:</b> October 2026’s top-10% game gained only +63 followers, down 48% from June; games entering with under 1,000 wishlists got buried.</li>
+        <li><b>Casual, inflated wishlists:</b> they convert about half as well as in 2020–22.</li>
+        <li><b>Looking AI-made:</b> 8% of the top-25 demos disclosed AI, against 35% of the rest.</li>
+        <li><b>Free at launch:</b> Valve warned PEAK against it.</li>
+        <li><b>Unmoderated voice chat:</b> Mage Arena drew racism threads.</li>
+        <li>No friendslop evidence either way for paid ads or press outreach.</li>
+      </ol></div>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Game</th><th>Road to launch</th><th>Wishlists at launch</th><th>First viral moment</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>PEAK</td><td>Store page 4 days before launch, no demo; two studios’ fans</td><td class="nowrap">29k</td><td>Streamers after launch</td><td>4.5M in a month</td></tr>
+        <tr><td>YAPYAP</td><td>TikTok while barely playable → Next Fest → launch 7 months later</td><td class="nowrap">~900k</td><td>A 288k-like TikTok</td><td>1.15M sold</td></tr>
+        <tr><td>Roadside Research</td><td>Signed on a pitch → demo (903k players) → launch</td><td class="nowrap">250k+</td><td>“Aliens run a gas station” trailer, sitcom style</td><td>396k in 3 weeks</td></tr>
+        <tr><td>Super Battle Golf</td><td>Launch, then streamers returned 5–6 times, tournaments</td><td class="nowrap">—</td><td>Peak came 9 days after launch</td><td>~800k in 3 weeks</td></tr>
+        <tr><td>Lethal Company</td><td>19 earlier games, YouTube since 2012, playtests</td><td class="nowrap">—</td><td>Word of mouth: weekly peaks 611 → 3k → 12k → 43k</td><td>10M+</td></tr>
+        <tr><td>CloverPit</td><td>Demo (+100k wishlists in a week) → 600 creator keys → launch</td><td class="nowrap">—</td><td>The demo</td><td>750k in 2 weeks</td></tr>
+        <tr><td>BOMBANANA!</td><td>#1 June Next Fest demo → trending for weeks → launch</td><td class="nowrap">—</td><td>The demo</td><td>1M+ units</td></tr>
+        <tr><td>Dear Passengers</td><td>One trailer cut like a streamer clip</td><td class="nowrap">2M+ (unreleased)</td><td>The trailer</td><td>Fighting AI accusations</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Numbers to aim for</span>
+    <h2>Thresholds that predicted results</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Signal</th><th>What the data says</th></tr></thead>
+      <tbody>
+        <tr><td>Demo players at once → launch</td><td>Median ×3 for demos above 50 players at once (range ×1.3 to ×6.2). A 200-player demo points to ~600 at launch, ~12k sales in week one, ~35k in year one (estimate).</td></tr>
+        <tr><td>Wishlists → first-week sales</td><td>Median 0.15× (0.10× above $10). Friendslop hits beat it hugely: PEAK 266×, Mage Arena 78×, R.E.P.O. 68×.</td></tr>
+        <tr><td>Demo players who wishlist</td><td>Median 19%.</td></tr>
+        <tr><td>Steam visibility</td><td>Popular Upcoming needs ~5–7k wishlists. The top-25 Next Fest demos went in with a median 5.5k followers and gained +220 in the week before.</td></tr>
+        <tr><td>Next Fest timing</td><td>Put the demo up about 3 weeks before (the top 25 averaged 19 days). Momentum in the week before mattered as much as total followers.</td></tr>
+        <tr><td>Short video</td><td>No threshold in the data. Anecdotes: YAPYAP 288k likes, Speak 1M views, Storebound 1M+ views.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Timeline</span>
+    <h2>A solo-dev marketing plan, built from the cases</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>When</th><th>What to do</th></tr></thead>
+      <tbody>
+        <tr><td class="nowrap">Weeks −30 to −26</td><td>Prototype the funny situation. Post raw clips on TikTok and Reels, 3–5 a week. Keep the ones people react to.</td></tr>
+        <tr><td class="nowrap">When a clip passes ~100k views</td><td>Put up the Steam page at once. Speed matters once something spreads, because clones follow within days.</td></tr>
+        <tr><td class="nowrap">Weeks −24 to −16</td><td>Trailer cut like a streamer clip, with real voice reactions. Open a Discord. Run a playtest.</td></tr>
+        <tr><td class="nowrap">Week −12</td><td>Public demo. Keys to 100–600 small and mid creators and a few big ones.</td></tr>
+        <tr><td class="nowrap">Weeks −8 to −2</td><td>Build momentum; demo live ~3 weeks before Next Fest.</td></tr>
+        <tr><td class="nowrap">Week −2</td><td>Next Fest.</td></tr>
+        <tr><td class="nowrap">Launch</td><td>$5–10 with a 20–40% launch discount. Big creators get access weeks ahead. Voice reporting and moderation ready.</td></tr>
+        <tr><td class="nowrap">Weeks +1 to +12</td><td>Ship content updates fast; keep feeding streamers. Expect the audience share to fade to ~10% within 3–9 months.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">The order of steps comes from the cases; the exact week numbers are my inference.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Idea directions</span>
+    <h2>Five idea directions</h2>
+    <p class="prose">Each combines a proven hook from above with a verb and a species that the <a href="https://claude.ai/artifact/Agz4e6F81mKfxM3n2An8jU">radar</a> found open. They are starting points to prototype and test with a clip, not designs. Competition notes come from the radar and scan; check them again before committing.</p>
+    <div class="ideas">
+      <article class="panel i"><h3>Den parents <span class="chip idea">babysit one creature</span></h3><dl>
+        <dt>Pitch</dt><dd>A crew of animal parents must keep one chaotic baby alive through a day in a house full of hazards.</dd>
+        <dt>Hook</dt><dd>Shared fragile “loot” that moves on its own (R.E.P.O.’s fragile valuables, but alive) + clear blame for every accident.</dd>
+        <dt>Clip</dt><dd>The baby crawls toward the blender while two parents argue over the only key.</dd>
+        <dt>Competition</dt><dd>No online co-op babysitting game found. Who’s Your Daddy (asymmetric, older) is the nearest.</dd>
+        <dt>Risk</dt><dd>Baby-in-danger humour needs a light tone; one baby type may get repetitive without many rooms and baby traits.</dd>
+      </dl></article>
+      <article class="panel i"><h3>Dam it! <span class="chip idea">build under pressure</span></h3><dl>
+        <dt>Pitch</dt><dd>Beavers race to build a dam before the flood; logs carried by physics, the dam holds or bursts.</dd>
+        <dt>Hook</dt><dd>Shared structure + visible blame (whose log broke it) + a familiar job format.</dd>
+        <dt>Clip</dt><dd>The dam bursts and the whole crew washes downstream.</dd>
+        <dt>Competition</dt><dd>Building is contested (Dumb Ways to Build, Salvation Denied); no animal building game found. Beavers unused.</dd>
+        <dt>Risk</dt><dd>Physics building is technically demanding to make fair.</dd>
+      </dl></article>
+      <article class="panel i"><h3>Critter band <span class="chip idea">play a gig</span></h3><dl>
+        <dt>Pitch</dt><dd>An animal band plays gigs; each player one instrument, the crowd turns on you if the band falls apart.</dd>
+        <dt>Hook</dt><dd>Interdependent roles (like BOMBANANA!) + a familiar format (a concert) + funny failure.</dd>
+        <dt>Clip</dt><dd>The drummer loses the beat and the crowd throws fish.</dd>
+        <dt>Competition</dt><dd>No band co-op game since Disaster Band (2022, small).</dd>
+        <dt>Risk</dt><dd>Rhythm needs tight timing over the network, which is hard with peer-to-peer lag.</dd>
+      </dl></article>
+      <article class="panel i"><h3>Hive shift <span class="chip idea">run a hive</span></h3><dl>
+        <dt>Pitch</dt><dd>Bees on a shift: gather pollen, feed a demanding queen, defend from wasps; a quota each day.</dd>
+        <dt>Hook</dt><dd>Quota pressure (Lethal Company) + job format (climbing trend) + shared hive that can collapse.</dd>
+        <dt>Clip</dt><dd>One bee brings back the wrong flower and the queen evicts everyone.</dd>
+        <dt>Competition</dt><dd>APICO (calm, 2022) only. Bees unused in friendslop.</dd>
+        <dt>Risk</dt><dd>Flying controls add work.</dd>
+      </dl></article>
+      <article class="panel i"><h3>Burrow hotline <span class="chip idea">handicap roles</span></h3><dl>
+        <dt>Pitch</dt><dd>One mole underground can see the map but not the surface; the otters above can see the danger but not the map. Rescue lost critters together.</dd>
+        <dt>Hook</dt><dd>Communication handicap (BOMBANANA!, Keep Talking) + rescue.</dd>
+        <dt>Clip</dt><dd>“Left! No, MY left!” as an otter walks into a hawk.</dd>
+        <dt>Competition</dt><dd>BOMBANANA! and its clone own handicap roles right now; rescue is lightly contested.</dd>
+        <dt>Risk</dt><dd>Closest to a fresh hit, so it may read as a copy.</dd>
+      </dl></article>
+    </div>
+    <p class="note">How to choose: build the core of two directions in about a week each, record a 10-second clip of each, post both, and keep the one people react to. That is the test the hits used, and it costs weeks, not months.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Sources</span>
+    <h2>Where this comes from</h2>
+    <div class="sources"><ul>
+      <li><a href="https://www.gamedeveloper.com/design/what-developers-can-learn-from-the-indie-social-co-op-games-topping-the-steam-charts">Game Developer: what devs can learn from the social co-op games topping Steam</a></li>
+      <li><a href="https://www.gamedeveloper.com/business/peak-co-developer-aggro-crab-shares-lessons-in-friendslop">Game Developer: Aggro Crab’s lessons in friendslop</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/how-peak-sold-45m-copies-in-less">GameDiscoverCo: PEAK</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/how-yapyap-jammed-its-way-to-1-million">GameDiscoverCo: YAPYAP</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/how-two-friendslop-hits-got-the-audience">GameDiscoverCo: Super Battle Golf and Roadside Research</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/look-we-have-to-talk-about-meccha">GameDiscoverCo: MECCHA CHAMELEON</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/real-data-how-cloverpit-hit-750k">GameDiscoverCo: CloverPit data</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/what-can-we-learn-from-lethal-companys">GameDiscoverCo: Lethal Company</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/the-state-of-steam-wishlist-conversions">GameDiscoverCo: wishlist conversions</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/does-your-steam-demo-ccu-predict">GameDiscoverCo: does demo CCU predict launch?</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/who-won-october-2026s-steam-next">GameDiscoverCo: October 2026 Next Fest</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/what-1-million-immediate-wishlists">GameDiscoverCo: Dear Passengers’ 1M wishlists</a></li>
+      <li><a href="https://howtomarketagame.com/2026/07/30/is-friendslop-saturated/">How To Market A Game: is friendslop saturated?</a></li>
+      <li><a href="https://howtomarketagame.com/2026/10/21/how-sloppy-is-the-october-2026-steam-next-fest/">HTMAG: October 2026 Next Fest</a></li>
+      <li><a href="https://howtomarketagame.com/2026/10/28/ai-cloners-are-here-are-indie-devs-cooked/">HTMAG: AI cloners</a></li>
+      <li><a href="https://howtomarketagame.com/2026/10/13/wishlist-inflation-is-real-but-they-are-still-important/">HTMAG: wishlist inflation</a></li>
+      <li><a href="https://howtomarketagame.com/2026/06/30/nobody-plays-demos-and-that-is-ok/">HTMAG: nobody plays demos</a></li>
+      <li><a href="https://www.pushtotalk.gg/p/how-lethal-company-sold-10-million-copies">Push to Talk: Lethal Company</a></li>
+      <li>Steam community review pages for 17 games (sampled 2026-11-02)</li>
+    </ul></div>
+  </section>
+</main>

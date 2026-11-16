@@ -1,0 +1,13 @@
+R2: rater agreement on shared checks = 67% (n=43)
+
+method | n | pass | strict | stopped at (gate: count)
+MG | 6 | 2 | 0 | P:1, F2:1, R:2
+MA2 | 6 | 0 | 0 | P:2, F2:1, R:3
+Manchor | 4 | 0 | 0 | P:1, R:3
+MH | 6 | 0 | 0 | P:2, R:4
+
+all ideas stopped at: P:6, F2:2, R:12
+
+passing ideas, best first (~ count, then id):
+R222 (MG-1) ~ on F6,R
+R214 (MG-2) ~ on F2,F6,G,R

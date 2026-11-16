@@ -1,0 +1,146 @@
+{
+ "R301": {
+  "src": "MF2-3",
+  "method": "MF2",
+  "vals": {
+   "P": 0,
+   "F1": "skip",
+   "F2": "skip",
+   "F4": "skip",
+   "F5": "skip",
+   "F6": "skip",
+   "G": "skip",
+   "R": "skip"
+  },
+  "stop": "P",
+  "ok": false,
+  "strict": false,
+  "total": 0
+ },
+ "R302": {
+  "src": "Manchor-1",
+  "method": "Manchor",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R303": {
+  "src": "Manchor-4",
+  "method": "Manchor",
+  "vals": {
+   "P": 0,
+   "F1": "skip",
+   "F2": "skip",
+   "F4": "skip",
+   "F5": "skip",
+   "F6": "skip",
+   "G": "skip",
+   "R": "skip"
+  },
+  "stop": "P",
+  "ok": false,
+  "strict": false,
+  "total": 0
+ },
+ "R304": {
+  "src": "MF2-6",
+  "method": "MF2",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 1,
+   "F6": 2,
+   "G": 1,
+   "R": 1
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 13
+ },
+ "R305": {
+  "src": "MF2-2",
+  "method": "MF2",
+  "vals": {
+   "P": 0,
+   "F1": "skip",
+   "F2": "skip",
+   "F4": "skip",
+   "F5": "skip",
+   "F6": "skip",
+   "G": "skip",
+   "R": "skip"
+  },
+  "stop": "P",
+  "ok": false,
+  "strict": false,
+  "total": 0
+ },
+ "R306": {
+  "src": "MF2-4",
+  "method": "MF2",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 1,
+   "R": 0
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 12
+ },
+ "R307": {
+  "src": "MF2-5",
+  "method": "MF2",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 1,
+   "R": 0
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 12
+ },
+ "R308": {
+  "src": "MF2-1",
+  "method": "MF2",
+  "vals": {
+   "P": 0,
+   "F1": "skip",
+   "F2": "skip",
+   "F4": "skip",
+   "F5": "skip",
+   "F6": "skip",
+   "G": "skip",
+   "R": "skip"
+  },
+  "stop": "P",
+  "ok": false,
+  "strict": false,
+  "total": 0
+ }
+}

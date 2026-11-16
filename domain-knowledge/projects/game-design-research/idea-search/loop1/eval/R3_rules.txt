@@ -1,0 +1,8 @@
+R301 Possum Toss: Any possum can go limp, and a limp possum can be picked up and thrown by a teammate. The thrown one picks the moment it comes alive in the air.
+R302 Hooked on Friends: Your grapple hook sticks only to teammates, and when it lands, whichever of you is braced stays put and the other one gets reeled in.
+R303 Megalith Haul: A huge stone slides only over logs, and each log that rolls out behind it must be carried round and laid in front before the stone reaches bare ground.
+R304 Push-Off: With dead jetpacks, two crew members who both press kick off each other and fly apart at the same speed in opposite directions, and nothing else changes your course.
+R305 Counterweight Shaft: Each rope hangs over a pulley with a player on each end, so the rope you haul in comes out of your partner's side and you rise exactly as far as they drop.
+R306 Bedtime Bounce: Everyone bounces on one big bed. If you land right after a teammate lands next to you, you shoot up twice as high and their bounce dies.
+R307 Slap Relay: Slap a teammate's hand and they take all your speed on top of their own, while you stop dead.
+R308 Strap Grab: Grab a teammate's pack strap and they jerk to a dead stop, unless in that same instant they shrug the pack off. Then the pack and its loot stay in your hands, and they run on lighter.

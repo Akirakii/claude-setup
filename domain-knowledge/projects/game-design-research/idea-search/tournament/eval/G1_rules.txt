@@ -1,0 +1,72 @@
+G101 Lone Scout: The fake floor tiles show as holes only on the screen of a player with no friend within 15 m, and one player may secretly want the crew to fail.
+G102 Circle of Herds: Each player herds one flock that can only live by grazing on the next player's flock in a closed ring, and every flock must survive the season.
+G103 Log Jam: Players stand on a jam of floating logs above a mill dam and pry the logs loose with poles before the water tops the dam, and every log you push rolls or shifts the logs your friends are standing on.
+G104 Sunbeam Relay: The only light in a cave is a sunbeam from the entrance, and the crew carries it deeper by bouncing it from one player's hand mirror to the next. Anyone outside the light slowly freezes.
+G105 Tipping Raft: The raft tips toward wherever the crew is standing, and tipping is the only way to steer it down the river.
+G106 Wall of Ammo: The only ammo is the blocks you pull out of the wall you are hiding behind.
+G107 Road Train: The truck has one trailer per player, each player steers only their own trailer's wheels, and the last player holds the only brake, on a winding road against the clock.
+G108 Stop Buttons: Each player can freeze one kind of trap for a few seconds, and the whole crew must cross the trap course together.
+G109 Thin Floors: Each player is stuck alone on one floor of a flooding house, and things move between floors only through the hatch in each ceiling: you knock them up to the player above with a broom, or stomp to shake them down to the player below.
+G110 Tool Line: The crew crawls through a tunnel one person wide where nobody can pass anybody, and there are fewer tools than players, so each tool must be handed along the line to whoever's spot is failing.
+G111 Wax Bridge: A player swinging on a rope over a cold lake drips hot wax that hardens into stepping stones where it lands, and the walkers can stand only on stones, which sink a few seconds after someone steps on them.
+G112 One Seat Over: Each player steers the body of the player on their left but sees only around their own body, so you walk a friend by their voice while your own legs belong to someone else.
+G113 Rubber Fence: The whole crew holds one long elastic rope and must close it into a loop around a panicking herd and drag them into the pen, and the rope snaps wherever two neighbours stretch it too far.
+G114 Sheet and Ball: Everyone holds one edge of a single sheet, and the ball on it rolls toward whoever holds their edge lowest.
+G115 Balloon Basket: The balloon floats higher for every person who climbs out of its basket and sinks for every person who climbs back in.
+G116 Hump Yard: Freight cars roll one at a time down a hill into a fan of tracks, and the crew must cut each car loose, throw its switches and ride and brake it, so it meets the cars on its chalked track gently before the shift ends.
+G117 Blind Spot: Each player sees the traps around every teammate but never the traps around themselves.
+G118 Salt Flat Crossing: Each player is immune to one kind of storm and casts a shelter behind them against it, so the crew survives each incoming storm only by getting the right friend in front.
+G119 Rubber Band Ring: The crew is tied in a ring by stretchy bands, so a player who lets go of the ground gets flung by the pull of their two neighbors, and that fling is the only way to cross a gap.
+G120 Borrowed Eyes: Each player sees only through the eyes of the next player in a ring, never through their own.
+G121 Look At Me: You can only move while a teammate is looking at you.
+G122 Crumbling Floor: Every floor tile falls a moment after someone steps off it, and the crew must get a crate that needs several carriers across.
+G123 Flying Hands: You can grab or hit things only while flying through the air, and only a friend can throw you.
+G124 Slime Crate: Every player leaves a slippery slime trail where they walk, which lets a heavy crate slide but makes feet slip, so the crew must slime the crate's path ahead of it and push it from dry ground.
+G125 Throw-Only Cargo: The cargo can never be carried, only thrown, and it breaks if it touches the ground.
+G126 Haunt in the Crew: One crewmate is secretly the haunt and can wreck things only while no one is looking at them.
+G127 Door Chain: Each player places one door, and walking into any door drops you out of the next player's door, so the crew's route is a ring through everyone's doors.
+G128 Rudderless: The ship has no rudder, so it turns only by the balance of its sails, and each sail steals wind from the sail behind it.
+G129 Shove Crew: No one can walk; you can only shove a friend away from you, so the crew crosses the board by pushing each other.
+G130 Living Tower: Only the player at the bottom of the stack may touch the burning ground, so the crew crosses as a wobbly tower that keeps swapping who is at the bottom.
+G131 Look Away: One hidden saboteur can break things only while no other player's camera is pointed at them, so the crew must keep eyes on each other while building a raft before the flood.
+G132 Wet Paint: Each player is coated in a paint colour that everyone else can see but they can't, coloured beams sweep the floor knocking out anyone of the matching colour, and the only way to change a friend's colour is to hit them with a paint balloon.
+G133 Overboard: The crew must keep an overloaded lifeboat afloat until shore by throwing cargo overboard, while each player secretly owns one crate that pays only them if it reaches shore.
+G134 Loudest Voice: The beast always walks toward whichever player is talking loudest right now.
+G135 Live Laser Chain: A beam from a moving source must stay on a moving target by bouncing through the optics the players carry, and the beam burns any player it crosses.
+G136 Hand-Carried Marble Run: Marbles drop from a chute at a steady pace, and each player carries one kind of track part (ramp, cup, spring, fan), placing and angling it live to pass the marbles across gaps to the goal cup.
+G137 Swapped Souls: You see through your own character's eyes, but your controls steer the next player's character in a ring.
+G138 Mess Chain: Every cleaning turns one kind of mess into the next kind, which only the next player in line can clean, while the first kind keeps spreading.
+G139 Curse of Silence: Your screen goes black while you talk, and each falling rock is visible to everyone except the player it will hit.
+G140 Cage Eyes: The troll in the yard is invisible to free players and visible only to players it has caught, who watch from the cage and talk the free players past it, but kicking the can frees everyone and leaves the crew blind again.
+G141 Drop Relay: Each falling block passes down through every player's band of the well, and inside your band you can do only your one move (turn it, shift it sideways, or speed it down).
+G142 Human Tower: Players climb onto each other's shoulders to build a tower whose top must touch a high flag and come down again; every body sways the tower, so each person below must lean against the sway the climber above just made.
+G143 Stone Walker: The crew walks one giant creature with one leg per player, and the creature topples if its body leaves the area under its planted legs.
+G144 Last Ember: Whoever holds the ember can't move and the ground under them starts to crack after 3 seconds, so the crew carries it across the ruins only by throwing it to each other.
+G145 Rug Ghost: A ghost hides as a lump under a huge rug and scoots away from any broom pound, so the crew must pound it back and forth between them into a sack held open at the rug's edge before dawn.
+G146 Sunbeam Relay: One sunbeam bounces from mirror to mirror held by the players, and it burns only where it finally lands.
+G147 Body Ladder: The shaft walls have no holds, so you can climb only by stepping on friends who wedge themselves across the shaft, and a wedged player's grip runs out faster with every person standing on them.
+G148 One Socket: The crew shares one battery that runs only one gadget at a time, and switching yours on cuts off whoever was using it.
+G149 Long Arm: Each player turns one joint of a single long rescue arm, and every turn swings everything past that joint.
+G150 Parade Balloon: Each player holds one tether of a giant helium balloon, and the balloon drifts wherever the taut ropes pull it as the crew walks it down a windy street.
+G151 Passing Troupe: Each player has two hands, more clubs join the air every 20 seconds, and you must throw every club you catch on to any friend within two seconds; a club that reaches someone with both hands full hits the floor.
+G152 Blanket Toss: All players but one hold the edges of a big blanket and toss the flyer up to grab fruit from very tall trees, and the flyer must land back on the blanket.
+G153 Crossed Strings: Each player pulls one string of a giant puppet, every string is tied to two body parts, and every body part hangs from two players' strings.
+G154 Striking Gang: The holder moves a glowing bar on the anvil while strikers swing heavy hammers that land one second after they start, and the bar must be beaten to the target shape before it cools, because a blow on cold metal cracks it.
+G155 Heavy Boots: In a tumbling zero-gravity station any player can turn heavy, which anchors them in place and pulls every light player toward them.
+G156 Three Whistles: Each sheepdog moves the flock its own way (the barker pushes sheep away, the bell dog draws them in, the stare dog freezes the ones near it), and the flock must cross a cliff path to the pen before dark.
+G157 Ant Raft: The crew floats down a flood as one raft made of their own linked bodies. Players in the bottom layer keep it afloat but lose air, and can come up only when someone from the top climbs down into their spot.
+G158 Blackout Change: Between scenes the stage goes dark for 20 seconds and each player must move one piece of scenery onto its glowing floor mark; when the lights snap on, the audience sees every piece off its mark and anyone still onstage or hit.
+G159 Light Bridge: The floor exists only where another player's flashlight shines; your own light holds up only your friends.
+G160 Shade for Each Other: Sunlight burns, and the shade you carry falls only on the friends behind you, never on you, so you live in a friend's shade or in a building's shadow.
+G161 Human Tower: The crew stands on each other's shoulders as one tower, where only the bottom row can walk and only the top player can grab.
+G162 Flying Trapeze: The only way across the big top is to let go of your swinging bar and be caught by a friend hanging from another bar, so the flyer's release and the catcher's swing must meet at the same moment.
+G163 Bloodstream Medics: Each player sees only one kind of germ, and a germ can be destroyed only by a different player than the one who tagged it.
+G164 Loud Bait: The horde always runs at whoever made the latest noise, and every useful action makes noise.
+G165 Shifting Floor: Each player can slide only the row or the column they are standing on (rows or columns by their color), which carries every friend on that line along, and the tile pushed off the edge falls away.
+G166 Burning Big Top: The crew crosses a row of trapezes by leapfrog: the player at the back lets go and must be caught and swung on by each friend in turn, swinging to meet them at the right moment.
+G167 Fence of Light: A beam links each player to the next in a fixed ring, and the animals can't cross a beam.
+G168 Hand-to-Hand Kitchen: A dish can never be set down, and each player's tool works only on a dish they are holding, so every order is passed hand to hand in recipe order.
+G169 Pull Tower: The crew stands on a tower of loose stone blocks in rising water and must build a bridge to the next tower using only blocks pulled out of the tower they stand on.
+G170 Purse Seine: One boat lays a net in a circle around a fleeing fish school while the skiff holds the net's other end, and the winch player pulls the net's bottom shut, which must come after the circle closes and before the school dives out underneath.
+G171 Unseen Keys: Each player wears a colour they can't see, doors open only for that colour, and touching another player swaps your colours.
+G172 Blind Lamps: Each player's lamp lights the dark for everyone except its holder, and the cave creatures freeze only while lit.

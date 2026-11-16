@@ -1,0 +1,16 @@
+{
+  "outputStyle": "coworker",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "mkdir -p \"$HOME/.claude\" && { [ -e \"$HOME/.claude/domain-knowledge\" ] || ln -s \"$CLAUDE_PROJECT_DIR/domain-knowledge\" \"$HOME/.claude/domain-knowledge\"; } || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+G201 Diver's Eyes: The key log holding the jam looks like every other log from above, so someone must dive under the jam to find it, and they can only come back up where friends have levered a gap open.
+G202 Bed Board Tunnel: The crew crawls an escape tunnel one person wide whose only props are the boards already holding up its roof, so every board moved to a newly cracking spot leaves bare roof over somebody else.
+G203 Foam Bulkhead: Foam sprayed into the hull swells to three times its size over four seconds,
+G204 Threshers: Two players slam a pair of long poles together to crush the beetles swarming the floor, and the others dart between the poles to pull out grain before the next slam.
+G205 Ring Remote: ** Your controls move the next player in the ring, never yourself, and you see only through your own eyes.
+G206 Crib the House: A corner of the house rises one block only when one player heaves its
+G207 Bell Pour: One player tilts a crucible of molten bronze into a clay mould whose
+G208 Ore Carts: Ore carts roll down from the quarry with no brakes and coast farther the more people are riding them, so the crew stops each cart at its own chute by jumping on and off carts as they roll.
+G209 Teeterboard Troupe: The player on the low end of a teeterboard flies only if they jump in the
+G210 Hot Hammer: A mallet works only for three seconds after it is caught, and it hits harder the longer it flew.
+G211 Stone on Rollers: A huge stone rides log rollers down a tidal slope. Each log that pops out
+G212 Jelly Kitchen: Every move a player makes on the jelly floor sends out a visible ripple; ripples
+G213 Weave: Each player drags a rope from their own stake across a sleeping giant. A rope pins him only where it is woven: at each crossing one player goes over (jumps) and the other goes under (ducks), and each rope must alternate over, under, over.
+G214 Set Glue: The crew rebuilds a broken statue; each glue joint sets four seconds after it
+G215 Floe Haul: Each player rides their own drifting ice floe, and any two can throw a rope across and haul their floes together, which also drags every floe roped to either of them.
+G216 Ice Whip: The crew crosses a cracking lake only by whipping. Holding hands in a line around a planted pivot, the tail lets go and flies, then plants as the new pivot, and the rest must skate to it and grab on.
+G217 Smoke Shove: The garage fills with smoke that is never destroyed, only pushed: each player's
+G218 Shove Crew: No one can walk; you can only shove a friend away from you, so the crew crosses the board by pushing each other.
+G219 Wall of Ammo: The only ammo is the blocks you pull out of the wall you are hiding behind.
+G220 Bull Relay: The bull charges the nearest player it can see, so the crew passes it from one to another by stepping out of cover just as the last one ducks behind it.
+G221 Hump Yard: Freight cars roll one by one off a hill into a fan of sidings, and players throw the switches to send each car to its colour's track and ride the cars to brake them by hand so they couple gently.
+G222 Rivet Gang: Every joint on the steel frame needs a rivet thrown up red-hot from the forge, caught, and hammered while a second player holds the other side of the same hole, all before it cools.
+G223 Stage Fight: In a staged brawl every attack is wound up in plain view toward one body zone, and its target must show the matching block before it lands; a blow that lands is a real injury.
+G224 Salt Cross: Salt crystal grows only where a brine spray and a heat beam cross, and fresh
+G225 Fling Rope: ** Nobody can climb on their own; an anchored friend reels you in so hard that you fly up past them, and you must grab a hold at the top of your flight.
+G226 Fire Fresh: Whoever left the campfire more recently beats whoever has been out longer (players and wolves alike), so a friend far out can only be saved by someone who leaves the fire *after* the wolf chasing them left its den.
+G227 Megalith Haul: A huge stone slides only over logs, and each log that rolls out behind it must be carried round and laid in front before the stone reaches bare ground.
+G228 Blind Spot: Each player sees the traps around every teammate but never the traps around themselves.
+G229 Hoist Relay: Loads go up the tower floor by floor. Each player cranks a hoist that lifts
+G230 Log Jam: Players stand on a jam of floating logs above a mill dam and pry the logs loose with poles before the water tops the dam, and every log you push rolls or shifts the logs your friends are standing on.
+G231 Looping Mill: Glowing steel rods snake through a mill of roller stands, and whenever a rod's head pops out of a stand a player must catch it with tongs and feed it into another stand before it whips loose, while the hot loop left between the two stands sweeps across the floor.
+G232 Guy-Rope Mast: ** One player climbs a tall mast that stands only because the others hold its guy ropes, and ropes can only pull, so each lean of the climber must be caught by whoever holds the rope on the opposite side.
+G233 Braid Gang: ** Each player trails one strand from a shared anchor, and crossing over or under a friend braids the strands, so the crew must walk the braid that is called before the hanging load snaps it.
+G234 Ranger's Sack: The ranger stuffs every raccoon she catches into her sack and gets slower with each one she carries, and any sacked raccoon can wriggle out at any moment, landing right at her feet.
+G235 Jump Sheet: ** One player is the "ball" and can only steer in the air, while each other player runs with a small jump sheet and tilts it on the catch to send the ball to the next catcher.
+G236 Hot Rivets: A rivet sets only if one player throws it, glowing, into a hole in the
+G237 Toolbox Drift: In a ship with no power and no gravity, the crew can only change course by throwing and catching one heavy tool chest: whoever throws it drifts backward, and whoever catches it drifts on with it.
+G238 Many-Hands Wheel: The crew throws one pot on one wheel: one player sets the spin, every other
+G239 On Air: Every player runs a camera at a chaotic live event, and the camera on air is locked still, so its operator must hand the broadcast to another camera that already has the action framed before the action leaves the shot.
+G240 Shadow Ring: You can touch the wall world only with your shadow, and your shadow is cast by the lamp a friend carries.
+G241 Cage Eyes: The troll in the yard is invisible to free players and visible only to players it has caught, who watch from the cage and talk the free players past it, but kicking the can frees everyone and leaves the crew blind again.
+G242 Club Passing: On every beat each player holding a club throws one to a teammate, and it lands only if the catcher is facing the thrower that beat and has a free hand.
+G243 Chain Fence: The herders are links in one chain fence, each joined to a neighbour by a
+G244 Ankle Chain: ** Every player's ankles are tied to their neighbours' in one line, and you can only take a step while both your neighbours are standing still.
+G245 Double Bounce: The crew bounces on one big trampoline. Whoever lands right beside a friend as that friend pushes off flings them twice as high, and two friends landing side by side at the same instant kill each other's bounce.
+G246 Grapple Gondola: The gondola hangs from grapple lines the players hold, and it moves only
+G247 Shove Crew: ** In zero gravity the only way to move is to shove a crewmate, which sends you both drifting apart in opposite directions.
+G248 Striking Gang: The holder moves a glowing bar on the anvil while strikers swing heavy hammers that land one second after they start, and the bar must be beaten to the target shape before it cools, because a blow on cold metal cracks it.
+G249 Kho Relay: Only one player at a time may run, and only forward. You hand the run to a crouched friend by tagging them, and then you freeze where you stand.
+G250 Flood Cells: ** Each player is locked in a flooding cell whose door opens only from a lever in some friend's cell, and every lever pull opens one door and shuts another.
+G251 Sardine Hide: The whole crew must squeeze into one hiding spot before the searchlight comes back, and every body that pushes in shoves the ones already inside.
+G252 Crack Loop Roof: Every step on the glass roof grows cracks from the foot (heavier steps grow
+G253 Trapper Doors: An ore cart runs a mine track through air doors, and each door must be
+G254 Misdirection: The audience always looks at the biggest motion on stage, and a secret move only works if nobody in the audience is looking at it.

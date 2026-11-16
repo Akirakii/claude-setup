@@ -1,0 +1,465 @@
+<title>Friendslop Field Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column with wide bands for tables; success = teal, failure = ember, furry/animal = violet. */
+:root {
+  --bg: #f4f4f8;
+  --surface: #ffffff;
+  --ink: #181b2a;
+  --muted: #5b6074;
+  --line: #dcdfe9;
+  --win: #0a7c76;
+  --fail: #c64a12;
+  --fur: #7a45c2;
+  --accent: #3550c8;
+  --good: #2f7d32;
+  --warn: #a86400;
+  --bad: #b3261e;
+  --chip-good: #e3f1e3;
+  --chip-warn: #f8ecd6;
+  --chip-bad: #f7e1df;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12131b; --surface: #1a1c27; --ink: #e7e8f0; --muted: #9da1b5; --line: #2c2f40;
+    --win: #3fc8bd; --fail: #ff8a4f; --fur: #b993ff; --accent: #8ea3ff;
+    --good: #7cc97f; --warn: #f0b04a; --bad: #ff8a80;
+    --chip-good: #1d3322; --chip-warn: #3a2d14; --chip-bad: #3d1f1d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12131b; --surface: #1a1c27; --ink: #e7e8f0; --muted: #9da1b5; --line: #2c2f40;
+  --win: #3fc8bd; --fail: #ff8a4f; --fur: #b993ff; --accent: #8ea3ff;
+  --good: #7cc97f; --warn: #f0b04a; --bad: #ff8a80;
+  --chip-good: #1d3322; --chip-warn: #3a2d14; --chip-bad: #3d1f1d;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+main { max-width: 1040px; margin: 0 auto; display: grid; gap: 56px; }
+.prose { max-width: 72ch; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font: 500 0.75rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 64ch; }
+section { display: grid; gap: 18px; }
+.note { font-size: 0.9rem; color: var(--muted); max-width: 80ch; }
+.win { color: var(--win); font-weight: 600; }
+.fail { color: var(--fail); font-weight: 600; }
+.fur { color: var(--fur); font-weight: 600; }
+header { display: grid; gap: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font: 400 0.85rem var(--f-mono); color: var(--muted); }
+
+.findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.findings li { display: grid; grid-template-columns: 2.2rem 1fr; gap: 12px; align-items: baseline; }
+.findings li > span { font: 600 0.9rem var(--f-mono); color: var(--muted); }
+.findings b { font-weight: 600; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 4px; align-content: start; }
+.stat strong { font: 800 1.8rem/1.1 var(--f-display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.9rem; color: var(--muted); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 0.75rem var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td:first-child { font-weight: 600; }
+
+.chip { display: inline-block; font: 500 0.75rem/1 var(--f-mono); padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+.chip.good { background: var(--chip-good); color: var(--good); }
+.chip.warn { background: var(--chip-warn); color: var(--warn); }
+.chip.bad { background: var(--chip-bad); color: var(--bad); }
+
+.bars { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: minmax(0, 15rem) 1fr; gap: 12px; align-items: center; font-size: 0.9rem; }
+.bar .track { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.bar .fill { height: 14px; border-radius: 4px; }
+.bar .n { font: 500 0.85rem var(--f-mono); font-variant-numeric: tabular-nums; color: var(--muted); }
+.bars.fail .fill { background: var(--fail); }
+.bars.win .fill { background: var(--win); }
+@media (max-width: 560px) { .bar { grid-template-columns: 1fr; gap: 4px; } }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.panel ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; }
+.panel.w { border-top: 3px solid var(--win); }
+.panel.f { border-top: 3px solid var(--fail); }
+.panel.u { border-top: 3px solid var(--fur); }
+.rules { margin: 0; padding-left: 1.4rem; display: grid; gap: 10px; max-width: 76ch; }
+.verbs { display: flex; flex-wrap: wrap; gap: 8px; }
+.verbs span { font: 500 0.85rem var(--f-mono); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); }
+.verbs.used span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.verbs.open span { border-color: var(--win); color: var(--win); }
+.recipe { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font: 500 0.95rem var(--f-mono); }
+.recipe b { padding: 6px 10px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); font-weight: 600; }
+.recipe b.tie { border-color: var(--accent); color: var(--accent); }
+.ties { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.tie { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.tie.layer { border-top-color: var(--win); }
+.tie h3 { display: flex; gap: 8px; align-items: baseline; }
+.tie h3 .k { font: 500 0.8rem var(--f-mono); color: var(--muted); }
+.tie .def { font-weight: 500; }
+.tie dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 0.9rem; }
+.tie dt { font: 500 0.72rem/1.9 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.tie dd { margin: 0; }
+.games { display: flex; flex-wrap: wrap; gap: 6px; }
+.games span { font-size: 0.85rem; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line); }
+.games span i { font-style: normal; font-family: var(--f-mono); color: var(--muted); font-size: 0.8rem; }
+.games span.nb { border-style: dashed; }
+.games.soon span { color: var(--muted); }
+.flag { font: 500 0.75rem var(--f-mono); color: var(--warn); }
+.sources { columns: 2 320px; column-gap: 32px; font-size: 0.85rem; }
+.sources ul { margin: 0; padding-left: 1rem; }
+.sources li { break-inside: avoid; }
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Market research · cheap online co-op · furry theme</span>
+    <h1>Friendslop field guide</h1>
+    <p class="lede">What makes cheap co-op party games ("friendslop") <span class="win">work</span> or <span class="fail">fail</span>, what has already been made, and where a <span class="fur">furry / animal</span> friendslop game has room.</p>
+    <div class="meta"><span>2026-11-01</span><span>13 mid-tier hits · 15 failures · 25 animal games · 12 subgenres</span><span>4 research passes</span></div>
+    <p class="note">Sales are mostly third-party estimates (Raijin, SteamSpy, VGChartz) that often undercount: Raijin shows PlateUp! at 422k against 3M official. Named cheap-friendslop flops are rare in the press, so the failure data leans toward pricier games. The mega-hits are covered in the earlier report.</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">Summary</span>
+    <h2>Seven findings</h2>
+    <ol class="findings">
+      <li><span>1</span><p><b>Co-op as a category beats single player on average.</b> The typical co-op game sells about 40k copies against about 5k for single player, and even the bottom quarter of co-op sells better (VG Insights 2024 estimate).</p></li>
+      <li><span>2</span><p><b>The mid-tier is reachable solo.</b> Mage Arena, Bopl Battle and PICO PARK 2 were each made by one person and sold roughly 0.8–1M copies.</p></li>
+      <li><span>3</span><p><b>Measured failures cluster at $20–30 and in live-service matchmaking games,</b> not in the $5–10 friend-group game. The top failure cause is a population that dies after launch (9 of 15 cases).</p></li>
+      <li><span>4</span><p><b>Each hit owns the audience briefly.</b> The top game takes about 50% of friendslop players, then falls to about 10% within 3–9 months. The audience buys a new game every couple of months.</p></li>
+      <li><span>5</span><p><b>Steam has no “Furry” tag, and the word is dominated by cheap adult games.</b> Every animal million-seller (Party Animals, WEBFISHING, Cult of the Lamb) sold as “cute animals”, never “furry”, and the fandom adopted them anyway.</p></li>
+      <li><span>6</span><p><b>There is no anthro friendslop hit yet.</b> Animal co-op alone doesn’t sell: Trash Day (raccoons, 3 weeks old) peaked at 2k players, Frog Sqwad 930, Pawperty Damage 46. The verb has to carry the game.</p></li>
+      <li><span>7</span><p><b>Open verbs remain:</b> raising a creature together, moving house, delivery, building, gardening and digging have no friendslop-scale hit.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="eyebrow">Base rates</span>
+    <h2>The co-op odds</h2>
+    <div class="stats">
+      <div class="stat"><strong>40k vs 5k</strong><span>typical copies sold, co-op vs single player (estimate)</span></div>
+      <div class="stat"><strong>1.3%</strong><span>of January 2026 paid Steam games grossed over $1M</span></div>
+      <div class="stat"><strong>50% → 10%</strong><span>a top friendslop game’s audience share, within 3–9 months</span></div>
+      <div class="stat"><strong>~3%</strong><span>friendslop players still playing after 30 days</span></div>
+    </div>
+    <p class="note">Free Roblox clones of MECCHA CHAMELEON drew 150–200k daily players against about 55k for the paid original. Friendslop demos get large play counts but convert fewer wishlists, because a group of friends makes one purchase decision.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Success · the realistic band</span>
+    <h2>Mid-tier co-op hits (50k – 1M copies)</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Game</th><th>Price</th><th>Team</th><th>Sales</th><th>Players</th><th>Hook</th></tr></thead>
+      <tbody>
+        <tr><td>Super Battle Golf</td><td class="num">~$8</td><td>small studio, 4.5 mo</td><td class="num">~1M in a month (dev)</td><td class="num">8</td><td>Everyone tees off at once and hits each other with clubs, items and lasers</td></tr>
+        <tr><td>Mage Arena</td><td class="num">$2.99</td><td>solo</td><td class="num">~814k (est.)</td><td class="num">PvP</td><td>Shout spells into the mic; spread on TikTok. About $1 per sale after cuts</td></tr>
+        <tr><td>Bopl Battle</td><td class="num">$9.99</td><td>solo + publisher</td><td class="num">~0.9–1M (est.)</td><td class="num">2–4</td><td>Slime brawler, pick 3 abilities; demo in Steam’s top 10</td></tr>
+        <tr><td>LOCKDOWN Protocol</td><td class="num">$9.99</td><td>small</td><td class="num">~760k (est.)</td><td class="num">3–8</td><td>First-person Among Us with proximity voice</td></tr>
+        <tr><td>Murky Divers</td><td class="num">~$9</td><td>small</td><td class="num">700k+ (dev)</td><td class="num">4–8</td><td>Deep-sea corpse cleanup; voice fades with distance</td></tr>
+        <tr><td>PICO PARK 2</td><td class="num">cheap</td><td>solo</td><td class="num">~1M (est.)</td><td class="num">2–8</td><td>Puzzles that need everyone: push together, stand on each other</td></tr>
+        <tr><td>Ale &amp; Tale Tavern</td><td class="num">?</td><td>?</td><td class="num">0.5–1M owners (est.)</td><td class="num">4</td><td>Co-op fantasy tavern sim; 250k wishlists</td></tr>
+        <tr><td>Bread &amp; Fred</td><td class="num">?</td><td>small</td><td class="num">500k+ (dev)</td><td class="num">2</td><td>Two penguins tied by a rope; demo had 1M+ players</td></tr>
+        <tr><td>Supermarket Together</td><td class="num">free</td><td>1 studio</td><td class="num">~334k owners (est.)</td><td class="num">16</td><td>Run a store together; free makes group buy-in easy</td></tr>
+        <tr><td>PANICORE</td><td class="num">?</td><td>?</td><td class="num">~303k (est.)</td><td class="num">5</td><td>Co-op horror where the monster hears your voice</td></tr>
+        <tr><td>Dale &amp; Dawson</td><td class="num">?</td><td>?</td><td class="num">~226k (est.)</td><td class="num">8</td><td>Office deduction: slackers and a manager who fires people</td></tr>
+        <tr><td>Pratfall</td><td class="num">?</td><td>small</td><td class="num">60k week one (dev)</td><td class="num">1–6+</td><td>Chaotic co-op cave crawl</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="bars win" aria-label="Social mechanics among 13 mid-tier hits">
+        <h3>Social mechanic (13 games)</h3>
+        <div class="bar"><span>Shared job or quota</span><span class="track"><span class="fill" style="width:calc(4/4*70%)"></span><span class="n">4</span></span></div>
+        <div class="bar"><span>Proximity voice central</span><span class="track"><span class="fill" style="width:calc(4/4*70%)"></span><span class="n">4</span></span></div>
+        <div class="bar"><span>Everyone-at-once PvP chaos</span><span class="track"><span class="fill" style="width:calc(3/4*70%)"></span><span class="n">3</span></span></div>
+        <div class="bar"><span>Ragdoll / physics comedy</span><span class="track"><span class="fill" style="width:calc(3/4*70%)"></span><span class="n">3</span></span></div>
+        <div class="bar"><span>Traitor / deduction</span><span class="track"><span class="fill" style="width:calc(2/4*70%)"></span><span class="n">2</span></span></div>
+        <div class="bar"><span>Mic as input</span><span class="track"><span class="fill" style="width:calc(2/4*70%)"></span><span class="n">2</span></span></div>
+        <div class="bar"><span>Players tied together</span><span class="track"><span class="fill" style="width:calc(2/4*70%)"></span><span class="n">2</span></span></div>
+      </div>
+      <div class="bars win" aria-label="Maximum players among 12 mid-tier hits">
+        <h3>Max players (12 games)</h3>
+        <div class="bar"><span>2</span><span class="track"><span class="fill" style="width:calc(1/5*70%)"></span><span class="n">1</span></span></div>
+        <div class="bar"><span>4</span><span class="track"><span class="fill" style="width:calc(3/5*70%)"></span><span class="n">3</span></span></div>
+        <div class="bar"><span>5–6</span><span class="track"><span class="fill" style="width:calc(2/5*70%)"></span><span class="n">2</span></span></div>
+        <div class="bar"><span>8</span><span class="track"><span class="fill" style="width:calc(5/5*70%)"></span><span class="n">5</span></span></div>
+        <div class="bar"><span>16</span><span class="track"><span class="fill" style="width:calc(1/5*70%)"></span><span class="n">1</span></span></div>
+        <p class="note">Party and deduction games cluster at 8; co-op sims at 4. How to Fish raised its cap from 4 to 8 two days after launch.</p>
+      </div>
+    </div>
+    <p class="note">Of the confirmed prices, none was above $10 at launch. About half are playable solo; solo play doesn’t look necessary for sales, but it protects reviews and lets a lone streamer play. What limited them: fast player drop-off (Mage Arena from 17k to about 60 a day), copycat hooks with a short life, demos that didn’t convert (Storebound: 120k demo players, about 20k sales), and very low prices capping revenue.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Failure</span>
+    <h2>Co-op games that failed</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Game</th><th>Price</th><th>Peak players</th><th>What happened</th></tr></thead>
+      <tbody>
+        <tr><td>Overthrown</td><td class="num">$25</td><td class="num">350</td><td>Complex co-op city builder. The same studio’s $8 Super Battle Golf sold about 1M.</td></tr>
+        <tr><td>Lost Skies</td><td class="num">?</td><td class="num">3,135 → 39</td><td>Co-op survival; studio head: “has not made any money”.</td></tr>
+        <tr><td>Hyper Light Breaker</td><td class="num">$29.99</td><td class="num">2.4–5.2k</td><td>Performance problems, price vs content; development ended with layoffs.</td></tr>
+        <tr><td>FBC: Firebreak</td><td class="num">$39.99 → $19.99</td><td class="num">~2k → &lt;100</td><td>Onboarding caused early drop-off; subscription services took sales.</td></tr>
+        <tr><td>Deceive Inc</td><td class="num">$20</td><td class="num">~1.5k → 174</td><td>Long matchmaking, no private matches, lag.</td></tr>
+        <tr><td>Killer Klowns</td><td class="num">$30</td><td class="num">4,333 → ~20</td><td>Licensed asymmetric game; couldn’t keep players.</td></tr>
+        <tr><td>Toxic Commando</td><td class="num">?</td><td class="num">~17k</td><td>Daily average 5,188 → 196 in three months.</td></tr>
+        <tr><td>Spectre Divide</td><td class="num">free</td><td class="num">~10–30k</td><td>Lost 80% of players in a month; shut down.</td></tr>
+        <tr><td>Highguard</td><td class="num">free</td><td class="num">97k → &lt;500</td><td>Shut down 45 days after launch.</td></tr>
+        <tr><td>Supervive</td><td class="num">free</td><td class="num">?</td><td>Couldn’t reach “self-sustaining player numbers”; shut down.</td></tr>
+        <tr><td>Wayfinder</td><td class="num">free → $24.99</td><td class="num">?</td><td>Always-online model failed; moved to peer-to-peer, still struggled.</td></tr>
+        <tr><td>The Anacrusis</td><td class="num">?</td><td class="num">low</td><td>Game Pass “cannibalised” Steam sales.</td></tr>
+        <tr><td>The Skin Stapler</td><td class="num">?</td><td class="num">189</td><td>Strong Twitch viewing didn’t convert to sales.</td></tr>
+        <tr><td>Solarpunk</td><td class="num">$23</td><td class="num">?</td><td>Underperformed its short-form-video wishlist hopes.</td></tr>
+        <tr><td>Paddle Paddle Paddle</td><td class="num">cheap</td><td class="num">?</td><td>Not a flop, a failure mode: beatable in under 2 hours, 21% refund rate.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="bars fail" aria-label="Failure patterns by number of cases">
+      <h3>Failure patterns (cases out of 15)</h3>
+      <div class="bar"><span>Population died after launch</span><span class="track"><span class="fill" style="width:calc(9/9*70%)"></span><span class="n">9</span></span></div>
+      <div class="bar"><span>Priced or scoped above $20</span><span class="track"><span class="fill" style="width:calc(7/9*70%)"></span><span class="n">7</span></span></div>
+      <div class="bar"><span>Live service needing a steady base</span><span class="track"><span class="fill" style="width:calc(5/9*70%)"></span><span class="n">5</span></span></div>
+      <div class="bar"><span>Bugs, performance, onboarding</span><span class="track"><span class="fill" style="width:calc(4/9*70%)"></span><span class="n">4</span></span></div>
+      <div class="bar"><span>Subscription or publisher took revenue</span><span class="track"><span class="fill" style="width:calc(3/9*70%)"></span><span class="n">3</span></span></div>
+      <div class="bar"><span>Attention didn’t convert to sales</span><span class="track"><span class="fill" style="width:calc(3/9*70%)"></span><span class="n">3</span></span></div>
+      <div class="bar"><span>Too short, so refunds</span><span class="track"><span class="fill" style="width:calc(1/9*70%)"></span><span class="n">1</span></span></div>
+    </div>
+    <p class="note">“Clone with no hook” has no named case with data, but analysts repeat it (“for every MECCHA CHAMELEON, hundreds of clones sell almost nothing”). Cheap friendslop flops are mostly invisible, so the real failure rate is higher than this table suggests. Public player counts also undercount small multiplayer games.</p>
+  </section>
+
+  <section id="formulas">
+    <span class="eyebrow">What has been made · by mechanic, not theme · added 2026-11-02</span>
+    <h2>Friendslop by formula</h2>
+    <p class="prose">The subgenres below group games by theme. This section groups them by what makes friends need each other. A theme is skin; two games with different skins can run the same formula.</p>
+    <div class="recipe"><b class="tie">tie</b>+<b>pressure</b>+<b>laugh</b><span>(+ optional</span><b>layer</b><span>)</span></div>
+    <dl class="prose" style="margin:0;display:grid;gap:6px">
+      <div><b>Tie</b>: what forces friends to need each other. This is the grouping axis, and each game has one main tie.</div>
+      <div><b>Pressure</b>: what threatens the group (a monster, a clock, gravity, debt).</div>
+      <div><b>Laugh</b>: where the funny moment comes from, usually the tie failing.</div>
+      <div><b>Layer</b>: a loop on top that works with any tie (push your luck, earn and reinvest).</div>
+    </dl>
+
+    <h3>Five ties</h3>
+    <p class="note">Each tie answers “why do I need you?”. Party PvP doesn’t (friends are targets, not teammates), so it sits outside the model as a neighbour.</p>
+    <div class="ties">
+      <div class="tie"><h3><span class="k">1</span>Split knowledge</h3>
+        <p class="def">Each player holds part of the picture; voice carries it.</p>
+        <dl><dt>Pressure</dt><dd>the dark, a monster, a fail clock</dd><dt>Laugh</dt><dd>miscommunication, a scream on proximity voice</dd></dl>
+        <div class="games"><span>R.E.P.O. <i>40,554</i></span><span class="nb">Phasmophobia <i>8,496</i></span><span>Finals Week <i>2,303</i></span><span>Lethal Company <i>1,758</i></span><span>Shift At Midnight</span><span>BOMBANANA!</span><span class="nb">Content Warning <i>438</i></span></div>
+        <div class="games soon"><span>Left! Left! LEFT! <i>7.6k f</i></span><span>ROMUL</span><span>Thalassophobia</span><span>ZONE L.O.S.T.</span></div>
+      </div>
+      <div class="tie"><h3><span class="k">2</span>Linked bodies</h3>
+        <p class="def">My body moves yours: a rope, a chain, a shared load.</p>
+        <dl><dt>Pressure</dt><dd>gravity, terrain, fragile cargo</dd><dt>Laugh</dt><dd>one slip drags everyone down</dd></dl>
+        <div class="games"><span>PEAK <i>13,566</i></span><span class="nb">Chained Together <i>3,784</i></span><span>Chained Beasts</span><span>Trash Day</span><span>Totally Safe Moon Project</span><span class="nb">Bread &amp; Fred <i>28</i></span></div>
+        <div class="games soon"><span>Fallbearers</span><span>Human Fall Flat 2</span></div>
+      </div>
+      <div class="tie"><h3><span class="k">3</span>Too many jobs</h3>
+        <p class="def">More jobs than hands; jobs decay, chain and escalate.</p>
+        <dl><dt>Pressure</dt><dd>a timer, a breaking machine, customers</dd><dt>Laugh</dt><dd>everything on fire at once</dd></dl>
+        <div class="games"><span class="nb">Supermarket Together <i>5,652</i></span><span>Overcooked! 2 <i>5,098</i></span><span class="nb">Barotrauma <i>3,392</i></span><span>RV There Yet? <i>3,221</i></span><span class="nb">Sea of Thieves <i>2,054</i></span><span>PlateUp! <i>1,712</i></span><span>S.O.N.A.R. <i>1,208</i></span><span>Drive Beyond Horizons <i>781</i></span><span>Unrailed 2 <i>132</i></span></div>
+        <div class="games soon"><span>Emergency Buddies <i>4.3k f</i></span><span>RV</span><span>Bronzebeard’s Tavern 2</span><span>Hospital Hustle</span><span>Crack Surgeons</span><span>Grave Mistakes</span><span>Dear Passengers</span><span>Tower Tanks</span><span>BORE</span></div>
+        <p class="flag">Most crowded upcoming tie; no giant among released games.</p>
+      </div>
+      <div class="tie"><h3><span class="k">4</span>Secret knowledge</h3>
+        <p class="def">Someone hides something from the group.</p>
+        <dl><dt>Pressure</dt><dd>being found out</dd><dt>Laugh</dt><dd>lies, getting caught, accusations</dd></dl>
+        <div class="games"><span class="nb">Among Us <i>3,511</i></span><span>MECCHA CHAMELEON <i>2,765</i></span><span>Liar’s Bar <i>608</i></span><span>LOCKDOWN Protocol <i>105</i></span></div>
+        <div class="games soon"><span>Another Door</span><span>Loss Prevention</span><span>Speak</span></div>
+      </div>
+      <div class="tie"><h3><span class="k">5</span>Just together</h3>
+        <p class="def">An easy verb that leaves your mouth free. The zero tie: nobody needs anyone, the shared space and the conversation do the work.</p>
+        <dl><dt>Pressure</dt><dd>little or none</dd><dt>Laugh</dt><dd>the conversation itself</dd></dl>
+        <div class="games"><span>How to Fish <i>8,607</i></span><span class="nb">WEBFISHING <i>105</i></span></div>
+        <div class="games soon"><span>Oar’some Adventures</span><span>Quack Hunters</span><span>Seikyu Let’s Go!</span><span>Lazy River</span><span>Drunkslop</span></div>
+      </div>
+    </div>
+
+    <div class="panel"><h3>Neighbour, outside the model: party PvP</h3>
+      <p class="note">Rivals, not teammates; the laugh is slapstick revenge. Mostly not co-op, so most entries likely fail the friendslop definition (not tag-checked except Machine Party).</p>
+      <div class="games"><span class="nb">Party Animals <i>7,170</i></span><span class="nb">Pummel Party <i>2,220</i></span><span>Machine Party</span><span class="nb">Golf With Your Friends <i>402</i></span><span class="nb">Super Battle Golf <i>186</i></span></div>
+      <div class="games soon"><span>BOTSU</span><span>Plush Time</span><span>Battle Gang</span><span>Mythical Party</span></div>
+    </div>
+
+    <h3>Two layers (go on top of any tie)</h3>
+    <div class="ties">
+      <div class="tie layer"><h3>Push your luck</h3>
+        <p class="def">Deeper pays more and gets worse.</p>
+        <div class="games"><span>R.E.P.O.</span><span>Lethal Company</span><span>Gamble With Your Friends <i>3,486</i></span><span>Trash Day</span></div>
+        <div class="games soon"><span>PHUY</span><span>BORE</span><span>Too Deep To Quit</span><span>Sumalia</span></div>
+        <p class="note">Gamble With Your Friends fits no tie cleanly: its tie is really one shared bank account and one debt.</p>
+      </div>
+      <div class="tie layer"><h3>Earn and reinvest</h3>
+        <p class="def">Money flows back into the setup, which grows.</p>
+        <div class="games"><span class="nb">Supermarket Together</span><span>Schedule I <i>5,223</i></span><span>CRACK <i>2,941</i></span><span>LORT</span></div>
+        <div class="games soon"><span>Grave Mistakes</span><span>Tower Tanks</span></div>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="panel w"><h3>Hits combine</h3><ul>
+        <li><b>R.E.P.O.</b> = split knowledge + linked bodies (carry fragile loot) + push your luck</li>
+        <li><b>RV There Yet?</b> = too many jobs + linked bodies</li>
+        <li><b>Supermarket Together</b> = too many jobs + earn and reinvest</li>
+        <li>Voice chat is how a tie travels (it carries split knowledge and lies), not a tie of its own.</li>
+      </ul></div>
+      <div class="panel"><h3>Reading</h3><ul>
+        <li>The two biggest ties by top game are split knowledge and linked bodies.</li>
+        <li>Too many jobs has the most mid-tier hits (several at 1–6k live) and the most upcoming entries.</li>
+        <li>Hordeline (the user’s direction) is too many jobs + earn and reinvest; it has neither of the two biggest ties yet.</li>
+        <li>LORT (co-op roguelite, stack ridiculous power-ups; 31.5k followers, 877 live on Nov 1) is the nearest released game to a survivors-style build layer.</li>
+      </ul></div>
+    </div>
+    <p class="note"><b>How to read the numbers.</b> Numbers on released games are live players: checked (Steam, one snapshot, 2026-11-02 21:53 JST, two days after Halloween, which likely lifts horror). Released games without a number weren’t in that snapshot. “f” = Steam followers, checked (Steam, 2026-11-01 scan); grey chips are upcoming. A dashed chip either fails this repo’s friendslop tag definition (Supermarket Together, Barotrauma, Sea of Thieves, Among Us) or wasn’t in the scan, so it isn’t tag-checked. <b>The grouping is an assumption</b>: sorted by Claude from store descriptions, not play. Ties are ranked by their top game on one evening; a fair ranking needs each tie’s full spread of released games (review counts, all-time peaks), and the released list is thin (the scan was mostly upcoming games).</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">What has been made · by theme</span>
+    <h2>Friendslop subgenres and how crowded they are</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Subgenre</th><th>Examples</th><th>Crowded</th><th>Last breakout</th></tr></thead>
+      <tbody>
+        <tr><td>Co-op horror extraction</td><td>Lethal Company, R.E.P.O., YAPYAP, Murky Divers</td><td><span class="chip bad">very high</span></td><td>R.E.P.O. 2025; YAPYAP Feb 2026</td></tr>
+        <tr><td>Hide / prop hunt</td><td>MECCHA CHAMELEON, Scribble Hunt (clone)</td><td><span class="chip bad">saturated in months</span></td><td>Jun 2026</td></tr>
+        <tr><td>Physics climb</td><td>PEAK, Chained Together, Bread &amp; Fred</td><td><span class="chip bad">high</span></td><td>2025</td></tr>
+        <tr><td>Gambling / deduction</td><td>Liar’s Bar, Gamble With Your Friends, LOCKDOWN Protocol</td><td><span class="chip bad">high</span></td><td>May 2026</td></tr>
+        <tr><td>Job / shop sim</td><td>Schedule I, Supermarket Together, Roadside Research</td><td><span class="chip bad">high, rising</span></td><td>Feb 2026</td></tr>
+        <tr><td>Vehicle / driving</td><td>RV There Yet?; Dear Passengers (upcoming)</td><td><span class="chip warn">medium</span></td><td>2025</td></tr>
+        <tr><td>Voice / mic</td><td>Mage Arena, YAPYAP</td><td><span class="chip warn">medium-low</span></td><td>Feb 2026</td></tr>
+        <tr><td>Heist / burgle</td><td>Burglin’ Gnomes, Heist of Fools</td><td><span class="chip warn">medium</span></td><td>Jun 2026</td></tr>
+        <tr><td>Cooking chaos</td><td>PlateUp!, Overcooked lineage</td><td><span class="chip warn">medium</span></td><td>none recent</td></tr>
+        <tr><td>Friendly PvP sports</td><td>Super Battle Golf, just volleyball (demo)</td><td><span class="chip good">low-medium</span></td><td>Feb 2026</td></tr>
+        <tr><td>Fishing</td><td>How to Fish, WEBFISHING</td><td><span class="chip good">low now</span>, clones coming</td><td>Aug 2026</td></tr>
+        <tr><td>Cozy social</td><td>WEBFISHING</td><td><span class="chip good">low</span></td><td>none in 2026</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="panel"><h3>Verbs already used by a hit</h3><div class="verbs used"><span>loot &amp; extract</span><span>climb</span><span>film</span><span>drive</span><span>hide</span><span>gamble</span><span>bluff</span><span>shout spells</span><span>golf</span><span>run a shop</span><span>fish</span><span>burgle</span><span>cook</span></div></div>
+      <div class="panel w"><h3>Verbs with no friendslop-scale hit</h3><div class="verbs open"><span>raise a creature</span><span>move house</span><span>deliver</span><span>build</span><span>garden</span><span>dig</span></div><p class="note">“No hit found” is an absence in search results, not proof. Moving Out and Totally Reliable Delivery Service exist but predate the wave and weren’t cheap online friendslop. A mining horror game (No Prospects) is announced for 2027.</p></div>
+    </div>
+    <div class="panel"><h3>Coming soon (competition)</h3><ul>
+      <li>Dear Passengers: airline chaos, 1.5M+ wishlists, due 2026.</li>
+      <li>Worst Class Ever: hide among NPCs, #1 demo at October 2026 Next Fest, 300k+ demo players, Q4 2026.</li>
+      <li>October Next Fest co-op demos: Fart Together, Among Shadows, Meltdown Crew, Hands Over, Haunted Paws (puppy co-op). 7,310 demos in total, with complaints about AI-generated slop.</li>
+      <li>2027: KITMAN (co-op job sim), No Prospects (mining horror).</li>
+    </ul></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Furry / animal market</span>
+    <h2>Animal games and the fandom</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Game</th><th>Mode</th><th>Price</th><th>Copies (est.) / peak</th><th>Furry level</th></tr></thead>
+      <tbody>
+        <tr><td>Party Animals</td><td>online party brawler</td><td class="num">$19.99</td><td class="num">~2.6M / 57.8k</td><td>cute plush animals</td></tr>
+        <tr><td>Cult of the Lamb</td><td>single (+local co-op)</td><td class="num">$24.99</td><td class="num">~2.6M / 56.3k</td><td>anthro-cute</td></tr>
+        <tr><td>WEBFISHING</td><td>online social</td><td class="num">$4.99</td><td class="num">~1.3M / 24k</td><td>cute animal avatars, big furry following</td></tr>
+        <tr><td>Bopl Battle</td><td>online party</td><td class="num">$9.99</td><td class="num">~0.9M / 2.2k</td><td>cute blobs</td></tr>
+        <tr><td>Changed</td><td>single</td><td class="num">$4.99</td><td class="num">~650k</td><td>explicit furry, tagged sexual content</td></tr>
+        <tr><td>Ultimate Chicken Horse</td><td>online party</td><td class="num">$14.99</td><td class="num">~600k</td><td>cute animals</td></tr>
+        <tr><td>WolfQuest AE</td><td>online co-op</td><td class="num">$29.99</td><td class="num">~470k</td><td>realistic wolves</td></tr>
+        <tr><td>Super Animal Royale</td><td>online battle royale</td><td class="num">free</td><td class="num">~303k owners / 7.5k</td><td>anthro-cute</td></tr>
+        <tr><td>Nekojishi</td><td>visual novel</td><td class="num">?</td><td class="num">~72k</td><td>explicit anthro</td></tr>
+        <tr><td>Trash Day (Oct 2026)</td><td>online co-op, 6 players</td><td class="num">$7.99</td><td class="num">~32k / 2k</td><td>raccoon physics friendslop</td></tr>
+        <tr><td>Pawperty Damage</td><td>multiplayer</td><td class="num">$8.99</td><td class="num">~18k / 46</td><td>cute animals</td></tr>
+        <tr><td>Frog Sqwad</td><td>online co-op</td><td class="num">$6.39</td><td class="num">~15k / 930</td><td>cute animals</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="panel u"><h3>The fandom as buyers</h3><ul>
+        <li>Size is unmeasured: estimates range from about 100k to a few million.</li>
+        <li>High spenders at conventions: mean $1,007 a year on cons, $441 on merchandise (Anthrocon sample, skewed by big spenders).</li>
+        <li>Anthrocon had 17,639 attendees in 2024 and is growing.</li>
+        <li>Most furries call themselves gamers; avatar spending is real (Booth sold about $21M of 3D assets in 2023, much of it VRChat avatars).</li>
+        <li>Game spending specifically is not measured.</li>
+      </ul></div>
+      <div class="panel u"><h3>Positioning</h3><ul>
+        <li>Steam has no Furry tag: 1,714 games tagged Animals, 145 Animals + Online Co-op, none a breakout.</li>
+        <li>Searching “furry” on Steam surfaces cheap adult games, which colours the word for buyers.</li>
+        <li>Since July 2025 Steam’s payment rules restrict some adult content, and itch.io deindexed NSFW games. Any adult association is a store and console risk.</li>
+        <li>Mainstream streamers carried Party Animals; “furry” likely makes them hesitate, “cute animal chaos” doesn’t (opinion).</li>
+      </ul></div>
+    </div>
+    <p class="prose"><b>The model that works:</b> market “cute animal chaos with friends” to everyone, and give furry fans what they want without naming it: a deep character creator, many species, colour and pattern editors, expressive emotes. Keep everything safe for work. This is how Party Animals, WEBFISHING and Cult of the Lamb did it.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Where the potential is</span>
+    <h2>Rules for a furry friendslop game</h2>
+    <ol class="rules">
+      <li><b>One verb that makes a 10-second clip,</b> chosen from the open list (raise, move, deliver, build, garden, dig). The animal theme is the skin, not the hook.</li>
+      <li><b>$5–8, 4–8 players.</b> Every confirmed mid-tier hit launched at $10 or less; 8 is the party norm.</li>
+      <li><b>Friend-hosted peer-to-peer from day one</b> (GodotSteam with Steam relay): no matchmaking, no dedicated servers, no live service. Those are where the measured failures cluster.</li>
+      <li><b>Fun from 1 player up.</b> Protects reviews, gives lone streamers something to play, and survives empty friend lists.</li>
+      <li><b>More than 2 hours of play.</b> Steam refunds games played under 2 hours; a short game saw 21% refunds.</li>
+      <li><b>Character expression as the furry draw:</b> species, colours, patterns, emotes. Safe for work.</li>
+      <li><b>Market before the mechanics are final:</b> short clips on TikTok, Bluesky, X; furry artists and VTubers; a demo. YAPYAP’s first viral clip came before its mechanics were decided.</li>
+      <li><b>Ship a finished game, expect a spike.</b> The audience moves on within months; plan a small content drop, not a treadmill.</li>
+    </ol>
+    <div class="two">
+      <div class="panel w"><h3>Directions to consider</h3><ul>
+        <li><b>Raise a creature together:</b> a proven solo hook (Tamagotchi, Slime Rancher) with no co-op hit; fits a furry cast. Haunted Paws (puppy co-op demo) is an early sign.</li>
+        <li><b>Moving day:</b> online physics furniture-carrying; the hauling pleasure of R.E.P.O. without horror. Moving Out was couch-only.</li>
+        <li><b>Build it together:</b> co-op construction where physics collapse is the comedy.</li>
+      </ul><p class="note">These are starting points from the gap list, not designs. Each needs a prototype and a test clip.</p></div>
+      <div class="panel f"><h3>Main risks</h3><ul>
+        <li>Solo netcode: “makes everything take 5 times as long”.</li>
+        <li>Animal theme alone doesn’t sell (Trash Day, Frog Sqwad, Pawperty Damage).</li>
+        <li>Hits are copied within weeks, including free Roblox versions.</li>
+        <li>Cheap failures are invisible, so the true odds are worse than the data shows.</li>
+        <li>The word “furry” on the store page invites adult-content associations.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Sources</span>
+    <h2>Where the numbers come from</h2>
+    <div class="sources"><ul>
+      <li><a href="https://howtomarketagame.com/2026/07/30/is-friendslop-saturated">Is friendslop saturated? (How To Market A Game)</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/how-two-friendslop-hits-got-the-audience">How two friendslop hits got the audience (GameDiscoverCo)</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/is-the-game-biz-sustainable-for-the">Is the game business sustainable? (GameDiscoverCo)</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/how-yapyap-jammed-its-way-to-1-million">How YAPYAP jammed its way to 1M</a></li>
+      <li><a href="https://naavik.co/digest/friendslop-disrupting-the-live-ops-status-quo">Naavik: friendslop and live ops</a></li>
+      <li><a href="https://gamedevreports.substack.com/p/vg-insights-cooperative-games-on">VG Insights: co-op games on Steam</a></li>
+      <li><a href="https://gameindustrylibrary.com/research/shared/6-how-has-the-friendslop-genre-evolved">How has the friendslop genre evolved</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Mage_Arena">Mage Arena</a> · <a href="https://raijin.gg/app/1686940">Bopl Battle</a> · <a href="https://raijin.gg/app/2780980">LOCKDOWN Protocol</a></li>
+      <li><a href="https://www.shacknews.com/article/148048">Super Battle Golf sales</a></li>
+      <li><a href="https://www.pcgamesinsider.biz/news/74580">Murky Divers</a> · <a href="https://www.vgchartz.com/game/235080">PICO PARK 2</a></li>
+      <li><a href="https://www.pockettactics.com/bread-and-fred/switch-release-date">Bread &amp; Fred</a> · <a href="https://en.wikipedia.org/wiki/Dale_%26_Dawson_Stationery_Supplies">Dale &amp; Dawson</a></li>
+      <li><a href="https://massivelyop.com/2026/09/02/bossa-studios-unveils-new-chaotic-co-op-game-while-admitting-lost-skies-has-not-made-any-money/">Lost Skies “has not made any money”</a></li>
+      <li><a href="https://www.insider-gaming.com/why-spectre-divide-closing-in-2025/">Spectre Divide closing</a></li>
+      <li><a href="https://www.videogameschronicle.com/news/3-months-after-closing-the-game-awards-highguard-is-officially-shutting-down">Highguard shutting down</a></li>
+      <li><a href="https://www.gematsu.com/2024/05/wayfinder-to-continue-as-paid-co-op-title">Wayfinder goes paid co-op</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/The_Anacrusis">The Anacrusis</a> · <a href="https://www.steambase.io/apps/1556100">Killer Klowns</a></li>
+      <li><a href="https://www.techspot.com/news/113030">Paddle Paddle Paddle refunds</a></li>
+      <li><a href="https://www.gamedeveloper.com/design/valuable-but-not-profitable-garden-wars-postmortem">Garden Wars postmortem (multiplayer cost)</a></li>
+      <li><a href="https://raijin.gg/app/1260320">Party Animals</a> · <a href="https://raijin.gg/app/1313140">Cult of the Lamb</a> · <a href="https://raijin.gg/app/3146520">WEBFISHING</a> · <a href="https://raijin.gg/app/843380">Super Animal Royale</a></li>
+      <li><a href="https://steamcharts.com/app/3146520">WEBFISHING player counts (steamcharts)</a></li>
+      <li><a href="https://furscience.com">Furscience (fandom spending)</a> · <a href="https://www.anthrocon.org/history">Anthrocon history</a></li>
+      <li><a href="https://outputlag.com/news/steam-next-fest-october-2026-the-most-played-demos-by-the-numbers/">Next Fest October 2026: most played demos</a></li>
+      <li><a href="https://automaton-media.com/en/news/meccha-chameleon-copycat-game-on-steam-blatantly-calls-itself-meccha-chameleon-in-korean-version/">MECCHA CHAMELEON copycat</a></li>
+    </ul></div>
+  </section>
+</main>

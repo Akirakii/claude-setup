@@ -1,0 +1,54 @@
+R101 Sleepwalkers: Any player can sing a teammate to sleep; sleepers see the dream-house's hidden holes and the Nightmare but can't move, so awake players must carry them.
+R102 Cursed Hands: The crew carries cursed relics to an altar, each relic puts its own curse on whoever holds it, and you pass one by pushing it into a friend's hands, which they can shake off within a second.
+R103 Cursed Lantern: One lantern is the only light, and a ghost always hunts whoever holds it; you can throw the lantern to any teammate.
+R104 Lonely Boogeyman: ** The boogeyman goes after whoever has gone longest without a hug, and a hug only counts with a different friend than your last one.
+R105 Megalith Haul: A huge stone slides only over logs, and each log that rolls out behind it must be carried round and laid in front before the stone reaches bare ground.
+R106 Place Trade: Any player can trade places with a friend they can see, and the watch-owl always swings its light to whoever was just sent.
+R107 Striking Gang: The holder moves a glowing bar on the anvil while strikers swing heavy hammers that land one second after they start, and the bar must be beaten to the target shape before it cools, because a blow on cold metal cracks it.
+R108 Paint Prison: ** You splash friends with your paint colour, never yourself: coloured gates only open for that colour, and the guard drone always chases the colour most prisoners wear.
+R109 Shove Crew: No one can walk; you can only shove a friend away from you, so the crew crosses the board by pushing each other.
+R110 Swap Coats: You can't change your own clothes, only trade one piece with a friend you touch, and each guard hunts the look it last saw commit a crime.
+R111 Big Top Toss: Nobody can jump the long gaps; a friend picks you up and throws you, and a friend on the far side must catch you or you drop to the net.
+R112 Held Doors: Doors stay open only while someone holds them, and the hound always runs at whoever is holding one.
+R113 Duck Shot: The team's only weapon is the factory's own turret, which fires at whichever teammate you put the red dot on, so you dot a friend standing in front of a target and they duck at the last instant so the shot hits what's behind them.
+R114 Changelings: Any player can swap places with any teammate they can see, and the friend lands in the swapper's spot with the swapper's speed and trouble.
+R115 One Take: A punch you throw at a named friend only sells on film if they throw themselves back within half a second and the moving camera can't see the gap between fist and face.
+R116 Lineout: A jumper only gets up when a teammate lifts them on the call, and the thrower lobs to whoever is up while the AI opponents try to read the call.
+R117 Ceilidh: Nobody can run on the dance floor; you move fast only by grabbing a friend's hands and spinning, and you both fly off when either of you lets go.
+R118 Spoon-Fed: You can't eat what you pick up; you stuff it into a friend's mouth, and they get its power for 5 seconds.
+R119 Rosette: You can't dodge the bull yourself; the only way out of a charge is a friend yanking you a step toward them, which roots them in place for a second.
+R120 One Lamp: Only the player holding the lamp can see, and the thing in the dark always stalks the lamp, so handing it to a friend gives them both the sight and the hunter.
+R121 Trade Places: ** You can swap places with any friend you can see, and the tower golem always hunts whoever started the last swap.
+R122 Hot Hands: Whoever holds the lit bomb can't move, so the crew gets it to the vault door only by throwing it friend to friend, and a dropped bomb blows in two seconds.
+R123 One Suit: Only one teammate at a time wears the armor and can hit the giant or be hit by it; touching a friend jumps the armor onto them, and everyone else is a ghost.
+R124 Shield for Others: Everyone carries a big shield that can't cover its holder, only the friend it's raised in front of, while archers fire volleys at the crew crossing a courtyard to open the gate.
+R125 Clockwork Cat: ** Wind-up toys can't wind themselves: you wind a friend's key and they run, and the cat always stalks the toy that moved last.
+R126 Escort: Guards can move the star only by shoving them, and only the star knows where to go.
+R127 Bell Monks: A monk is fireproof only while a teammate channels into them, and a monk who is channeling can't move.
+R128 Storm Blessing: ** You can only heal a friend, never yourself, and 2 s after every blessing, lightning strikes whoever was blessed most recently.
+R129 Freefall: When you grab a friend's wrist in freefall, you two spin and fall as one, and the next formation is shown only once the current one locks.
+R130 Fumble: The cursed idol sticks to whoever holds it and burns them, and the only way to pass it is for a teammate to trip the holder, who throws it as they fall.
+R131 Size Ray: ** You can only shrink or grow a friend, never yourself, and the owl always dives at the smallest player.
+R132 Tread: In the water you can push a named friend up for a breath, which pushes you under; air only comes from friends.
+R133 Nobody Hides Alone: A hiding place shuts only from outside, and the witch goes to the last door she heard shut.
+R134 Giant's Wand: You can grow or shrink any friend you point at but never yourself, and the giant always grabs the biggest player it can see.
+R135 Pit: A crowd-surfer can't move alone; the friend under them shoves them toward another friend, who must get their hands under the landing spot within a second or the surfer drops.
+R136 Hookline: Your hook only sticks to friends, and the friend you hook has one second to pick: brace (you fly to them) or let go (they fly to you).
+R137 Trap Ring: Each player runs through their own trap room while working the switches of the next player's room, in a ring.
+R138 Hooked on Friends: Your grapple hook sticks only to teammates, and when it lands, whichever of you is braced stays put and the other one gets reeled in.
+R139 Hedge Toss: Only a player thrown up above the hedge maze can see its layout, so you hurl a friend skyward and they shout the way before they land.
+R140 Mud Backs: Everyone sinks slowly in the swamp, and you can climb onto a friend's back to get out, which makes them sink twice as fast until they shrug you off.
+R141 One Mic: ** Only one player's microphone is live at a time. You hand it to a friend by tapping their name, and the blind beast always walks toward whoever holds it.
+R142 Bulkheads: Every hatch on the sinking sub can only be opened or shut from its dry side, so you work the doors for the friend running toward you.
+R143 Bull Relay: The bull charges the nearest player it can see, so the crew passes it from one to another by stepping out of cover just as the last one ducks behind it.
+R144 Hush Stone: A blind beast hunts the loudest voice in a dark house, and the crew's one hush stone, thrown at a friend, silences that friend's voice and steps until they throw it at someone else.
+R145 Mirror Knights: The only weapon is a sunbeam that grows stronger each time it bounces off a knight's shield, and a knight who isn't facing the beam when it arrives gets burned.
+R146 Cowbell: The bull only charges whoever wears the bell, and any touch between two clowns moves the bell to the other one.
+R147 Last Light: Your lantern dies 12 seconds after it's lit, and only touching a friend's lit lantern relights it, which takes 3 seconds off theirs.
+R148 Blood Bank: Hold a friend for one second to move one drop of blood between you in the direction you choose, and they can twist free before it lands.
+R149 Red Dot: A sharpshooter marks one player with a glint for three seconds before firing, and only a friend who steps into the line takes the shot instead, on a pan that breaks after one hit.
+R150 Friend Hooks: ** Your grapple only latches onto friends: the hooked friend chooses to brace (you fly to them) or go limp (they fly to you), and every floor tile breaks the second time anyone lands on it.
+R151 Cage Eyes: The troll in the yard is invisible to free players and visible only to players it has caught, who watch from the cage and talk the free players past it, but kicking the can frees everyone and leaves the crew blind again.
+R152 Ventriloquists: A blind beast charges at sounds, and any player can throw a sound so it seems to come from where a teammate stands.
+R153 Jump Pearls: Each player's jump is a glowing pearl that a friend can take by touching them, which gives the taker a double jump and leaves the owner unable to jump until a pearl comes back.
+R154 Blind Spot: Each player sees the traps around every teammate but never the traps around themselves.

@@ -1,0 +1,32 @@
+| ID | N | closest game(s) with link | same / different (short) |
+|---|---|---|---|
+| G103 | ~ | [Log Driver](https://rastala-games.itch.io/log-driver); [Log Riders](https://store.steampowered.com/app/4082750/Log_Riders/) | Log Driver: one player breaks jams with a pike pole. New: co-op, and each push moves the logs your friends stand on |
+| G106 | ✓ | nearest: [Fortz](https://watchdocumentariesgames.github.io/fortz.html) | Fortz gets ammo and blocks from crates. Nothing found where the cover is the ammo |
+| G109 | ✓ | nearest: [Burgle Bros](https://savepoint.twoaveragegamers.com/tabletop/tt-burgle-bros), [Sam & Dan: Floaty Flatmates](https://www.vgdb.co/games/sam-dan-floaty-flatmates) | multi-floor co-op and a flooded flat exist. No one-player-per-floor passing through hatches |
+| G112 | ~ | [Head Swap](https://thomas-bringer.itch.io/head-swap); [Another Eye](https://may-xiao.itch.io/another-eye) | 2-player "I steer you, you steer me" exists. New: a ring, so you steer one friend and a different friend steers you |
+| G115 | ✓ | nearest: [Cloud 9](https://rulespal.com/cloud-9/rulebook), [Don't Pop the Balloon](https://www.vgdb.co/games/don-t-pop-the-balloon) | in Cloud 9, bailing out is a scoring bet and does not lift the balloon. Nothing found where leaving the basket lifts it |
+| G118 | ✓ | nearest: [Elemental Fury](https://www.vgdb.co/games/elemental-fury) | element-based co-op exists. No game found where each player is immune to one storm and shields the friends behind |
+| G121 | ✗ | [Look Locked](https://store.steampowered.com/app/2263500) | same core: your actions count only while your partner is looking at you |
+| G124 | ~ | [A Snail's Tricky Trail](https://dollamenu.itch.io/a-snails-tricky-trail) | same core (crates slide on your slime trail), but single-player. New: the slimers pick the path and the pushers need dry ground |
+| G127 | ✓ | nearest: [Molyneux linked-portal concept](https://co-optimus.com/article/1562/peter-molyneux-thought-of-portal-too-and-it-s-co-op.html), Portal 2 co-op | portals linked across players exist only as an unreleased concept. Portal 2 gives each player their own pair |
+| G130 | ~ | [Two Kids Stacked in a Trench Coat](https://stacked.itch.io/twokidsinatrenchcoat); [ShortStack](https://digipen.edu/showcase/student-games/shortstack) | stacked co-op where the bottom player walks and the top balances exists. New: the burning floor forces the crew to swap who is at the bottom |
+| G133 | ~ | [Lifeboat (2002)](https://boardgamematcher.com/game/lifeboat) | a lifeboat with things going overboard and a secret personal stake already exists. New: crates need two people to lift (either can refuse), not a vote; the game is semi-co-op |
+| G136 | ✗ | [Marble Tracks / pipeline team-building game](https://dragon.sleepdeprived.ca/games/cooperative_games/cooperative_games_35.htm) | same core: each player holds a piece of track and passes the marble along live to the goal. Only the part types differ |
+| G139 | ~ | [Hanabi](https://en.wikipedia.org/wiki/Hanabi_(card_game)) | same core: everyone sees your danger except you, and giving a warning costs something. New: real time, and the cost is going blind while you talk |
+| G142 | ~ | [Mount Your Friends](https://www.mobygames.com/game/75856/mount-your-friends/); [Human Castles](https://apps.apple.com/ms/app/id6755300950) | climbing a tower of player bodies exists (competitive), and so does single-player castells balancing. New: co-op, with the bases leaning against each climber's sway |
+| G145 | ✓ | nearest: [Spook-A-Boo](https://store.steampowered.com/app/3154150) | co-op ghost catching exists. No game found where players pound a lump under a rug back and forth into a sack |
+| G148 | ~ | [Foxy Frog](https://hoosmcgoose.itch.io/foxy-frog); [LD39 Archetype](https://ludum-dare.foon.uk/games/39/44343) | same core: only one player or device has power at a time. New: any player grabs the power and cuts off whoever had it |
+| G151 | ~ | [group juggling / club passing](https://en.wikipedia.org/wiki/Passing_(juggling)); [Human Juggler](https://dragon.sleepdeprived.ca/games/cooperative_games/cooperative_games_24.htm) | group juggling (keep adding objects to a passing circle) is a known team-building game. New: the thrower picks who gets it, under a 2-second rule |
+| G154 | ✓ | nearest: [co-op blacksmith animation pack](https://www.fab.com/listings/38a407b9-ebb1-4bed-b11d-cb1cab882288) | only an animation asset pack and single-player forging games. No co-op game with one holder and timed strikers |
+| G157 | ✓ | none close ([Raft](https://www.co-op.gg/pc/game/raft) is unrelated) | no game found where the players' own bodies form the raft and swap places to breathe |
+| G160 | ✓ | nearest: [Sunburnt](https://dokanola.itch.io/sunburnt) | single-player: you are an umbrella guarding an NPC. No co-op game found where your shade covers only friends |
+| G163 | ✗ | [Double Cross](https://www.indiedb.com/games/doublex) | same core: each player sees certain enemies, tags them, and only the other player can kill them |
+| G166 | ✗ | [Men on the Flying Trapeze](https://kloonigames.com/blog/games/flying_trapeze) | same core: co-op trapeze where you time the release and catch your partner. The only change is a burning big top |
+| G169 | ~ | [Jenga](https://en.wikipedia.org/wiki/Jenga) | Jenga's core: pull blocks from a tower without toppling it. New: you stand on the tower, blocks take two people, and they become the bridge |
+| G172 | ✓ | nearest: [Batteries Not Included](https://cydneykimmons.itch.io/batteries-not-included) | flashlight co-op and monsters that freeze in light are common. No game found where your lamp lights for everyone but you |
+
+Totals: ✓ 10, ~ 10, ✗ 4.
+
+- **"Only someone else can see or act on it" rules are the most often taken:** a tag that a friend must kill (Double Cross), acting only while watched (Look Locked), and others seeing your danger before you do (Hanabi). Splitting perception between players is a well-worn co-op pattern.
+- **Timed catch-and-pass between bodies is largely taken:** trapeze catching, marble relays and club passing exist as games or team-building activities. Changing the theme does not save these ideas.
+- **Physical-material ideas are mostly still open:** logs, slime, the wall used as ammo, the tower you pull blocks from, rug, shade and raft. Where a match exists, it is single-player or plain Jenga, so these ideas score ✓ or ~.

@@ -1,0 +1,22 @@
+R201 Prism Crew: Your light beam does nothing until it bounces off a teammate. The teammate it hits chooses where the bounce goes by where they face, or steps out of it, and every bounce scorches them a little.
+R202 Summon or Send: You can summon one teammate to your side, but if they brace in that second, the nearest loose thing beside them (a relic, a lit bomb, a crate, a stone guardian) is pulled to you instead.
+R203 Splash or Floor: Each player can stand only on floor tiles of their own color. When you splash a teammate with your paint they turn your color, unless they jump in that second, and then the paint colors the tile under them instead.
+R204 Sun Relay: You can't aim sunlight yourself, only flash it onto a friend's mirror, and vampires show only in your own mirror, so whoever receives the light aims it, either at a vampire or on to another friend.
+R205 Sealed Orders: A sealed note handed to you must, within 2 seconds, be opened (only you see it, it burns, and only you may carry out its order) or passed unopened to another teammate.
+R206 Roof Hop: Every roof is an island you leave only by being thrown by a friend on the same roof; only the flier sees rotten tiles (from above) and picks when to drop, and only players standing on roofs hear which window the watchman is about to open.
+R207 Hush Stone: A blind beast hunts the loudest voice in a dark house, and the crew's one hush stone, thrown at a friend, silences that friend's voice and steps until they throw it at someone else.
+R208 Dead Air: In zero gravity you can grab a wall to stop but can only move by pushing off a friend,
+R209 Tread: In the water you can push a named friend up for a breath, which pushes you under; air only comes from friends.
+R210 Breath: A shove sends a friend far only if they jump in the same half-second, and the fog wolf is seen by everyone except the one it's stalking, who alone hears its breath speed up before it pounces.
+R211 Borrowed Lamps: Your lamp lights the floor only for your friends, never for you, and the stalker shows only in your own beam, where it freezes for up to 4 seconds before vanishing and coming back somewhere at random.
+R212 Hooked on Friends: Your grapple hook sticks only to teammates, and when it lands, whichever of you is braced stays put and the other one gets reeled in.
+R213 Goblin Keg: A lit keg's fuse burns while one goblin holds it, freezes while two hold it, and races while it sits on the ground. When you hand it over, the friend either takes it (you are free, fuse burning) or grabs your wrist (both hold, fuse frozen, you walk as a slow pair steered by both sticks).
+R214 Glare Ice: Two touching players who both press push apart, each one's facing sets where the OTHER slides, and nobody can read the ice within a few meters of themselves.
+R215 Wrong Hands: Each thief's tool works only in someone else's hands, so tools are handed or tossed, and a
+R216 Newton's Crew: In zero gravity the only way to move is to push off a teammate, which sends you both apart (the lighter one faster). If the pushed teammate grabs back in that second, you whirl around each other once and fly off in swapped directions.
+R217 Dust Sneeze: Moving through tomb dust builds a sneeze that bursts out unless a friend pinches your nose
+R218 Tin Toys: Your key turns only in a friend's hand, each turn gives you two seconds of walking and
+R219 Megalith Haul: A huge stone slides only over logs, and each log that rolls out behind it must be carried round and laid in front before the stone reaches bare ground.
+R220 Frog Legs: A frog can hop far only by leaping off a friend's back, and every big landing slaps loud
+R221 Sonar Deep: Your ping shows one friend their surroundings for a few seconds (never you), and the blind
+R222 Glowball: Whoever holds the orb sees the shadow hounds and nothing else, only players without it see the goal rings, and a catch flips who sees what.

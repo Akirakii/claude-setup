@@ -1,0 +1,54 @@
+G1: rater agreement on overlap ideas = 86% of checks (n=12)
+
+method | n | pass | strict | formula-pass | novel ✓/~/✗ | mean | fail counts (F1 F2 F3 F4 F5 F6 F7 G N)
+M2 | 8 | 7 | 0 | 8 | 1/6/1 | 15.6 | [0, 0, 0, 0, 0, 0, 0, 0, 1]
+M8 | 8 | 5 | 0 | 7 | 0/6/2 | 14.5 | [0, 1, 0, 0, 0, 0, 0, 0, 2]
+M5 | 8 | 5 | 0 | 6 | 2/5/1 | 14.4 | [0, 0, 1, 0, 0, 0, 0, 1, 1]
+M4 | 8 | 5 | 0 | 7 | 3/2/3 | 13.1 | [0, 0, 0, 0, 0, 0, 0, 1, 3]
+M6 | 8 | 4 | 0 | 7 | 3/1/4 | 14.4 | [0, 0, 1, 0, 0, 0, 0, 0, 4]
+M7 | 8 | 4 | 0 | 6 | 1/5/2 | 13.9 | [0, 1, 2, 0, 0, 0, 0, 1, 2]
+M9 | 8 | 4 | 0 | 7 | 1/3/4 | 13.8 | [0, 0, 1, 0, 0, 0, 0, 0, 4]
+M1 | 8 | 3 | 0 | 7 | 1/3/4 | 14.6 | [0, 0, 1, 0, 0, 0, 0, 0, 4]
+M3 | 8 | 3 | 0 | 7 | 1/3/4 | 13.6 | [0, 0, 1, 0, 0, 0, 0, 0, 4]
+
+passing ideas (no ✗), best first:
+G154 (M2-3) total 17  vals [2, 2, 2, 2, 2, 2, 1, 2, 2] closest: nearest: [co-op blacksmith animation pack](https://www.fab.com/listings/38a407b9-ebb1-4bed
+G103 (M2-6) total 16  vals [2, 2, 1, 2, 2, 2, 2, 2, 1] closest: [Log Driver](https://rastala-games.itch.io/log-driver); [Log Riders](https://store.steampo
+G110 (M1-1) total 16  vals [2, 2, 2, 2, 2, 2, 1, 2, 1] closest: [Bucket brigade relays](https://physedgames.com/pass-it-on/) (playground)
+G115 (M1-8) total 16  vals [2, 2, 1, 2, 1, 2, 2, 2, 2] closest: nearest: [Cloud 9](https://rulespal.com/cloud-9/rulebook), [Don't Pop the Balloon](https:/
+G116 (M2-2) total 16  vals [2, 2, 2, 2, 2, 2, 1, 2, 1] closest: [Railroader](https://store.steampowered.com/app/1683150), [Hump Yard (board game)](https:/
+G118 (M6-6) total 16  vals [2, 2, 1, 2, 2, 2, 1, 2, 2] closest: nearest: [Elemental Fury](https://www.vgdb.co/games/elemental-fury)
+G140 (M8-6) total 16  vals [2, 2, 2, 2, 2, 2, 1, 2, 1] closest: [Kick the can](https://en.wikipedia.org/wiki/Kick_the_can) (playground)
+G141 (M9-1) total 16  vals [2, 2, 1, 2, 2, 2, 2, 2, 1] closest: [Twotris](https://github.com/mocsarcade/twotris); [Tetris for Two](https://jwhop.itch.io/t
+G151 (M2-5) total 16  vals [2, 2, 2, 2, 2, 2, 1, 2, 1] closest: [group juggling / club passing](https://en.wikipedia.org/wiki/Passing_(juggling)); [Human 
+G155 (M6-7) total 16  vals [2, 2, 1, 2, 2, 2, 1, 2, 2] closest: nearest: [OMG: Oh My Gravity](https://www.playnews.gg/en/games/omg-oh-my-gravity)
+G169 (M8-4) total 16  vals [2, 2, 2, 2, 2, 2, 1, 2, 1] closest: [Jenga](https://en.wikipedia.org/wiki/Jenga)
+G122 (M1-2) total 15  vals [2, 2, 1, 2, 2, 2, 2, 1, 1] closest: [Fall Guys Hex-A-Gone](https://sites.google.com/view/kizi-unblockedgames/games/Fall-Guys),
+G123 (M7-4) total 15  vals [2, 2, 2, 2, 1, 2, 1, 2, 1] closest: [Circus (Exidy 1977)](https://en.wikipedia.org/wiki/Circus_(video_game)); [BattleBlock The
+G130 (M5-5) total 15  vals [1, 2, 2, 2, 2, 2, 1, 2, 1] closest: [Two Kids Stacked in a Trench Coat](https://stacked.itch.io/twokidsinatrenchcoat); [ShortS
+G142 (M2-8) total 15  vals [2, 2, 1, 2, 2, 2, 1, 2, 1] closest: [Mount Your Friends](https://www.mobygames.com/game/75856/mount-your-friends/); [Human Cas
+G145 (M4-8) total 15  vals [2, 2, 1, 2, 2, 2, 1, 1, 2] closest: nearest: [Spook-A-Boo](https://store.steampowered.com/app/3154150)
+G147 (M9-2) total 15  vals [2, 2, 1, 2, 2, 2, 1, 2, 1] closest: [Two the Top](https://www.co-op.gg/pc/game/two-the-top); [Pico Park](https://store.steampo
+G153 (M3-2) total 15  vals [2, 2, 1, 2, 2, 2, 1, 2, 1] closest: [Tick Tack Puppet](https://www.co-optimus.com/game/14372/nintendo-switch/tick-tack-puppet.
+G157 (M4-2) total 15  vals [2, 2, 1, 2, 2, 1, 1, 2, 2] closest: none close ([Raft](https://www.co-op.gg/pc/game/raft) is unrelated)
+G159 (M7-2) total 15  vals [2, 2, 1, 1, 2, 2, 2, 2, 1] closest: [Moth&Flame](https://1amreal.itch.io/mothandflame); [On/Off](https://polimi-game-collectiv
+G165 (M9-3) total 15  vals [2, 2, 1, 2, 2, 2, 1, 2, 1] closest: [Labyrinth (Ravensburger)](https://officialgamerules.org/board-games/labyrinth); [Lost Twi
+G168 (M5-8) total 15  vals [2, 2, 2, 2, 2, 2, 1, 1, 1] closest: [Overcooked](https://gamesradar.com/culinary-chaos-in-a-co-op-kitchen-you-should-be-playin
+G170 (M2-4) total 15  vals [2, 2, 2, 2, 1, 2, 1, 2, 1] closest: [Circle the Fish](https://www.bluestacks.com/apps/action/circle-the-fish-on-pc.html), ["Fi
+G102 (M6-5) total 14  vals [2, 2, 1, 1, 2, 2, 1, 2, 1] closest: [Fox, Chicken, Snakes (PE tag)](https://www.tes.com/teaching-resource/fox-chicken-snakes-p
+G109 (M4-1) total 14  vals [2, 1, 1, 2, 2, 1, 1, 2, 2] closest: nearest: [Burgle Bros](https://savepoint.twoaveragegamers.com/tabletop/tt-burgle-bros), [S
+G112 (M8-3) total 14  vals [2, 2, 2, 2, 2, 1, 1, 1, 1] closest: [Head Swap](https://thomas-bringer.itch.io/head-swap); [Another Eye](https://may-xiao.itch
+G126 (M5-6) total 14  vals [2, 2, 2, 1, 1, 2, 2, 1, 1] closest: [SCP-173 (acts only when unwatched)](https://scp-wiki.wikidot.com/scp-173); [Project Winte
+G129 (M5-2) total 14  vals [2, 2, 1, 2, 1, 2, 1, 2, 1] closest: [MoveMe](https://store.steampowered.com/app/4789340/); [Pop Pop Push](https://igf.com/pop-
+G131 (M8-7) total 14  vals [2, 1, 1, 2, 1, 2, 2, 2, 1] closest: [SCP: Secret Laboratory, SCP-173](https://en.scpslgame.com/index.php?title=173)
+G132 (M8-8) total 14  vals [2, 1, 2, 2, 2, 1, 1, 2, 1] closest: [Hanabi](https://boardgamegeek.com/boardgame/98778/hanabi); [Color Jump](https://mpolder.i
+G137 (M7-3) total 14  vals [1, 2, 2, 2, 2, 1, 1, 2, 1] closest: [Twisted Playground](https://arctopus.itch.io/twisted-playground), [Switcharoo](https://un
+G139 (M7-1) total 14  vals [2, 1, 2, 2, 2, 1, 1, 2, 1] closest: [Hanabi](https://en.wikipedia.org/wiki/Hanabi_(card_game))
+G158 (M2-1) total 14  vals [2, 1, 1, 2, 2, 2, 1, 2, 1] closest: [Staged](https://www.filmschule.de/de/showcase/staged), [Stagehands!](https://rawg.io/game
+G160 (M9-6) total 14  vals [1, 2, 1, 2, 2, 2, 1, 1, 2] closest: nearest: [Sunburnt](https://dokanola.itch.io/sunburnt)
+G171 (M5-7) total 14  vals [2, 2, 1, 2, 2, 1, 2, 1, 1] closest: [Hanabi](https://boardgamegeek.com/boardgame/98778/hanabi); [Color Jump](https://mpolder.i
+G172 (M6-8) total 14  vals [1, 2, 2, 2, 2, 1, 1, 1, 2] closest: nearest: [Batteries Not Included](https://cydneykimmons.itch.io/batteries-not-included)
+G108 (M3-5) total 13  vals [1, 1, 1, 2, 2, 2, 1, 2, 1] closest: [It's about Time](https://ultigames.itch.io/time); [Draw the Way](https://www.vgdb.co/game
+G124 (M4-4) total 13  vals [1, 2, 1, 2, 2, 2, 1, 1, 1] closest: [A Snail's Tricky Trail](https://dollamenu.itch.io/a-snails-tricky-trail)
+G148 (M3-6) total 13  vals [1, 2, 1, 2, 1, 2, 1, 2, 1] closest: [Foxy Frog](https://hoosmcgoose.itch.io/foxy-frog); [LD39 Archetype](https://ludum-dare.fo
+G104 (M4-7) total 10  vals [1, 1, 1, 2, 1, 1, 1, 1, 1] closest: [Lights Out (Steam)](https://store.steampowered.com/app/4610220), [Mirror Mirror](https://

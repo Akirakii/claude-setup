@@ -1,0 +1,312 @@
+<title>Friendslop Pulse</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: reading column with chart bands; climbing = teal, peak = amber, declining = ember. */
+:root {
+  --bg: #f4f4f8; --surface: #ffffff; --ink: #181b2a; --muted: #5b6074; --line: #dcdfe9;
+  --up: #0a7c76; --top: #a86400; --down: #c64a12; --bar: #3550c8; --accent: #3550c8;
+  --chip-up: #e1f2f0; --chip-top: #f8ecd6; --chip-down: #f9e3d8; --chip-flat: #e9eaf2;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12131b; --surface: #1a1c27; --ink: #e7e8f0; --muted: #9da1b5; --line: #2c2f40;
+    --up: #3fc8bd; --top: #f0b04a; --down: #ff8a4f; --bar: #8ea3ff; --accent: #8ea3ff;
+    --chip-up: #173230; --chip-top: #3a2d14; --chip-down: #3d2418; --chip-flat: #262938;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12131b; --surface: #1a1c27; --ink: #e7e8f0; --muted: #9da1b5; --line: #2c2f40;
+  --up: #3fc8bd; --top: #f0b04a; --down: #ff8a4f; --bar: #8ea3ff; --accent: #8ea3ff;
+  --chip-up: #173230; --chip-top: #3a2d14; --chip-down: #3d2418; --chip-flat: #262938;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px; }
+main { max-width: 1060px; margin: 0 auto; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); font-weight: 800; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font: 500 0.75rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 66ch; }
+.note { font-size: 0.9rem; color: var(--muted); max-width: 84ch; }
+.prose { max-width: 74ch; }
+section { display: grid; gap: 18px; }
+header { display: grid; gap: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font: 400 0.85rem var(--f-mono); color: var(--muted); }
+.findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.findings li { display: grid; grid-template-columns: 2.2rem 1fr; gap: 12px; align-items: baseline; }
+.findings li > span { font: 600 0.9rem var(--f-mono); color: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 0.72rem var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; }
+td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chip { display: inline-block; font: 500 0.72rem/1 var(--f-mono); padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+.chip.up { background: var(--chip-up); color: var(--up); }
+.chip.top { background: var(--chip-top); color: var(--top); }
+.chip.down { background: var(--chip-down); color: var(--down); }
+.chip.flat { background: var(--chip-flat); color: var(--muted); }
+.chart { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; display: grid; gap: 8px; }
+.chart svg { display: block; width: 100%; min-width: 560px; height: auto; }
+svg .gl { stroke: var(--line); }
+svg .ax { fill: var(--muted); font: 400 11px var(--f-mono); }
+svg .lb { fill: var(--ink); font: 500 11px var(--f-body); }
+svg .v { fill: var(--muted); font: 500 10.5px var(--f-mono); }
+svg .b { fill: var(--bar); }
+svg .b.est { fill: var(--bar); opacity: 0.45; }
+svg .dead { fill: var(--down); }
+svg .alive { fill: var(--up); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.panel ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; }
+.panel.u { border-top: 3px solid var(--up); }
+.panel.d { border-top: 3px solid var(--down); }
+.panel.t { border-top: 3px solid var(--top); }
+.sources { columns: 2 320px; column-gap: 32px; font-size: 0.85rem; }
+.sources ul { margin: 0; padding-left: 1rem; }
+.sources li { break-inside: avoid; }
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Market trends · cheap online co-op · 2018 → 2027</span>
+    <h1>Friendslop pulse</h1>
+    <p class="lede">Who buys cheap co-op party games, how each kind of game has risen and faded since Among Us, and where the market is heading in 2027 given what’s about to launch.</p>
+    <div class="meta"><span>2026-11-01</span><span>16 games tracked · 14 sub-trends</span><span>companion to <a href="https://claude.ai/artifact/Agz4e6F81mKfxM3n2An8jU">Friendslop radar</a></span></div>
+    <p class="note">Player counts are steamcharts monthly peaks. Sales are publisher or analyst estimates (GameDiscoverCo, AppMagic, Alinea). The search allowance ran out, so a few figures (gender split, China’s share, cosmetic spending) are missing. Trend statuses and the forecast are judgments built from the cited data.</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">Summary</span>
+    <h2>Seven findings</h2>
+    <ol class="findings">
+      <li><span>1</span><p><b>The audience keeps growing.</b> The combined peak of players in friendslop games went from about 197k (Lethal Company, Dec 2023) to 281k (R.E.P.O., Mar 2025) to about 366k (MECCHA CHAMELEON, Jun 2026). How to Fish alone hit 374k in August.</p></li>
+      <li><span>2</span><p><b>Revenue per hit is shrinking.</b> Prices fell from $8–10 to $6–8, and 2026’s top hits grossed about $40–60M against R.E.P.O.’s $152M lifetime.</p></li>
+      <li><span>3</span><p><b>It is hit-or-nothing.</b> GameDiscoverCo sees “very few middling friendslop hits”. Mid-size hits (15–20k peak players) die in 1–3 months; Mage Arena is down to 72 players.</p></li>
+      <li><span>4</span><p><b>Every game loses most of its players fast.</b> Typical drop: 50–90% within 2 months, about 3% still playing after 30 days. Only games with big updates (R.E.P.O., PEAK, Gamble With Your Friends) keep a long tail.</p></li>
+      <li><span>5</span><p><b>Horror is fading; familiar formats are rising.</b> 2026’s hits were hide-and-seek, golf, fishing, gambling and a job sim, not horror. Mic gimmicks and lo-fi horror looks are declining.</p></li>
+      <li><span>6</span><p><b>Buyers are young, PC-first, and buy as a group.</b> One friend suggests it, the group buys together, plays about 3–4 hours, and moves on within weeks.</p></li>
+      <li><span>7</span><p><b>The biggest new risk is AI-assisted cloning,</b> with dozens of clones appearing within days of a viral hit. Being first, a distinctive art style and an early demo are the defences.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="eyebrow">Market size</span>
+    <h2>Co-op revenue on Steam keeps climbing</h2>
+    <div class="chart">
+      <svg id="rev" viewBox="0 0 640 260" role="img" aria-label="Bar chart of co-op Steam gross revenue by year, 2019 to 2025"></svg>
+      <p class="note">Gross revenue of co-op-tagged Steam games, all sources, read off Alinea’s 2025 year-in-review chart (±$0.2B). 2025 is extrapolated from $7.7B through November 26. Co-op games are about 5% of releases but about 46% of units sold (VG Insights, 2024).</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">History</span>
+    <h2>Every hit spikes, then fades</h2>
+    <div class="chart">
+      <svg id="peaks" viewBox="0 0 720 470" role="img" aria-label="Peak and current concurrent players for 15 friendslop games in launch order"></svg>
+      <p class="note">Steamcharts monthly peaks; the small mark on each bar is October 2026. MECCHA CHAMELEON is missing (steamcharts doesn’t index it). Content Warning’s 200k+ launch-day peak came from a free day; the monthly figure is shown.</p>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Game</th><th>Launch</th><th>Peak players</th><th>Fall after peak</th><th>Oct 2026</th><th>Sold</th></tr></thead>
+      <tbody>
+        <tr><td>Among Us</td><td>boom Sep 2020</td><td class="num">438k</td><td>−73% in 4 mo, −94% in 8</td><td class="num">16k</td><td>—</td></tr>
+        <tr><td>Phasmophobia</td><td>Sep 2020</td><td class="num">112k</td><td>slow; spikes every October</td><td class="num">24k</td><td>—</td></tr>
+        <tr><td>Lethal Company</td><td>Oct 2023</td><td class="num">239k</td><td>−70% in 3 mo, −91% in 6</td><td class="num">6k</td><td class="num">10–19M</td></tr>
+        <tr><td>Content Warning</td><td>Apr 2024</td><td class="num">63k</td><td>−84% in 2 mo</td><td class="num">1.9k</td><td class="num">2.2M paid</td></tr>
+        <tr><td>Liar’s Bar</td><td>Oct 2024</td><td class="num">109k</td><td>−87% in 2 mo</td><td class="num">1.3k</td><td class="num">~2.2M</td></tr>
+        <tr><td>WEBFISHING</td><td>Oct 2024</td><td class="num">24k</td><td>−77% in 2 mo</td><td class="num">0.3k</td><td class="num">1.3–5M</td></tr>
+        <tr><td>R.E.P.O.</td><td>Feb 2025</td><td class="num">267k</td><td>−75% in 4 mo; update spikes 194k, 115k</td><td class="num">71k</td><td class="num">18.5M</td></tr>
+        <tr><td>Schedule I</td><td>Mar 2025</td><td class="num">456k</td><td>−91% in 2 mo</td><td class="num">26k</td><td class="num">9.1M</td></tr>
+        <tr><td>PEAK</td><td>Jun 2025</td><td class="num">170k</td><td>−58% in 1 mo; update spike 123k</td><td class="num">31k</td><td class="num">15.4M</td></tr>
+        <tr><td>Mage Arena</td><td>Jul 2025</td><td class="num">17k</td><td>−87% in 1 mo</td><td class="num">72</td><td class="num">~814k</td></tr>
+        <tr><td>RV There Yet?</td><td>Oct 2025</td><td class="num">57k</td><td>−52% in 1 mo</td><td class="num">15k</td><td class="num">5.7M</td></tr>
+        <tr><td>YAPYAP</td><td>Feb 2026</td><td class="num">14.7k</td><td>−66% in 1 mo</td><td class="num">0.9k</td><td class="num">1.15M</td></tr>
+        <tr><td>Super Battle Golf</td><td>Feb 2026</td><td class="num">20.4k</td><td>held 2 mo, then fell</td><td class="num">3k</td><td class="num">~0.8–1M</td></tr>
+        <tr><td>Gamble With Your Friends</td><td>May 2026</td><td class="num">24.7k</td><td>flat; new high in Sep from updates</td><td class="num">16k</td><td class="num">~2M</td></tr>
+        <tr><td>MECCHA CHAMELEON</td><td>Jun 2026</td><td class="num">~340k</td><td>not found</td><td class="num">—</td><td class="num">11.5M by June end</td></tr>
+        <tr><td>How to Fish</td><td>Aug 2026</td><td class="num">374k</td><td>−57% in 1 mo, −78% in 2</td><td class="num">82k</td><td class="num">8.5M+</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Each leader takes over 50% of friendslop players, then falls to about 10% within 3–9 months (Zukowski). Measured peaks: Chained Together 48%, Content Warning 47%, PEAK and RV There Yet? 50%. Zukowski calls 11.75% (Mage Arena’s peak) a viable result.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Sub-trends</span>
+    <h2>What’s climbing, peaking and dying</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Trend</th><th>Status</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Job / shop sim co-op</td><td><span class="chip up">climbing</span></td><td>Roadside Research 396k at $13; Schedule I 9.1M; Scam With Your Friends #1 trending wishlist; shop sims a Next Fest microtrend.</td></tr>
+        <tr><td>Gambling / casino</td><td><span class="chip up">climbing</span></td><td>Gamble With Your Friends: 2M sold, new player high 4 months after launch.</td></tr>
+        <tr><td>Familiar format + chaos</td><td><span class="chip up">climbing</span></td><td>Golf (Super Battle Golf), a gas-station shift (Roadside Research), a TV-style hide-and-seek (MECCHA). GameDiscoverCo: winners bet on “theme + format”.</td></tr>
+        <tr><td>Premium co-op-only</td><td><span class="chip up">climbing (new)</span></td><td>Big Walk: 1M in 6 days at $20. Worst Class Ever: #1 Next Fest demo.</td></tr>
+        <tr><td>“…With Your Friends” / “Together” names</td><td><span class="chip up">climbing</span></td><td>Gamble With Your Friends, Scam With Your Friends, Fart Together.</td></tr>
+        <tr><td>Hide / prop hunt</td><td><span class="chip top">peak</span></td><td>MECCHA CHAMELEON 11.5M units, #3 on Twitch; clones already out.</td></tr>
+        <tr><td>Fishing</td><td><span class="chip top">peak, one title</span></td><td>How to Fish 374k, then −78% in 2 months. WEBFISHING is dead.</td></tr>
+        <tr><td>$5–8 price</td><td><span class="chip top">peak (the norm)</span></td><td>All 2026 hits at $6–10; prices trending down.</td></tr>
+        <tr><td>Proximity voice chat</td><td><span class="chip flat">plateau</span></td><td>Expected in every game; no longer a hook.</td></tr>
+        <tr><td>Physics climbing</td><td><span class="chip flat">plateau</span></td><td>Carried by PEAK’s updates; no 2026 climbing hit.</td></tr>
+        <tr><td>Social deduction / bluffing</td><td><span class="chip flat">plateau, new wrappers</span></td><td>Among Us and Liar’s Bar faded; Mimic Party ~300k; deduction now arrives inside job sims.</td></tr>
+        <tr><td>Co-op horror extraction</td><td><span class="chip down">declining</span></td><td>Defined 2023–25; no 2026 megahit is horror. R.E.P.O. still holds.</td></tr>
+        <tr><td>Mic input as the mechanic</td><td><span class="chip down">declining</span></td><td>Mage Arena at 72 players; YAPYAP −94%. “Hard to make it deep.”</td></tr>
+        <tr><td>Lo-fi / PS1 horror look</td><td><span class="chip down">declining</span></td><td>Lo-fi horror draws Twitch viewers but ~200 players. 2026 hits look clean and readable.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Buyers</span>
+    <h2>Who buys, and how</h2>
+    <div class="two">
+      <div class="panel"><h3>Who</h3><ul>
+        <li><b>Young:</b> 12% of YAPYAP players are 35+, against 27% across Steam fans surveyed. Commentators call friendslop “Roblox coming to Steam”.</li>
+        <li><b>Where:</b> US leads (25–47%), then Germany, Brazil, UK, Canada; Russia and China rank high for PEAK. In one 2026 game, Brazil was over 30% of demo players.</li>
+        <li><b>Asia via VTubers:</b> CloverPit’s Hololive coverage made Japan and Korea 9% each. MECCHA CHAMELEON debuted #1 in Japan.</li>
+        <li><b>Languages worth having:</b> English, Brazilian Portuguese, Russian, Chinese, German, Japanese, Korean.</li>
+        <li><b>Platforms:</b> PC first; Switch 2 and PS5 ports 6–12 months later (MECCHA sold 300k on Switch 2 in a week).</li>
+        <li>Gender split: not found.</li>
+      </ul></div>
+      <div class="panel"><h3>How they buy and play</h3><ul>
+        <li><b>As a group:</b> one friend suggests it, the rest buy with “little hesitation”. A group of four spends $20–80.</li>
+        <li><b>Price paid:</b> How to Fish averaged about $4.95 a copy against $7.99 list (discounts, regional pricing).</li>
+        <li><b>Playtime:</b> median 3h53m (PEAK), 3h10m (Roadside Research).</li>
+        <li><b>Retention:</b> D1 ~20%, D7 ~4%, D30 ~3%. 61% of PEAK players also played R.E.P.O.: the same crowd moves between games.</li>
+        <li><b>Refunds:</b> under-2-hour games get refunded (21% in one case); CloverPit’s 6.4% beat the 9.5% median.</li>
+        <li><b>Spending after launch:</b> almost none; cosmetics and DLC data not found.</li>
+      </ul></div>
+      <div class="panel"><h3>How they find games</h3><ul>
+        <li><b>Short video:</b> Instagram Reels and TikTok over-index; YouTube Shorts underperformed for CloverPit. Mage Arena grew from TikTok.</li>
+        <li><b>Streamers:</b> they came back to Super Battle Golf 5–6 times in three weeks. MECCHA reached 18M Twitch hours. Streams create spikes, not long play.</li>
+        <li><b>Wishlists matter less for viral hits:</b> PEAK launched with 29k. Dear Passengers got 1.5M from a 45M-view trailer before anyone played it.</li>
+        <li><b>Demos:</b> large play counts, weaker conversion (a group makes one decision). Roadside Research: 903k demo players → 396k sales.</li>
+        <li><b>Next Fest is getting harder:</b> a top-10% demo gained +63 followers in Oct 2026, against +173 a year earlier; 7,240 demos, up from 2,963.</li>
+      </ul></div>
+    </div>
+    <div class="panel"><h3>What buyers are tired of, and what they reward</h3><ul>
+      <li>Not tired of the genre: Zukowski says the audience is “hungry, not saturated” and buys something new every couple of months.</li>
+      <li>Tired of each individual hook: clones with no twist, lo-fi horror built for streamers, animal skins on a weak verb, AI-made slop.</li>
+      <li>Forgiving of jank: RV There Yet? sold 1M+ in week one without controller support. Not forgiving of short length.</li>
+      <li>Rewards a finished game with free updates over a live service.</li>
+    </ul></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">2027</span>
+    <h2>Forecast, given what’s about to launch</h2>
+    <p class="prose">Analysts agree the audience keeps growing but won’t predict the next hook (“You cannot predict what will come next”, Zukowski). The forecast below combines the trend statuses above with the upcoming games in the <a href="https://claude.ai/artifact/Agz4e6F81mKfxM3n2An8jU">radar</a>. It is a judgment, not a measurement.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Trend</th><th>2027 call</th><th>Upcoming games that test it</th></tr></thead>
+      <tbody>
+        <tr><td>Job / service chaos</td><td><span class="chip up">rises, then crowds</span></td><td>Dear Passengers, Scam With Your Friends, Meltdown Crew, Banana Airways, KITMAN. If Dear Passengers converts its 1.5M wishlists, expect a wave of airline and job clones by mid-2027.</td></tr>
+        <tr><td>Familiar format + chaos</td><td><span class="chip up">rises</span></td><td>just volleyball (sport), Worst Class Ever (school as a TV-style hunt), HANDS OVER (game show).</td></tr>
+        <tr><td>Premium co-op-only, 2-player</td><td><span class="chip up">rises</span></td><td>Haunted Paws (~1M wishlists, May 2027), Left! Left! LEFT!. Friend passes spread.</td></tr>
+        <tr><td>Console launches</td><td><span class="chip up">become standard</span></td><td>Digging a Hole Together and Dumpster Gang launch on Game Pass on day one.</td></tr>
+        <tr><td>Animal casts</td><td><span class="chip top">peak in 2027</span></td><td>Dumpster Gang, Haunted Paws, Fart Together, Among Paws, Party Club. After BOMBANANA!, many animal games arrive together; the theme stops standing out.</td></tr>
+        <tr><td>Hide / blend in</td><td><span class="chip top">peak passes</span></td><td>Worst Class Ever is likely the last big hide hit before fatigue.</td></tr>
+        <tr><td>Digging, delivery, cleaning</td><td><span class="chip top">crowded</span></td><td>Digging a Hole Together, Crashout Crew, Cleaner Company and many small entries.</td></tr>
+        <tr><td>Horror extraction</td><td><span class="chip down">keeps fading</span></td><td>Deeper, Mortuus, We Are So Cooked; only standouts will sell.</td></tr>
+        <tr><td>Mic-input and single-gag games</td><td><span class="chip down">fade</span></td><td>Life cycles of 1–3 months; easy to clone.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="two">
+      <div class="panel u"><h3>Shape of 2027</h3><ul>
+        <li>1–2 megahits, each peaking at 300–400k players and holding the crown 3–9 months.</li>
+        <li>An even thinner middle tier: most games either break out or sell little.</li>
+        <li>Prices stay at $5–8; group buying keeps them low.</li>
+        <li>Releases keep rising (Zukowski projects ~40k Steam releases in 2026), so discovery gets harder.</li>
+        <li>Clones within days, often AI-assisted, plus free Roblox copies for the youngest players.</li>
+      </ul></div>
+      <div class="panel t"><h3>What this means for a new friendslop game</h3><ul>
+        <li>A theme alone won’t stand out by 2027. Lead with a familiar format or a job and a funny shared-failure hook.</li>
+        <li>Pick a verb outside the crowded lanes (see the radar’s open list).</li>
+        <li>Plan for a 1–3 month spike, priced $5–8, with free updates ready to extend it.</li>
+        <li>Use a distinctive art style and post short clips early: the main defence against clones.</li>
+        <li>Localise for Brazil, Russia, China, Japan and Korea; VTubers drive discovery in Japan and Korea.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Sources</span>
+    <h2>Where this comes from</h2>
+    <div class="sources"><ul>
+      <li><a href="https://howtomarketagame.com/2026/07/30/is-friendslop-saturated">Is friendslop saturated? (Zukowski)</a></li>
+      <li><a href="https://howtomarketagame.com/2026/10/21/how-sloppy-is-the-october-2026-steam-next-fest/">How sloppy is the October 2026 Next Fest?</a></li>
+      <li><a href="https://howtomarketagame.com/2026/10/28/ai-cloners-are-here-are-indie-devs-cooked/">AI cloners are here</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/how-two-friendslop-hits-got-the-audience">GameDiscoverCo: how two friendslop hits got the audience</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/how-yapyap-jammed-its-way-to-1-million">GameDiscoverCo: YAPYAP</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/how-peak-sold-45m-copies-in-less">GameDiscoverCo: PEAK</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/will-big-walks-1m-sales-usher-in">GameDiscoverCo: Big Walk</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/august-2026s-top-new-pc-and-console">GameDiscoverCo: August 2026</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/september-2026s-top-new-pc-and-console">GameDiscoverCo: September 2026</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/who-won-october-2026s-steam-next">GameDiscoverCo: who won October 2026 Next Fest</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/steam-games-with-ccu-staying-power">GameDiscoverCo: CCU staying power</a></li>
+      <li><a href="https://newsletter.gamediscover.co/p/real-data-how-cloverpit-hit-750k">GameDiscoverCo: CloverPit data</a></li>
+      <li><a href="https://appmagic.rocks/blog/friendslop-steam-games-2025">AppMagic: friendslop 2025</a></li>
+      <li><a href="https://storage.googleapis.com/alinea-blog-images/Alinea%20Analytics%20-%20Year%20in%20Review%202025.pdf">Alinea: Year in Review 2025</a></li>
+      <li><a href="https://naavik.co/digest/friendslop-disrupting-the-live-ops-status-quo">Naavik: friendslop and live ops</a></li>
+      <li><a href="https://gameindustrylibrary.com/research/shared/6-how-has-the-friendslop-genre-evolved">How has the friendslop genre evolved</a></li>
+      <li><a href="https://gamedevreports.substack.com/p/vg-insights-cooperative-games-on">VG Insights: co-op games on Steam</a></li>
+      <li><a href="https://sensortower.com/blog/indie-and-new-ip-break-out-without-denting-aaa">Sensor Tower: indie breakouts</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Meccha_Chameleon">MECCHA CHAMELEON (Wikipedia)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/RV_There_Yet%3F">RV There Yet? (Wikipedia)</a></li>
+      <li><a href="https://steamcharts.com/app/1966720">steamcharts (per-game player history)</a></li>
+    </ul></div>
+  </section>
+</main>
+
+<script>
+(function () {
+  const ns = "http://www.w3.org/2000/svg";
+  const mk = (svg, tag, a, t) => { const n = document.createElementNS(ns, tag); for (const k in a) n.setAttribute(k, a[k]); if (t != null) n.textContent = t; svg.appendChild(n); return n; };
+
+  // Revenue by year ($B)
+  (function () {
+    const svg = document.getElementById("rev");
+    const d = [["2019", 4.0], ["2020", 4.6], ["2021", 6.5], ["2022", 6.2], ["2023", 6.0], ["2024", 7.3], ["2025", 8.2, true]];
+    const W = 640, H = 260, L = 44, R = 12, T = 16, B = 30, max = 10;
+    const Y = v => H - B - v / max * (H - T - B);
+    [0, 2, 4, 6, 8, 10].forEach(v => { mk(svg, "line", { class: "gl", x1: L, x2: W - R, y1: Y(v), y2: Y(v) }); mk(svg, "text", { class: "ax", x: L - 6, y: Y(v) + 4, "text-anchor": "end" }, "$" + v + "B"); });
+    const bw = (W - L - R) / d.length;
+    d.forEach(([yr, v, est], i) => {
+      const x = L + i * bw + bw * 0.18, w = bw * 0.64;
+      mk(svg, "rect", { class: est ? "b est" : "b", x, y: Y(v), width: w, height: Y(0) - Y(v), rx: 3 });
+      mk(svg, "text", { class: "v", x: x + w / 2, y: Y(v) - 5, "text-anchor": "middle" }, "$" + v + "B" + (est ? " est." : ""));
+      mk(svg, "text", { class: "ax", x: x + w / 2, y: H - 10, "text-anchor": "middle" }, yr);
+    });
+  })();
+
+  // Peak vs current players
+  (function () {
+    const svg = document.getElementById("peaks");
+    const d = [["Among Us · 2020", 438, 16], ["Phasmophobia · 2020", 112, 24], ["Lethal Company · 2023", 239, 6], ["Content Warning · 2024", 63, 1.9], ["Liar’s Bar · 2024", 109, 1.3], ["WEBFISHING · 2024", 24, 0.3], ["R.E.P.O. · 2025", 267, 71], ["Schedule I · 2025", 456, 26], ["PEAK · 2025", 170, 31], ["Mage Arena · 2025", 17, 0.07], ["RV There Yet? · 2025", 57, 15], ["YAPYAP · 2026", 14.7, 0.9], ["Super Battle Golf · 2026", 20.4, 3], ["Gamble With Your Friends · 2026", 24.7, 16], ["How to Fish · 2026", 374, 82]];
+    const W = 720, L = 200, R = 70, T = 24, row = 28, max = 500;
+    const X = v => L + v / max * (W - L - R);
+    const H = T + d.length * row + 20;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    [0, 100, 200, 300, 400, 500].forEach(v => { mk(svg, "line", { class: "gl", x1: X(v), x2: X(v), y1: T - 8, y2: H - 20 }); mk(svg, "text", { class: "ax", x: X(v), y: T - 12, "text-anchor": "middle" }, v + "k"); });
+    d.forEach(([name, peak, now], i) => {
+      const y = T + i * row;
+      mk(svg, "text", { class: "lb", x: L - 8, y: y + 15, "text-anchor": "end" }, name);
+      mk(svg, "rect", { class: "b", x: L, y: y + 4, width: Math.max(2, X(peak) - L), height: 14, rx: 2, opacity: 0.35 });
+      mk(svg, "rect", { class: now / peak >= 0.15 ? "alive" : "dead", x: L, y: y + 4, width: Math.max(2, X(now) - L), height: 14, rx: 2 });
+      mk(svg, "text", { class: "v", x: X(peak) + 6, y: y + 15 }, `${peak}k → ${now < 1 ? Math.round(now * 1000) : now + "k"}`);
+    });
+    mk(svg, "text", { class: "ax", x: L, y: H - 4 }, "pale bar = monthly peak · solid = Oct 2026 (teal if ≥15% of peak kept, ember if less)");
+  })();
+})();
+</script>

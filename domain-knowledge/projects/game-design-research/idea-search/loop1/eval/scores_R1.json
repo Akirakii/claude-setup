@@ -1,0 +1,1028 @@
+{
+ "R101": {
+  "src": "MB-7",
+  "method": "MB",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 1,
+   "F5": 2,
+   "F6": 1,
+   "G": 0,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 10
+ },
+ "R102": {
+  "src": "MA-7",
+  "method": "MA",
+  "vals": {
+   "P": 0,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 1,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "P",
+  "ok": false,
+  "strict": false,
+  "total": 10
+ },
+ "R103": {
+  "src": "MB-1",
+  "method": "MB",
+  "vals": {
+   "P": 2,
+   "F1": 1,
+   "F2": 2,
+   "F4": 2,
+   "F5": 1,
+   "F6": 1,
+   "G": 1,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 11
+ },
+ "R104": {
+  "src": "MC-8",
+  "method": "MC",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 2,
+   "F4": 1,
+   "F5": 2,
+   "F6": 1,
+   "G": 0,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 10
+ },
+ "R105": {
+  "src": "Manchor-3",
+  "method": "Manchor",
+  "vals": {
+   "P": 0,
+   "F1": "skip",
+   "F2": "skip",
+   "F4": "skip",
+   "F5": "skip",
+   "F6": "skip",
+   "G": "skip",
+   "R": "skip",
+   "N": 2
+  },
+  "stop": "P",
+  "ok": false,
+  "strict": false,
+  "total": 2
+ },
+ "R106": {
+  "src": "ME-8",
+  "method": "ME",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 1,
+   "F6": 2,
+   "G": 0,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 12
+ },
+ "R107": {
+  "src": "Manchor-2",
+  "method": "Manchor",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 1,
+   "F6": 2,
+   "G": 0,
+   "R": 0,
+   "N": 2
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 11
+ },
+ "R108": {
+  "src": "MC-5",
+  "method": "MC",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 1,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 2
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 15
+ },
+ "R109": {
+  "src": "Manchor-5",
+  "method": "Manchor",
+  "vals": {
+   "P": 1,
+   "F1": 1,
+   "F2": 2,
+   "F4": 2,
+   "F5": 1,
+   "F6": 2,
+   "G": 0,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 10
+ },
+ "R110": {
+  "src": "ME-4",
+  "method": "ME",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 1,
+   "R": 1,
+   "N": 2
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 15
+ },
+ "R111": {
+  "src": "MD-5",
+  "method": "MD",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 0,
+   "R": 1,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R112": {
+  "src": "ME-5",
+  "method": "ME",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 1,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R113": {
+  "src": "MA-3",
+  "method": "MA",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 1,
+   "F6": 1,
+   "G": 0,
+   "R": "skip",
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 10
+ },
+ "R114": {
+  "src": "MB-3",
+  "method": "MB",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 0,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R115": {
+  "src": "MF-4",
+  "method": "MF",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 1,
+   "F6": 2,
+   "G": 2,
+   "R": 1,
+   "N": 2
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 15
+ },
+ "R116": {
+  "src": "MF-6",
+  "method": "MF",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 0,
+   "R": 1,
+   "N": 0
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R117": {
+  "src": "MF-2",
+  "method": "MF",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 0,
+   "R": "skip",
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R118": {
+  "src": "MD-3",
+  "method": "MD",
+  "vals": {
+   "P": 2,
+   "F1": 1,
+   "F2": 1,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 1,
+   "N": 2
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 15
+ },
+ "R119": {
+  "src": "MF-3",
+  "method": "MF",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 0,
+   "R": "skip",
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R120": {
+  "src": "ME-1",
+  "method": "ME",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 0,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 12
+ },
+ "R121": {
+  "src": "MC-6",
+  "method": "MC",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 15
+ },
+ "R122": {
+  "src": "MD-6",
+  "method": "MD",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 1,
+   "N": 0
+  },
+  "stop": "N",
+  "ok": false,
+  "strict": false,
+  "total": 15
+ },
+ "R123": {
+  "src": "MA-4",
+  "method": "MA",
+  "vals": {
+   "P": 2,
+   "F1": 1,
+   "F2": 1,
+   "F4": 2,
+   "F5": 0,
+   "F6": 2,
+   "G": 1,
+   "R": "skip",
+   "N": 1
+  },
+  "stop": "F5",
+  "ok": false,
+  "strict": false,
+  "total": 10
+ },
+ "R124": {
+  "src": "MA-5",
+  "method": "MA",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 0,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 11
+ },
+ "R125": {
+  "src": "MC-3",
+  "method": "MC",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 0,
+   "F6": 2,
+   "G": 2,
+   "R": "skip",
+   "N": 1
+  },
+  "stop": "F5",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R126": {
+  "src": "MF-5",
+  "method": "MF",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 1,
+   "F6": 2,
+   "G": 1,
+   "R": 1,
+   "N": 1
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 13
+ },
+ "R127": {
+  "src": "MB-5",
+  "method": "MB",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 1,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 14
+ },
+ "R128": {
+  "src": "MC-2",
+  "method": "MC",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 0,
+   "R": 0,
+   "N": 2
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R129": {
+  "src": "MF-8",
+  "method": "MF",
+  "vals": {
+   "P": 2,
+   "F1": 1,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 14
+ },
+ "R130": {
+  "src": "MA-6",
+  "method": "MA",
+  "vals": {
+   "P": 2,
+   "F1": 1,
+   "F2": 2,
+   "F4": 1,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R131": {
+  "src": "MC-7",
+  "method": "MC",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 15
+ },
+ "R132": {
+  "src": "MF-7",
+  "method": "MF",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 2,
+   "R": 1,
+   "N": 2
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 16
+ },
+ "R133": {
+  "src": "ME-7",
+  "method": "ME",
+  "vals": {
+   "P": 0,
+   "F1": "skip",
+   "F2": "skip",
+   "F4": "skip",
+   "F5": "skip",
+   "F6": "skip",
+   "G": "skip",
+   "R": "skip",
+   "N": 1
+  },
+  "stop": "P",
+  "ok": false,
+  "strict": false,
+  "total": 1
+ },
+ "R134": {
+  "src": "ME-2",
+  "method": "ME",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 15
+ },
+ "R135": {
+  "src": "MF-1",
+  "method": "MF",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 0,
+   "F4": 1,
+   "F5": 2,
+   "F6": 1,
+   "G": 2,
+   "R": "skip",
+   "N": 2
+  },
+  "stop": "F2",
+  "ok": false,
+  "strict": false,
+  "total": 12
+ },
+ "R136": {
+  "src": "MD-1",
+  "method": "MD",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 1,
+   "N": 1
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 16
+ },
+ "R137": {
+  "src": "MB-6",
+  "method": "MB",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 0,
+   "R": "skip",
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 12
+ },
+ "R138": {
+  "src": "MA-2",
+  "method": "MA",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 2,
+   "N": 1
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 17
+ },
+ "R139": {
+  "src": "ME-3",
+  "method": "ME",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 1,
+   "F6": 2,
+   "G": 1,
+   "R": 0,
+   "N": 2
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 14
+ },
+ "R140": {
+  "src": "MD-4",
+  "method": "MD",
+  "vals": {
+   "P": 2,
+   "F1": 1,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 0,
+   "R": 1,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R141": {
+  "src": "MC-1",
+  "method": "MC",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 14
+ },
+ "R142": {
+  "src": "MB-8",
+  "method": "MB",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 1,
+   "R": 2,
+   "N": 1
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 15
+ },
+ "R143": {
+  "src": "Manchor-1",
+  "method": "Manchor",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 15
+ },
+ "R144": {
+  "src": "MA-1",
+  "method": "MA",
+  "vals": {
+   "P": 2,
+   "F1": 1,
+   "F2": 1,
+   "F4": 1,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 2,
+   "N": 1
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 14
+ },
+ "R145": {
+  "src": "MB-4",
+  "method": "MB",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 1,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R146": {
+  "src": "MD-2",
+  "method": "MD",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 1,
+   "F6": 1,
+   "G": 0,
+   "R": 1,
+   "N": 1
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 12
+ },
+ "R147": {
+  "src": "MD-7",
+  "method": "MD",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 14
+ },
+ "R148": {
+  "src": "MD-8",
+  "method": "MD",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 0,
+   "R": 1,
+   "N": 2
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 14
+ },
+ "R149": {
+  "src": "ME-6",
+  "method": "ME",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R150": {
+  "src": "MC-4",
+  "method": "MC",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 1,
+   "F5": 2,
+   "F6": 1,
+   "G": 1,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 12
+ },
+ "R151": {
+  "src": "Manchor-6",
+  "method": "Manchor",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 2,
+   "F4": 1,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 1
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 13
+ },
+ "R152": {
+  "src": "MB-2",
+  "method": "MB",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 1,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 1,
+   "N": 1
+  },
+  "stop": null,
+  "ok": true,
+  "strict": false,
+  "total": 15
+ },
+ "R153": {
+  "src": "MA-8",
+  "method": "MA",
+  "vals": {
+   "P": 2,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 2,
+   "G": 2,
+   "R": 0,
+   "N": 2
+  },
+  "stop": "R",
+  "ok": false,
+  "strict": false,
+  "total": 16
+ },
+ "R154": {
+  "src": "Manchor-4",
+  "method": "Manchor",
+  "vals": {
+   "P": 1,
+   "F1": 2,
+   "F2": 2,
+   "F4": 2,
+   "F5": 2,
+   "F6": 1,
+   "G": 0,
+   "R": 0,
+   "N": 0
+  },
+  "stop": "G",
+  "ok": false,
+  "strict": false,
+  "total": 10
+ }
+}

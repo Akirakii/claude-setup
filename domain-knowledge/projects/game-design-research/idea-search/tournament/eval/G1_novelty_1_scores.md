@@ -1,0 +1,37 @@
+# G1 novelty batch 1: N scores (2026-11-10)
+
+Web check, 1–3 searches per idea, searched by mechanic. Only N is scored. "Nothing close" means
+nothing turned up in these few searches; it does not prove nothing exists.
+
+| ID | N | closest game(s) with link | same / different (short) |
+|---|---|---|---|
+| G101 Lone Scout | ~ | [Watch My Step!](https://store.steampowered.com/app/5087540), [Fly You Fools](https://stamen9.itch.io/fly-you-fools) | Same: different players see different hidden traps and call them out. Different: you see them by walking away from the group, not because of your role; adds a traitor. |
+| G104 Sunbeam Relay | ~ | [Lights Out (Steam)](https://store.steampowered.com/app/4610220), [Mirror Mirror](https://mycours.es/gamedesign2013/author/andrele) | Same: a crew sends a beam through mirrors to push back the dark in a mine. Different: the players' own bodies are the mirrors, and anyone outside the beam freezes. |
+| G107 Road Train | ✗ | [Fire Truck (Atari 1978)](https://www.giantbomb.com/fire-truck/3030-30572/), [Deliver Together](https://intensenation.itch.io/deliver-together) | Same: each player steers one part of one long truck. Only the number of trailers and who holds the brake change. |
+| G110 Tool Line | ~ | [Bucket brigade relays](https://physedgames.com/pass-it-on/) (playground) | Same: items are passed down a line of people. Different: tools are scarce and go to whoever's spot is failing. No video game found. |
+| G113 Rubber Fence | ✗ | [Cattle Muster Master](https://indieforger.itch.io/cattle-muster-master) | Same: players hold one rope and herd cattle into a pen with it. Here it is a re-skin with more players and an elastic rope. |
+| G116 Hump Yard | ~ | [Railroader](https://store.steampowered.com/app/1683150), [Hump Yard (board game)](https://boardgamematcher.com/game/hump-yard) | Same: a crew sorts freight cars onto tracks. Different: cars roll downhill by gravity, and players ride and brake them in real time. |
+| G119 Rubber Band Ring | ✗ | [Fling to the Finish](https://store.steampowered.com/app/1054430/Fling_to_the_Finish/) | Same: players are tied by a stretchy rope and fling each other over gaps. The only change is a ring of N players instead of a pair. |
+| G122 Crumbling Floor | ~ | [Fall Guys Hex-A-Gone](https://sites.google.com/view/kizi-unblockedgames/games/Fall-Guys), [Carry The Glass](https://80.lv/articles/take-a-look-at-this-co-op-platformer-in-which-you-need-to-carry-glass) | Same: tiles drop after use (in a competitive game), and a crew carries a load. Different: each player's step uses up the path the whole crew shares. |
+| G125 Throw-Only Cargo | ✗ | [Don't Drop It](https://store.steampowered.com/app/5128000), Ultimate frisbee / netball rules | Same: a 2-player co-op game where you pass the core by throwing it and it is lost on touching the ground; in ultimate frisbee and netball you can't move while holding it. |
+| G128 Rudderless | ✓ | (real [rudderless sailing drill](https://www.sailing.org.au/news/drills-for-skills-rudderless-sailingtethered-sailing-)) | No game found. The same physics is a real-life sailing drill. |
+| G131 Look Away | ~ | [SCP: Secret Laboratory, SCP-173](https://en.scpslgame.com/index.php?title=173) | Same: a player-controlled threat can act only when nobody is looking at it. Different: it is a hidden traitor inside the crew, not an open monster. |
+| G134 Loudest Voice | ✗ | [HUSHED](https://store.steampowered.com/app/4532140/HUSHED/), [KVOID](https://store.steampowered.com/app/5392590) | Same: the monster hunts whoever is loudest on voice chat or making the most noise. |
+| G137 Swapped Souls | ~ | [Twisted Playground](https://arctopus.itch.io/twisted-playground), [Switcharoo](https://unavailablegames.itch.io/switcharoo) | Same: players swap control of each other's characters. Different: a fixed ring where you see from your own character but steer someone else's. |
+| G140 Cage Eyes | ~ | [Kick the can](https://en.wikipedia.org/wiki/Kick_the_can) (playground) | Same: the jail and freeing everyone by kicking the can. Different: only caught players can see the hunter, so the caged players guide the free ones. |
+| G143 Stone Walker | ✗ | [Salty Scuttle](https://omiyagames.itch.io/salty-scuttle), [Toki Woki](https://askeowl.itch.io/toki-woki), [Tentacle Turmoil](https://kusanagi.itch.io/tentacle-turmoil) | Same: each player controls one leg of a shared creature. |
+| G146 Sunbeam Relay | ✗ | [Mirror Mirror](https://mycours.es/gamedesign2013/author/andrele), [Hell of Mirrors](https://bliznyuknm.itch.io/hell-of-mirrors) | Same: players work mirrors to bounce a beam onto a target and burn enemies with it. |
+| G149 Long Arm | ✗ | [Joint Effort](https://wgoddard.itch.io/joint-effort), [Override (4-player mech)](https://cliqist.com/2014/11/04/4-player-controlled-mech-chaos-override/) | Same: each player moves one joint or limb of a shared body. |
+| G152 Blanket Toss | ✗ | [Inuit blanket toss](https://dictionary.com/browse/blanket-toss) (traditional game) | Same: a group holds a blanket, throws one person up and catches them. Grabbing fruit is only a re-skin. |
+| G155 Heavy Boots | ✓ | nearest: [OMG: Oh My Gravity](https://www.playnews.gg/en/games/omg-oh-my-gravity) | Nothing close found. OMG uses gravity tools on objects; here a player's own body becomes the pull that moves the others. |
+| G158 Blackout Change | ~ | [Staged](https://www.filmschule.de/de/showcase/staged), [Stagehands!](https://rawg.io/games/stagehands) | Same: a crew places scenery before the curtain rises. Different: they work in total darkness, and nobody learns the result until the lights come on. |
+| G161 Human Tower | ✗ | [Two Kids… In A Trench Coat](https://stacked.itch.io/twokidsinatrenchcoat), [Stacked](https://jfc3.itch.io/stacked) | Same: players stack into one body, the bottom player moves it and the top player acts. |
+| G164 Loud Bait | ✗ | [KVOID](https://store.steampowered.com/app/5392590), [Dead by Daylight zombies](https://deadbydaylight.wiki.gg/wiki/Zombies) | Same: enemies chase whoever made the noise. |
+| G167 Fence of Light | ✗ | [Wireman](https://jon404.itch.io/wireman), [Slogo Ray](https://acquah.itch.io/slogoray2022), [Cattle Muster Master](https://indieforger.itch.io/cattle-muster-master) | Same: a beam tethers players and hits enemies, and a rope held by players herds animals. Here those two rules are re-skinned into a ring. |
+| G170 Purse Seine | ~ | [Circle the Fish](https://www.bluestacks.com/apps/action/circle-the-fish-on-pc.html), ["Fishermen and Fish"](https://www.youngstarswiki.org/en/wiki/art/fishermen-and-fish) (playground) | Same: a boat circles a net around a school of fish (solo game), and in the playground game children hold hands to make a net. Different: the circling, holding and closing are split between players, with timing. |
+
+Tally: ✓ 2 · ~ 10 · ✗ 12.
+
+- **Shared-body ideas (one creature or vehicle, one part per player) were taken most often:** Road Train, Stone Walker, Long Arm and Human Tower all exist. Itch.io and game jams are full of "you steer one limb" games.
+- **Players joined by a tether (rope, elastic band or beam) were also mostly taken:** Rubber Fence, Rubber Band Ring and Fence of Light each match an existing game (Fling to the Finish, Cattle Muster Master, the laser-tether games).
+- **Monsters that hunt by noise or voice are already a whole genre** (Loud Bait, Loudest Voice). The ideas that survived as ~ or ✓ mostly change who sees or knows what: Lone Scout, Cage Eyes and Blackout Change.

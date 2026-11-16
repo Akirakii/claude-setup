@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="400" font-family="DejaVu Sans, sans-serif">
+<defs>
+<marker id="a" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0,0 L12,5 L0,10 z" fill="#e6e6e6"/></marker>
+</defs>
+<rect width="1300" height="400" fill="#1b1d23"/>
+<g stroke-width="2.5" fill="none" stroke="#e6e6e6">
+<path d="M260,117 L398,117" marker-end="url(#a)"/>
+<path d="M260,262 L430,157" marker-end="url(#a)"/>
+<path d="M620,117 L758,117" marker-end="url(#a)"/>
+<path d="M260,292 Q760,320 868,157" marker-end="url(#a)"/>
+<path d="M980,117 L1058,117" marker-end="url(#a)"/>
+</g>
+<g stroke-width="2.5">
+<rect x="40" y="80" width="220" height="75" rx="12" fill="#1f3a52" stroke="#6bb3e8"/>
+<rect x="40" y="237" width="220" height="75" rx="12" fill="#1f3a52" stroke="#6bb3e8"/>
+<rect x="400" y="80" width="220" height="75" rx="12" fill="#22452c" stroke="#74c98a"/>
+<rect x="760" y="80" width="220" height="75" rx="12" fill="#4a2440" stroke="#e08ac4"/>
+<rect x="1060" y="80" width="200" height="75" rx="12" fill="#4a3a14" stroke="#f2b84b"/>
+</g>
+<g fill="#ffffff" text-anchor="middle" font-size="24" font-weight="bold">
+<text x="150" y="112">Logic</text><text x="150" y="269">Aesthetic</text>
+<text x="510" y="112">Actions</text><text x="870" y="112">Feelings</text><text x="1160" y="112">Fantasy</text>
+</g>
+<g fill="#cfd3da" text-anchor="middle" font-size="15">
+<text x="150" y="138">the rules</text><text x="150" y="295">look and sound</text>
+<text x="510" y="138">what players do and expect</text><text x="870" y="138">what players feel</text>
+<text x="1160" y="138">what the feelings sell</text>
+<text x="150" y="200" font-style="italic">(what you build)</text>
+<text x="400" y="232">tells players</text><text x="400" y="251">what they can do</text>
+<text x="620" y="335">felt directly, before any action</text>
+</g>
+</svg>

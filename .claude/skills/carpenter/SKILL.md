@@ -1,0 +1,1859 @@
+---
+name: carpenter
+description: "Activate when the user is building, authoring, or running Python/Jupyter learning material with carpenter. Drives the carpenter CLI (SQLite source of truth, rendered notebooks, scored practice/quiz)."
+---
+
+# carpenter
+
+carpenter is an agent-driven CLI that builds Python/Jupyter learning material. SQLite is the source of truth; notebooks render from it. You (the agent) are the tutor — carpenter is deterministic storage, rendering, and execution.
+
+## Learner intake
+
+Before any carpenter command, interview the user and **agree on the course goal**. Do NOT call `course create` until the answers below are in and the user approves the proposed goal. Ask, don't assume — a curriculum built on a guessed background is a process bug.
+
+1. **What do they want to learn, and why?** — the target outcome (project, role, course, curiosity) and what "done" looks like to them.
+2. **Background** — languages known, math/tools experience, prior exposure to the topic; what they already know well enough to skip.
+3. **Constraints** — time budget, pace, appetite for lesson count and depth.
+
+Propose the course goal and plan goals *from the answers* and confirm before scaffolding. Carry the answers into the content walkthrough (level, prerequisites, lesson count) — do not re-interrogate.
+
+## Workflow
+
+0. **Learner intake** — run the interview in the next section and agree on the course goal. Do NOT call `course create` until the user approves it.
+1. `carpenter course create` scaffolds a course (goal shaped by the intake).
+2. `carpenter plan create` + `plan confirm` set goals and link covering lessons.
+3. **Content walkthrough** — run the Q&A in the next section with the user and get explicit confirmation of the lesson outline. Do NOT call `lesson create` until the user approves.
+4. `carpenter lesson create` authors each lesson (renders a notebook + a verification-only helper).
+5. The learner fills practice/quiz stubs; `carpenter quiz run` / `lesson execute` score them live.
+6. Use `progress`, `notes`, `skip`, `bug`, and `feature` to track and refine.
+
+## Content walkthrough
+
+Before generating any lesson, run this Q&A with the user and **confirm the proposed outline** (lesson list + per-lesson practice/quizzes + conventions). Do not call `lesson create` until the user explicitly approves.
+
+1. **Audience & scope** — level (beginner/intermediate/advanced), prerequisites, total lesson count, and grouping into parts/batches. Carry the learner-intake answers in — do not re-interrogate.
+2. **Outline** — for each lesson: title, the concepts it teaches, the practice functions (name + signature + return type), and the end-of-lesson quizzes. Propose the full list and let the user edit it.
+3. **Grading conventions** — agree these once and apply everywhere:
+   - Compare is **exact** by default (`compare:"exact"`); use `sorted`/`set` only when order or multiplicity is irrelevant.
+   - Cases return **plain Python** (`float(...)`, `.tolist()`, `int`, `bool`, `str`, nested `list`) — never raw NumPy arrays.
+   - **Float outputs round to 8 decimals** (`np.round(x, 8).tolist()`) so LAPACK noise (`inv`/`eig`/`svd`/`lstsq`) passes exact equality. Prefer integer-valued cases (bit-exact without rounding).
+   - Design cases to be **deterministic**: avoid sign/scale ambiguity (eigenvectors, SVD `U`/`V` columns) — grade on eigenvalues, singular values, ranks, traces, determinants, reconstructions, or `argmax` instead.
+4. **Stack & IDs** — language, the venv deps (`venv create` + `venv add`), and the slug/ID conventions. Author specs as **YAML** (block scalars keep multi-line markdown/code readable); `carpenter lesson new` emits a YAML template. Quote any value containing `:` (signatures always do).
+5. **Verification contract** — per lesson: (a) lock the answer key with `lesson verify` — each practice/quiz may carry a `solution` (author reference Python) that carpenter runs against its own cases in the course venv (`lesson verify --spec -` before create, `lesson verify <id>` to re-verify); (b) `lesson execute --allow-errors` reports `errored:0` (teaching cells run clean; empty stubs define functions and don't raise at define time); (c) `quiz run` on the fresh notebook reports all quizzes `pass_or_fail:false`. **Never hand-edit a rendered `lesson.ipynb`** — regenerate only via `lesson create` / `lesson update` / `lesson sync`.
+6. **Domain** — pick a concrete running example domain.
+
+Present the agreed outline back as a checklist and proceed only after the user confirms.
+
+## Pedagogy
+
+One concept per lesson. Practice is attached to its teaching section; quizzes assess at the end. State is live only (no attempt history) — a verification-only helper writes `pass_or_fail`/`last_check` on each check. Skipped items are excluded from status derivation. Notes capture gaps, mistakes, strengths, patterns, and progress.
+
+## Command manual
+
+Sourced from `carpenter howto` at render time — always matches the installed binary. Includes end-to-end worked **scenarios** (course → plan → lesson → quiz → progress) under its `## Scenarios` heading — consult them before authoring a new course; the scenarios are illustrative (paths and slugs are placeholders, not real files to read or navigate to). Installed version: 0.11.0 (`/home/akiraki/.local/bin/carpenter`).
+
+<!-- Generated by `cargo xtask gen-howto`. Do not hand-edit. -->
+
+## global flags
+
+- `--root <PATH>` — Workspace root (default: current directory).
+- `-c, --course <SLUG>` — Active course slug (default: active_course in config).
+
+## howto
+
+Print the generated command manual.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter howto
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"manual printed","data":{"howto":"# carpenter — howto\n…"}}
+```
+
+The manual embeds a worked example per command, sourced from `docs/examples/`. Never hand-edit `src/howto.gen.md` — run `cargo xtask gen-howto`.
+
+## course
+
+Course commands.
+
+_flags: none_
+
+### create
+
+Create a course from a spec.
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter course create --spec course.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+title: Data Structures
+slug: data-structures
+goal: Understand core data structures from the ground up
+description: Arrays, lists, hashing, trees.
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"course created: data-structures","data":{"slug":"data-structures","title":"Data Structures","path":"/…/courses/data-structures"}}
+```
+
+A provided `slug` must be kebab-case (`^[a-z0-9]+(-[a-z0-9]+)*$`, max 60 — adr/017); anything else is a ValidationError, and the slug is never auto-mangled. Omit `slug` to derive it from the title.
+
+### list
+
+List courses.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter course list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"courses listed","data":{"courses":[{"slug":"ds","title":"Data Structures","goal":"learn","lessons_count":0}],"errors":[]}}
+```
+
+### show
+
+Show a course.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter course show data-structures
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"course shown: ds","data":{"slug":"data-structures","title":"Data Structures","goal":"learn","description":"","counts":{"lessons":0,"sections":0,"practice":0,"quizzes":0}}}
+```
+
+### update
+
+Update a course from a spec (requires --force).
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+- `--force` — Confirm the destructive operation.
+
+**example:**
+
+```sh
+carpenter course update data-structures --spec course.yaml --force
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+title: Data Structures
+slug: data-structures
+goal: Understand core data structures from the ground up
+description: Arrays, lists, hashing, trees.
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"course updated: ds","data":{"slug":"data-structures","updated":{"slug":"data-structures","title":"…","goal":"…","description":"…","created_at":"2026-08-09T12:00:00Z"}}}
+```
+
+### delete
+
+Delete a course (requires --force).
+
+- `--force` — Confirm the destructive operation.
+
+**example:**
+
+```sh
+carpenter course delete data-structures --force
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"course deleted: ds","data":{"slug":"data-structures","deleted":true}}
+```
+
+### switch
+
+Switch the active course.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter course switch data-structures
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"active course switched: ds","data":{"active_course":"data-structures"}}
+```
+
+Writes `active_course` to config so `-c` can be omitted later.
+
+## plan
+
+Plan commands (human-in-the-loop).
+
+_flags: none_
+
+### create
+
+Create a plan draft from a spec.
+
+- `--scope` — Plan scope.
+- `--lesson <ID>` — Lesson id (required for --scope lesson).
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter -c ds plan create --scope course --spec plan.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+title: "Data Structures — course plan"
+goals:
+  - Know array/list internals
+  - Implement a hash map from scratch
+links:
+  goal_index_0:
+    - arrays-101
+  goal_index_1:
+    - hashing-101
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"plan draft created: pl1","data":{"id":"pl1","scope":"course","scope_id":"ds","title":"…","content":"{goals, links}","confirmed":false}}
+```
+
+`links` keys MUST be `goal_index_<i>` where `<i>` is the 0-based index into `goals[]`; a goal absent from `links` gets `covered_by:[]`. `--scope lesson --lesson <id>` scopes a plan to one lesson.
+
+### show
+
+Show a plan.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds plan show pl1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"plan shown: pl1","data":{"id":"pl1","scope":"course","scope_id":"ds","title":"…","content":"{goals, links}","confirmed_at":null}}
+```
+
+### list
+
+List plans.
+
+- `--scope` — Filter by scope.
+
+**example:**
+
+```sh
+carpenter -c ds plan list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"plans listed","data":{"plans":[{"id":"pl1","scope":"course","scope_id":"ds","title":"…","confirmed":false}]}}
+```
+
+Optional `--scope course|lesson` filter.
+
+### confirm
+
+Confirm a plan.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds plan confirm pl1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"plan confirmed: pl1","data":{"id":"pl1","confirmed":true,"confirmed_at":"2026-08-09T12:00:00Z","goals_created":["g1","g2"]}}
+```
+
+Course scope materializes one goal per `goals[]` entry (ids resolved now); lesson scope creates none. Confirming twice is a Conflict. `links` must reference lesson ids that already exist (unresolvable id ⇒ ValidationError — create the lessons first). A confirmed goal derives `achieved` only when every `covered_by` lesson is `complete`; skipped lessons are excluded.
+
+### update
+
+Update a plan from a spec.
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter -c ds plan update pl1 --spec plan.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+title: "Data Structures — course plan"
+goals:
+  - Know array/list internals
+  - Implement a hash map from scratch
+links:
+  goal_index_0:
+    - arrays-101
+  goal_index_1:
+    - hashing-101
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"plan updated: pl1","data":{"id":"pl1","updated":{"id":"pl1","scope":"course","scope_id":"ds","title":"…","content":"{goals, links}","created_at":"2026-08-09T12:00:00Z","confirmed_at":null}}}
+```
+
+Only while unconfirmed.
+
+### delete
+
+Delete a plan.
+
+- `--force` — Confirm the destructive operation.
+
+**example:**
+
+```sh
+carpenter -c ds plan delete pl1 --force
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"plan deleted: pl1","data":{"id":"pl1","deleted":true}}
+```
+
+`--force` required only if the plan is confirmed.
+
+## goal
+
+Goal commands.
+
+_flags: none_
+
+### add
+
+Add a goal from a spec.
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter -c ds goal add --spec goal.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+text: Implement a hash map from scratch
+covered_by:
+  - hashing-101
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"goal added: g1","data":{"id":"g1","text":"Implement a hash map from scratch","status":"pending","covered_by":["hashing-101"]}}
+```
+
+`covered_by` lesson ids are resolved on use (unresolved ⇒ ValidationError).
+
+### list
+
+List goals.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds goal list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"goals listed","data":{"goals":[{"id":"g1","text":"…","status":"pending","derived_status":"pending","covered_by":["hashing-101"]}]}}
+```
+
+### update
+
+Update a goal.
+
+- `--status` — Pin a status, or `derived` to resume derivation.
+- `--covered-by <IDS>` — Comma-separated covering lesson ids.
+
+**example:**
+
+```sh
+carpenter -c ds goal update g1 --status achieved --covered-by hashing-101
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"goal updated: g1","data":{"id":"g1","status":"achieved","override":true,"covered_by":["hashing-101"]}}
+```
+
+`--status derived` resumes live derivation; `--covered-by` is comma-separated.
+
+### remove
+
+Remove a goal (requires --force).
+
+- `--force` — Confirm the destructive operation.
+
+**example:**
+
+```sh
+carpenter -c ds goal remove g1 --force
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"goal removed: g1","data":{"id":"g1","deleted":true}}
+```
+
+## lesson
+
+Lesson commands.
+
+_flags: none_
+
+### create
+
+Create a lesson from a spec (renders notebook + helper).
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter -c ds lesson create --spec lesson.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+title: Arrays 101
+slug: arrays-101
+order: 1                  # optional; omitted ⇒ appended (max(ord)+1, atomic)
+sections:
+  - title: What is an array
+    snippets:
+      - kind: markdown
+        content: An array stores items contiguously…
+      - kind: code
+        content: |
+          import numpy as np
+          np.array([1, 2, 3])
+    practice:
+      - name: sum_array
+        signature: "def sum_array(arr):"
+        prompt: Return the sum of the array.
+        cases:
+          - compare: exact
+            args:
+              - [1, 2, 3]
+            kwargs: {}
+            expected: 6
+quizzes:
+  - name: max_value
+    signature: "def max_value(arr):"
+    prompt: Return the max.
+    cases:
+      - compare: exact
+        args:
+          - [3, 1, 2]
+        kwargs: {}
+        expected: 3
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson created: arrays-101","data":{"id":"arrays-101","slug":"arrays-101","path":"<root>/courses/<slug>/lessons/01-arrays-101","counts":{"sections":1,"practice":1,"quizzes":1,"cases":2}}}
+```
+
+`sections[].snippets[0].kind` must be `markdown`. Array index ⇒ `ord`. `compare` defaults to `exact`. A provided `slug` must be kebab-case (`^[a-z0-9]+(-[a-z0-9]+)*$`, max 60 — adr/017); a derived slug always is. Omit `order` to append atomically (`max(ord)+1` inside the insert statement, unique by index); an explicit `order` colliding with an existing lesson's is a `Conflict` (`"lesson ord N already taken"`). Concurrent creates are safe; for a fixed sequence prefer explicit `order`s or create sequentially.
+
+### get
+
+Show the full lesson tree.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds lesson get arrays-101
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson shown: arrays-101","data":{"id":"arrays-101","slug":"arrays-101","title":"Arrays 101","ord":1,"status":"not_started","skip":false,"sections":[],"quizzes":[]}}
+```
+
+Full lesson tree (sections + quizzes).
+
+### list
+
+List lessons.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds lesson list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lessons listed","data":{"lessons":[{"id":"arrays-101","title":"Arrays 101","ord":1,"status":"not_started","skip":false}],"errors":[]}}
+```
+
+### show
+
+Show a lesson's status + progress.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds lesson show arrays-101
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson shown: arrays-101","data":{"id":"arrays-101","title":"Arrays 101","status":"not_started","skip":false,"progress":{"sections":1,"practice":1,"quizzes":1,"passing":0,"total":2}}}
+```
+
+### update
+
+Update a lesson from a spec (requires --force).
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+- `--force` — Confirm the destructive operation.
+
+**example:**
+
+```sh
+carpenter -c ds lesson update arrays-101 --spec lesson.yaml --force
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+title: Arrays 101
+slug: arrays-101
+sections:
+  - title: What is an array
+    snippets:
+      - kind: markdown
+        content: An array stores items contiguously…
+      - kind: code
+        content: |
+          import numpy as np
+          np.array([1, 2, 3])
+    practice:
+      - name: sum_array
+        signature: "def sum_array(arr):"
+        prompt: Return the sum of the array.
+        cases:
+          - compare: exact
+            args:
+              - [1, 2, 3]
+            kwargs: {}
+            expected: 6
+quizzes:
+  - name: max_value
+    signature: "def max_value(arr):"
+    prompt: Return the max.
+    cases:
+      - compare: exact
+        args:
+          - [3, 1, 2]
+        kwargs: {}
+        expected: 3
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson updated: arrays-101","data":{"id":"arrays-101","updated":{"id":"arrays-101","slug":"arrays-101","title":"…","ord":1,"status":"not_started","skip":false,"created_at":"2026-08-09T12:00:00Z","updated_at":"2026-08-09T12:00:00Z"}}}
+```
+
+Destructive — requires `--force`. Re-renders the notebook.
+
+### delete
+
+Delete a lesson (requires --force).
+
+- `--force` — Confirm the destructive operation.
+
+**example:**
+
+```sh
+carpenter -c ds lesson delete arrays-101 --force
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson deleted: arrays-101","data":{"id":"arrays-101","deleted":true}}
+```
+
+### sync
+
+Sync the notebook against the DB (3-way stub preservation).
+
+- `--force` — Confirm the destructive operation.
+
+**example:**
+
+```sh
+carpenter -c ds lesson sync arrays-101 --force
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson synced: arrays-101","data":{"id":"arrays-101","synced":true,"conflicts":[]}}
+```
+
+3-way stub preservation: learner edits to stub cells are kept; conflicts surface in `conflicts[]`. `--force` is required only when the sync would discard learner edits (unresolved conflicts); a clean sync succeeds without it. A synced notebook differs cosmetically from a freshly rendered one (single-string `source` fields, cleared outputs) — both parse identically; never normalize one by hand.
+
+### execute
+
+Execute the lesson notebook in the course venv.
+
+- `--timeout <SECS>` — Per-cell execution timeout.
+- `--allow-errors` — Run every cell; return all errors instead of aborting on the first.
+
+**example:**
+
+```sh
+carpenter -c ds lesson execute arrays-101 --timeout 30 --allow-errors
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson executed: arrays-101","data":{"id":"arrays-101","executed":true,"cells":{"total":3,"ran":3,"errored":0},"errors":[]}}
+```
+
+Requires the course venv (`carpenter venv create`) else StoreError. `--allow-errors` runs every cell and returns all errors instead of aborting on the first. Check cells run during execution and write live practice `pass_or_fail` (stdout shows `PASS`/`FAIL <id> <case>`, never the expected value) — practice is scored by executing, quizzes by `quiz run`. Notebook execution is serialized per course (adr/017): a concurrent `lesson execute`/`quiz run` in the same course waits (up to 120 s) on an execution lock, then fails with a clear StoreError.
+
+### verify
+
+Verify author solutions against their own cases (answer-key lock).
+
+- `--spec <FILE|->` — Pre-create verify: spec input (file or - for stdin, YAML).
+- `--timeout <SECS>` — Per-case timeout.
+
+**example:**
+
+```sh
+carpenter -c ds lesson verify --spec -
+```
+
+Input spec (`--spec <FILE|->`, JSON or YAML). Each Checkable may carry a
+`solution` — Python source defining the fn named `name`. `lesson verify` runs
+each solution against its own cases in the course venv (the answer-key lock).
+```yaml
+title: Arrays 101
+slug: arrays-101
+sections:
+  - title: Intro
+    snippets:
+      - kind: markdown
+        content: "# hi"
+    practice:
+      - name: sum_array
+        signature: "def sum_array(arr):"
+        solution: |
+          def sum_array(arr):
+              return sum(arr)
+        cases:
+          - compare: exact
+            args:
+              - [1, 2, 3]
+            kwargs: {}
+            expected: 6
+quizzes: []
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson verified: (spec)","data":{"lesson_id":null,"checked":1,"passing":1,"failing":0,"checkables":[{"owner_type":"practice","owner_id":"sum_array","name":"sum_array","has_solution":true,"passed":1,"total":1,"cases":[{"case_id":"sum_array-0","passed":true}]}]}}
+```
+
+`--spec` verifies pre-create (`lesson_id:null`, `owner_id` = fn `name`); `<id>`
+re-verifies stored solutions post-create (`owner_id` = `p1`/`q1`…). Requires
+`carpenter venv create`. A checkable without a `solution` reports
+`has_solution:false`; its cases fail with `error:"no solution"`. Results carry
+`actual`/`error`, never `expected` (adr/015); `actual` is string-encoded
+(e.g. `"actual":"0.25"`), so compare it textually, not as JSON numbers.
+
+### new
+
+Emit a YAML lesson-spec template (stdout, or --out <FILE>).
+
+- `--out <FILE>` — Write to a file instead of stdout.
+
+**example:**
+
+```sh
+carpenter lesson new --out lesson.yaml
+```
+
+No course context required (`-c` omitted). Prints a YAML template to stdout by
+default; `--out <FILE>` writes it. Block scalars (`|`) keep multi-line
+`content`/`solution` as-is (no `\n` escaping); signatures are quoted (they end
+in `:`).
+```yaml
+title: <lesson title>
+slug: <lesson-slug>          # optional; derived from title if omitted
+sections:
+  - title: <section title>
+    snippets:
+      - kind: markdown
+        content: |
+          ## Heading
+          Prose here.
+    practice:
+      - name: <fn_name>
+        signature: "def <fn_name>(x):"
+        solution: |
+          def <fn_name>(x):
+              return x
+        cases:
+          - compare: exact
+            args: [1]
+            expected: 1
+quizzes: []
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"lesson template written: lesson.yaml","data":{"written_to":"lesson.yaml"}}
+```
+
+Edit the template, then `carpenter -c <slug> lesson verify --spec lesson.yaml`
+to lock the keys, and `carpenter -c <slug> lesson create --spec lesson.yaml` to
+render it. Print mode (`carpenter lesson new`) returns the YAML in
+`data.yaml` instead of `data.written_to`.
+
+## quiz
+
+Quiz commands.
+
+_flags: none_
+
+### run
+
+Run a lesson's quizzes (nbconvert in the course venv).
+
+- `--timeout <SECS>` — Per-quiz execution timeout.
+
+**example:**
+
+```sh
+carpenter -c ds quiz run arrays-101 --timeout 30
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"quizzes run: arrays-101","data":{"lesson_id":"arrays-101","quizzes":[{"quiz_id":"q1","skipped":false,"pass_or_fail":true,"passed":1,"total":1,"cases":[{"case_id":"c1","passed":true}]}],"saved":true}}
+```
+
+Requires the course venv. Writes live `pass_or_fail` per quiz; skipped quizzes report `skipped:true`. Notebook execution is serialized per course (adr/017): a concurrent `quiz run`/`lesson execute` in the same course waits (up to 120 s) on an execution lock, then fails with a clear StoreError.
+
+### list
+
+List quizzes.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds quiz list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"quizzes listed","data":{"quizzes":[{"id":"q1","lesson_id":"arrays-101","name":"max_value","case_count":1,"skip":false,"pass_or_fail":false}]}}
+```
+
+Optional positional lesson id filters to one lesson.
+
+### show
+
+Show a quiz.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds quiz show q1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"quiz shown: q1","data":{"id":"q1","lesson_id":"arrays-101","name":"max_value","signature":"def max_value(arr):","prompt":"…","cases":1,"skip":false,"pass_or_fail":false}}
+```
+
+### results
+
+Show a quiz's last-check results.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds quiz results q1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"quiz results: q1","data":{"quiz_id":"q1","skipped":false,"pass_or_fail":true,"passed":1,"total":1,"cases":[{"case_id":"c1","passed":true}]}}
+```
+
+Last-check results (from the most recent `quiz run`).
+
+## venv
+
+Course venv commands (uv).
+
+_flags: none_
+
+### create
+
+Create the course venv.
+
+- `--python <X.Y>` — Python version.
+
+**example:**
+
+```sh
+carpenter -c ds venv create --python 3.12
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"venv created: ds","data":{"course":"ds","python":"3.12","path":"<root>/courses/ds/.venv","deps":["jupyterlab","nbconvert","nbclient","ipykernel"]}}
+```
+
+Required before `lesson execute` / `quiz run`. Uses `uv`.
+
+### sync
+
+uv sync.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds venv sync
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"venv synced: ds","data":{"course":"ds","synced":true}}
+```
+
+Runs `uv sync` against the course `pyproject.toml`.
+
+### list
+
+List installed packages.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds venv list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"venv listed: ds","data":{"course":"ds","packages":[{"name":"nbconvert","version":"7.16.4"}]}}
+```
+
+### add
+
+Add packages.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds venv add numpy pandas
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"venv added: ds","data":{"course":"ds","added":["numpy","pandas"],"packages":[{"name":"numpy","version":"2.1.3"}]}}
+```
+
+One or more package names, positional.
+
+## skip
+
+Set (or clear) the skip flag on a lesson, quiz, or practice item.
+
+- `--scope` — Scope of the id.
+- `--off` — Clear the skip flag instead of setting it.
+
+**example:**
+
+```sh
+carpenter -c ds skip q1 --scope quiz
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"skip set: quiz q1","data":{"scope":"quiz","id":"q1","skip":true}}
+```
+
+`--scope lesson|quiz|practice`. `--off` clears the flag. Skipped items are excluded from status derivation.
+
+## progress
+
+Progress commands.
+
+_flags: none_
+
+### show
+
+Per-lesson live progress.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds progress show
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"progress shown","data":{"lessons":[{"id":"arrays-101","title":"Arrays 101","status":"in_progress","skip":false,"passing":1,"total":2}]}}
+```
+
+Per-lesson live progress.
+
+### summary
+
+Course roll-up (lessons/quizzes/goals/notes).
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds progress summary
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"progress summarized","data":{"lessons":{"total":1,"complete":0,"in_progress":1,"skipped":0},"quizzes":{"passing":1,"total":1},"goals":{"total":1,"achieved":0},"notes":{"total":1,"open":1,"recurring":0,"by_kind":{"gap":1,"mistake":0,"strength":0,"pattern":0,"progress":0}}}}
+```
+
+## notes
+
+Note commands.
+
+_flags: none_
+
+### add
+
+Add a note from a spec.
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter -c ds notes add --spec note.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+kind: gap
+tags:
+  - recursion
+recurrence: new
+related: q2
+text: Learner struggles with base cases.
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"note added: n1","data":{"id":"n1","kind":"gap","tags":["recursion"],"status":"open","recurrence":"new","related":"q2","text":"Learner struggles with base cases.","related_open":[]}}
+```
+
+`kind` ∈ gap|mistake|strength|pattern|progress. `related_open` is an advisory hint (recurring gaps).
+
+### show
+
+Show a note.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds notes show n1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"note shown","data":{"notes":[{"id":"n1","kind":"gap","tags":["recursion"],"status":"open","recurrence":"new","related":"q2","text":"Learner struggles with base cases."}]}}
+```
+
+### list
+
+List notes.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds notes list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"notes listed","data":{"notes":[{"id":"n1","kind":"gap","tags":["recursion"],"status":"open","recurrence":"new","related":"q2","text":"…"}],"errors":[]}}
+```
+
+### update
+
+Update a note from a spec.
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter -c ds notes update n1 --spec note.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+kind: gap
+tags:
+  - recursion
+recurrence: new
+related: q2
+text: Learner struggles with base cases.
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"note updated: n1","data":{"id":"n1","updated":{"id":"n1","kind":"gap","tags":["recursion"],"status":"open","recurrence":"new","related":"q2","text":"Learner struggles with base cases."}}}
+```
+
+### resolve
+
+Resolve a note.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter -c ds notes resolve n1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"note resolved: n1","data":{"id":"n1","status":"resolved"}}
+```
+
+### remove
+
+Remove a note (requires --force).
+
+- `--force` — Confirm the destructive operation.
+
+**example:**
+
+```sh
+carpenter -c ds notes remove n1 --force
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"note removed: n1","data":{"id":"n1","deleted":true}}
+```
+
+## bug
+
+Bug commands (file-backed under ~/.config/carpenter/bug/).
+
+_flags: none_
+
+### file
+
+File a bug from a spec.
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter bug file --spec bug.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+title: "quiz run ignores --timeout"
+description: The timeout flag has no effect.
+repro: "carpenter quiz run 01 …"
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"issue filed: b1","data":{"id":"b1","path":"/…/bug/b1.json","status":"open"}}
+```
+
+Bug-only: `repro` allowed, `rationale` ⇒ ValidationError. File-backed under ~/.config/carpenter/bug/.
+
+### list
+
+List bugs.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter bug list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"issues listed","data":{"items":[{"id":"b1","title":"quiz run ignores --timeout","status":"open"}],"errors":[]}}
+```
+
+### show
+
+Show a bug.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter bug show b1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"issue shown: b1","data":{"id":"b1","title":"quiz run ignores --timeout","description":"The timeout flag has no effect.","repro":"carpenter quiz run 01 …","rationale":null,"status":"open","resolved_ts":null}}
+```
+
+### resolve
+
+Resolve a bug.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter bug resolve b1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"issue resolved: b1","data":{"id":"b1","status":"resolved","resolved_ts":"2026-08-09T12:00:00Z"}}
+```
+
+## feature
+
+Feature request commands (file-backed under ~/.config/carpenter/feature_request/).
+
+_flags: none_
+
+### file
+
+File a feature request from a spec.
+
+- `--spec <FILE|->` — Spec input: a file path or - for stdin (YAML).
+
+**example:**
+
+```sh
+carpenter feature file --spec feature.yaml
+```
+
+Input spec (`--spec <FILE|->`):
+```yaml
+title: add dark mode
+description: Users ask for a dark theme.
+rationale: frequent user request
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"issue filed: f1","data":{"id":"f1","path":"/…/feature_request/f1.json","status":"open"}}
+```
+
+Feature-only: `rationale` allowed, `repro` ⇒ ValidationError. File-backed under ~/.config/carpenter/feature_request/.
+
+### list
+
+List feature requests.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter feature list
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"issues listed","data":{"items":[{"id":"f1","title":"add dark mode","status":"open"}],"errors":[]}}
+```
+
+### show
+
+Show a feature request.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter feature show f1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"issue shown: f1","data":{"id":"f1","title":"add dark mode","description":"…","repro":null,"rationale":"users ask for it","status":"open","resolved_ts":null}}
+```
+
+### resolve
+
+Resolve a feature request.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter feature resolve f1
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"issue resolved: f1","data":{"id":"f1","status":"resolved","resolved_ts":"2026-08-09T12:00:00Z"}}
+```
+
+## config
+
+App config commands (~/.config/carpenter/config.json).
+
+_flags: none_
+
+### get
+
+Show config values (all, or one key).
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter config get timeout_secs
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"config shown: timeout_secs","data":{"key":"timeout_secs","value":30}}
+```
+
+Omit the key to show all values.
+
+### set
+
+Set a config value (coerced to the key's type).
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter config set timeout_secs 45
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"config set: timeout_secs","data":{"key":"timeout_secs","value":45}}
+```
+
+Value is coerced to the key's type.
+
+## register
+
+Register the carpenter skill with an agent app (writes SKILL.md; opencode also gets a permission entry).
+
+- `--app` — Agent app (opencode|claude-code).
+- `--print-skill` — Print the rendered SKILL.md to stdout instead of writing.
+
+**example:**
+
+```sh
+carpenter register --app opencode
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"skill registered: opencode","data":{"app":"opencode","path":"/…/opencode/skills/carpenter/SKILL.md","version":"0.11.0","installed":true}}
+```
+
+Writes `SKILL.md` + merges the `permission.skill.carpenter="allow"` entry. `--print-skill` prints the rendered bytes instead (no FS change).
+
+## deregister
+
+Deregister the carpenter skill (removes SKILL.md; opencode also loses its permission entry).
+
+- `--app` — Agent app (opencode|claude-code).
+
+**example:**
+
+```sh
+carpenter deregister --app opencode
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"skill deregistered: opencode","data":{"app":"opencode","path":"/…/opencode/skills/carpenter/SKILL.md","removed":true}}
+```
+
+Removes `SKILL.md` (+ dir if empty) and the allow key. NotFound if absent.
+
+## build
+
+Scaffold a course at a path (course.json + course.db + lessons/).
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter build /courses/ds
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"course built: ds","data":{"path":"/courses/ds","slug":"ds","created":["course.json","course.db","lessons/"]}}
+```
+
+Low-level scaffold (no spec). Prefer `course create`.
+
+## install
+
+Place the carpenter binary into a bin dir.
+
+- `--bin-dir <PATH>` — Bin dir (default: config bin_dir → ~/.local/bin).
+
+**example:**
+
+```sh
+carpenter install --bin-dir ~/.local/bin
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"installed: /home/u/.local/bin/carpenter","data":{"installed":true,"bin":"/home/u/.local/bin/carpenter","on_path":true}}
+```
+
+Default bin dir from config (`bin_dir` → ~/.local/bin).
+
+## upgrade
+
+Replace the installed binary from a published release (or a source checkout) and refresh the skill.
+
+- `--channel <CHANNEL>` — Release channel to fetch (stable|nightly).
+- `--source <PATH>` — Source checkout (default: config source_dir).
+- `--bin-dir <PATH>` — Install target (default: config bin_dir).
+- `--no-skill` — Skip the skill auto-refresh (skill:null).
+
+**example:**
+
+```sh
+carpenter upgrade --bin-dir ~/.local/bin
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"upgraded: 0.11.0","data":{"upgraded":true,"version":"0.11.0","bin":"/home/u/.local/bin/carpenter","source":"https://github.com/tensily/Carpenter/releases/latest/download/carpenter-x86_64-unknown-linux-musl.tar.gz","skill":[{"refreshed":true,"app":"opencode","path":"/home/u/.config/opencode/skills/carpenter/SKILL.md"},{"refreshed":true,"app":"claude-code","path":"/home/u/.claude/skills/carpenter/SKILL.md"}]}}
+```
+
+Fetches the latest **stable** release (checksum-verified), replaces the binary, and
+refreshes the skill of every **registered** app (`skill` = one outcome per app;
+nothing registered ⇒ `{"refreshed":false,"reason":"not_registered",…}`).
+`--channel nightly` follows the rolling prerelease instead; `--source <path>` (or
+config `source_dir`) rebuilds from a local checkout. `--no-skill` skips the
+skill write (`skill:null`).
+
+## uninstall
+
+Remove the carpenter skill, the installed binary, and (with --purge-config) the config.
+
+- `--bin-dir <PATH>` — Bin dir (default: config bin_dir → ~/.local/bin).
+- `--purge-config` — Also remove the carpenter config file.
+
+**example:**
+
+```sh
+carpenter uninstall --bin-dir ~/.local/bin
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"uninstalled: /home/u/.local/bin/carpenter","data":{"uninstalled":true,"bin":"/home/u/.local/bin/carpenter","skill":[{"app":"opencode","path":"/home/u/.config/opencode/skills/carpenter/SKILL.md","removed":true},{"app":"claude-code","path":"/home/u/.claude/skills/carpenter/SKILL.md","removed":true}],"config_purged":false}}
+```
+
+Inverse of `install`: removes the skill of every **registered** app (best-effort — `{"removed":false,"reason":"not_registered"}` when none), then deletes `<bin_dir>/carpenter` (safe while running on Linux/macOS). `NotFound` when neither skill nor binary exists. `--purge-config` also removes the config file; course data is never touched.
+
+## link
+
+Link manifest commands (future CLI registry).
+
+_flags: none_
+
+### register
+
+Emit the carpenter link manifest.
+
+_flags: none_
+
+**example:**
+
+```sh
+carpenter link register
+```
+
+Result (one envelope on stdout):
+```json
+{"status":"ok","message":"link manifest emitted","data":{"name":"carpenter","version":"0.11.0","bin":"/…/carpenter","summary":"Agent-driven CLI that builds Python/Jupyter learning material.","howto_excerpt":"Run `carpenter howto` for the full, always-current command manual.","commands":["course","lesson","plan","quiz","howto"]}}
+```
+
+Future CLI registry manifest. Read-only emit.
+
+## Scenarios
+
+Multi-command workflows composed toward one goal ([adr/013](../docs/adr/013-compile-enforced-scenarios.md)). These are **illustrative examples**: every filename, slug, and path (including `<root>/…`) is a placeholder pattern to adapt — none exist on disk; do not read, create, or navigate to them.
+
+### Build a course end-to-end
+
+A canonical agent workflow: scaffold a course, author one lesson, set goals and
+link them to covering lessons, verify the lesson runs, score the fresh
+notebook, and roll up progress. Running example: a computational-linear-algebra
+course (`linalg-for-ml`). Repeat the `lesson create` step for each lesson in the outline.
+
+The fenced ` ```sh ` blocks below are the real flow; the ` ```yaml ` blocks are
+the specs and the ` ```json ` blocks are the result envelopes. (Only the `sh`
+blocks are counted by the compile-time scenario gate — see
+`docs/adr/013-compile-enforced-scenarios.md`.)
+
+#### 0. Interview the learner (intake)
+
+No carpenter command yet. Ask the user — the course spec in step 1 and the plan
+goals in step 4 are the *output* of this interview, not a guess (the skill's
+`## Learner intake` section gates `course create` on the user's agreement):
+
+- **What do you want to learn, and why?** — target outcome (project, role,
+  course, curiosity) and what "done" looks like.
+- **Background** — languages known, math/tools experience, prior exposure to
+  the topic; what they know well enough to skip.
+- **Constraints** — time budget, pace, appetite for lesson count and depth.
+
+The running example assumes the answers: knows Python basics, needs ML-ready
+linear algebra for a data-role move, has ~6 weeks — which is exactly what the
+`goal:` line below encodes.
+
+#### 1. Scaffold the course
+
+```sh
+carpenter course create --spec <course-spec>.yaml
+```
+
+`<course-spec>.yaml`:
+```yaml
+title: Computational Linear Algebra for ML
+slug: linalg-for-ml
+goal: Build ML-ready linear-algebra intuition from vectors to SVD
+description: Vectors, matrices, systems, decompositions, and ML applications.
+```
+```json
+{"status":"ok","message":"course created: linalg-for-ml","data":{"slug":"linalg-for-ml","title":"Computational Linear Algebra for ML","path":"<root>/courses/linalg-for-ml"}}
+```
+
+#### 2. Create the venv and add deps
+
+Required before `lesson execute` / `quiz run` (uses `uv`).
+
+```sh
+carpenter -c linalg-for-ml venv create --python 3.12
+carpenter -c linalg-for-ml venv add numpy
+```
+
+#### 3. Author a lesson (renders notebook + verification-only helper)
+
+```sh
+carpenter -c linalg-for-ml lesson create --spec <lesson-spec>.yaml
+```
+
+`<lesson-spec>.yaml` — a minimal one-section lesson (the full spec shape lives at
+`docs/examples/lesson/create.md`):
+```yaml
+title: "Vectors: A Computational Refresher"
+slug: vectors-refresher
+sections:
+  - title: The dot product
+    snippets:
+      - kind: markdown
+        content: |
+          ## The dot product
+
+          $$\vec{x}\cdot\vec{y} = \sum_i x_i y_i$$
+      - kind: code
+        content: |
+          import numpy as np
+          print(np.dot([1,2,3],[4,5,6]))
+    practice:
+      - name: dot_product
+        signature: "def dot_product(a, b):"
+        prompt: Return the dot product of a and b as a Python float (use np.dot, then float()).
+        cases:
+          - compare: exact
+            args:
+              - [1, 2, 3]
+              - [4, 5, 6]
+            kwargs: {}
+            expected: 32
+quizzes:
+  - name: dot_sign
+    signature: "def dot_sign(a, b):"
+    prompt: Return 1 if dot(a,b)>0, -1 if <0, 0 if ==0.
+    cases:
+      - compare: exact
+        args:
+          - [1, 2]
+          - [3, 4]
+        kwargs: {}
+        expected: 1
+```
+```json
+{"status":"ok","message":"lesson created: vectors-refresher","data":{"id":"vectors-refresher","slug":"vectors-refresher","path":"<root>/courses/linalg-for-ml/lessons/01-vectors-refresher","counts":{"sections":1,"practice":1,"quizzes":1,"cases":2}}}
+```
+
+#### 4. Set goals and link covering lessons
+
+`links` must reference lesson ids that **already exist** — confirming a plan
+whose links name unknown lessons fails with
+`{"status":"error","code":"ValidationError","message":"validation error: unresolvable lesson id in links: <id>"}`,
+so create the lessons first (step 3).
+
+```sh
+carpenter -c linalg-for-ml plan create --scope course --spec <plan-spec>.yaml
+carpenter -c linalg-for-ml plan confirm pl1
+```
+
+`<plan-spec>.yaml` (`links` keys MUST be `goal_index_<i>` — the 0-based index into `goals[]`):
+```yaml
+title: "Computational Linear Algebra for ML — Learning Goals"
+goals:
+  - Represent vectors and matrices in NumPy and compute products.
+  - Solve linear systems via elimination and LU.
+  - Apply eigenvalues, eigenvectors, and the SVD.
+  - Apply linear algebra to ML: regression, PCA, nets, classification.
+links:
+  goal_index_0: [vectors-refresher, matrices-refresher]
+  goal_index_1: [systems-and-elimination, lu-decomposition]
+  goal_index_2: [determinants-and-eigenvectors, svd]
+  goal_index_3: [ml-linear-regression, ml-pca, ml-neural-network]
+```
+```json
+{"status":"ok","message":"plan confirmed: pl1","data":{"id":"pl1","confirmed":true,"confirmed_at":"2026-08-09T12:00:00Z","goals_created":["g1","g2","g3","g4"]}}
+```
+
+#### 5. Verify the teaching cells run clean
+
+Stubs only `raise` at call time, so `--allow-errors` reports `errored:0` on a
+freshly rendered notebook (practice/quiz cells define functions; they don't
+raise at definition time).
+
+```sh
+carpenter -c linalg-for-ml lesson execute vectors-refresher --allow-errors
+```
+```json
+{"status":"ok","message":"lesson executed: vectors-refresher","data":{"id":"vectors-refresher","executed":true,"cells":{"total":7,"ran":7,"errored":0},"errors":[]}}
+```
+
+#### 6. Score the fresh notebook
+
+Empty stubs → every quiz fails with `NotImplementedError` — the expected fresh
+state. The helper catches the exception and records `pass_or_fail:false`; no cell
+error is raised.
+
+```sh
+carpenter -c linalg-for-ml quiz run vectors-refresher
+```
+```json
+{"status":"ok","message":"quizzes run: vectors-refresher","data":{"lesson_id":"vectors-refresher","quizzes":[{"quiz_id":"q1","skipped":false,"pass_or_fail":false,"passed":0,"total":1,"cases":[{"case_id":"c1","passed":false,"error":"NotImplementedError: "}]}],"saved":true}}
+```
+
+#### 7. Roll up progress
+
+```sh
+carpenter -c linalg-for-ml progress summary
+```
+```json
+{"status":"ok","message":"progress summarized","data":{"lessons":{"total":1,"complete":0,"in_progress":0,"skipped":0},"quizzes":{"passing":0,"total":1},"goals":{"total":4,"achieved":0},"notes":{"total":0,"open":0,"recurring":0,"by_kind":{"gap":0,"mistake":0,"strength":0,"pattern":0,"progress":0}}}}
+```
+
+#### Conventions (agent discipline)
+
+These are not `carpenter` commands, but they are the verification loop the agent
+should run while authoring each lesson:
+
+- **Lock the answer key before trusting `quiz run`.** Put a `solution` (Python
+  defining the fn `name`) on each practice/quiz and run
+  `carpenter -c linalg-for-ml lesson verify --spec <lesson-spec>.yaml` — it runs
+  each solution against its own cases with the same compare logic that grades the
+  learner ([adr/015](../docs/adr/015-reference-solution-verify.md)).
+  `np.linalg.solve` with integer solutions is bit-exact; `np.linalg.inv` /
+  `eig` / `svd` are not.
+- **Round floats to 8 decimals.** Outputs of `inv` / `eig` / `svd` / `lstsq`
+  carry ~1e-16 noise. Have the learner return `np.round(result, 8).tolist()` and
+  store expected values pre-rounded. Integer-valued cases need no rounding.
+- **Design sign-/ambiguity-free cases.** Grade on ranks, singular values,
+  variances, traces, determinants, and integer-valued solutions — not on
+  eigenvectors (sign ambiguity) or raw `inv` output.
+- **Never hand-edit a rendered `lesson.ipynb`.** Regenerate only via
+  `lesson create` / `lesson update` / `lesson sync`.
+
+### Maintain a lesson after learner edits
+
+The authoring maintenance loop: push a content fix to a lesson that learners
+have already edited, without destroying their stub work, then re-verify the
+answer key and re-score. Running example: `arrays-101` in the `ds` course.
+
+The fenced ` ```sh ` blocks below are the real flow; the ` ```yaml ` blocks are
+the specs and the ` ```json ` blocks are the result envelopes. (Only the `sh`
+blocks are counted by the compile-time scenario gate — see
+`docs/adr/013-compile-enforced-scenarios.md`.)
+
+#### 1. Update the lesson (destructive — requires --force)
+
+`lesson update` replaces the DB content and re-renders the notebook. `--force`
+is the confirmation that you accept the rewrite.
+
+```sh
+carpenter -c ds lesson update arrays-101 --spec <lesson-spec>.yaml --force
+```
+```json
+{"status":"ok","message":"lesson updated: arrays-101","data":{"id":"arrays-101","updated":{"id":"arrays-101","slug":"arrays-101","title":"Arrays 101","ord":1,"status":"in_progress","skip":false,"created_at":"2026-08-09T12:00:00Z","updated_at":"2026-08-10T09:00:00Z"}}}
+```
+
+#### 2. Sync learner edits back (3-way stub preservation)
+
+If the notebook was updated out-of-band (or you want the DB state re-rendered
+without clobbering learner stub edits), `lesson sync` performs a 3-way merge:
+learner edits to stub cells are kept; anything unresolvable surfaces in
+`conflicts[]`. A clean sync needs no `--force`.
+
+```sh
+carpenter -c ds lesson sync arrays-101
+```
+```json
+{"status":"ok","message":"lesson synced: arrays-101","data":{"id":"arrays-101","synced":true,"conflicts":[]}}
+```
+
+#### 3. Re-verify the answer key
+
+`lesson verify <id>` re-runs the stored author solutions against their own
+cases in the course venv — after an update, this proves the new key is
+self-consistent before any learner sees it (adr/015).
+
+```sh
+carpenter -c ds lesson verify arrays-101
+```
+```json
+{"status":"ok","message":"lesson verified: arrays-101","data":{"lesson_id":"arrays-101","checked":2,"passing":2,"failing":0,"checkables":[{"owner_type":"practice","owner_id":"p1","name":"sum_array","has_solution":true,"passed":1,"total":1,"cases":[{"case_id":"c1","passed":true}]},{"owner_type":"quiz","owner_id":"q1","name":"max_value","has_solution":true,"passed":1,"total":1,"cases":[{"case_id":"c2","passed":true}]}]}}
+```
+
+#### 4. Re-execute and re-score
+
+Confirm the teaching cells still run clean, then score the notebooks.
+
+```sh
+carpenter -c ds lesson execute arrays-101 --allow-errors
+```
+```json
+{"status":"ok","message":"lesson executed: arrays-101","data":{"id":"arrays-101","executed":true,"cells":{"total":7,"ran":7,"errored":0},"errors":[]}}
+```
+
+```sh
+carpenter -c ds quiz run arrays-101
+```
+```json
+{"status":"ok","message":"quizzes run: arrays-101","data":{"lesson_id":"arrays-101","quizzes":[{"quiz_id":"q1","skipped":false,"pass_or_fail":false,"passed":0,"total":1,"cases":[{"case_id":"c2","passed":false,"error":"NotImplementedError: "}]}],"saved":true}}
+```
+
+#### Conventions (maintenance discipline)
+
+- Never hand-edit a rendered `lesson.ipynb` — regenerate via `lesson update` /
+  `lesson sync`.
+- Notebook execution is serialized per course (adr/017): a concurrent
+  `lesson execute`/`quiz run` waits on an execution lock (up to 120 s), so
+  step 4's two commands run in order even if issued together.
+- After a content change, always end the loop at `quiz run`: fresh state is
+  all quizzes `pass_or_fail:false` until learners re-attempt.
+
+### Tutor feedback loop
+
+The live-tutoring half of carpenter: score a learner's quizzes, inspect the
+last check, exclude a broken quiz from status derivation, record the gap as a
+note, and roll up progress. Running example: an `arrays-101` lesson in the
+`ds` course that the learner has partially attempted.
+
+The fenced ` ```sh ` blocks below are the real flow; the ` ```yaml ` blocks are
+the specs and the ` ```json ` blocks are the result envelopes. (Only the `sh`
+blocks are counted by the compile-time scenario gate — see
+`docs/adr/013-compile-enforced-scenarios.md`.)
+
+#### 1. Score the quizzes
+
+`quiz run` executes the notebook in the course venv; helper cells write live
+`pass_or_fail` per quiz. A wrong learner answer fails its case (never showing
+the expected value).
+
+```sh
+carpenter -c ds quiz run arrays-101
+```
+```json
+{"status":"ok","message":"quizzes run: arrays-101","data":{"lesson_id":"arrays-101","quizzes":[{"quiz_id":"q1","skipped":false,"pass_or_fail":true,"passed":1,"total":1,"cases":[{"case_id":"c1","passed":true}]},{"quiz_id":"q2","skipped":false,"pass_or_fail":false,"passed":0,"total":2,"cases":[{"case_id":"c2","passed":false,"error":"AssertionError: "},{"case_id":"c3","passed":false,"error":"NotImplementedError: "}]}],"saved":true}}
+```
+
+#### 2. Inspect the last check
+
+`quiz results` replays the most recent run's saved state without re-executing.
+
+```sh
+carpenter -c ds quiz results q2
+```
+```json
+{"status":"ok","message":"quiz results: q2","data":{"quiz_id":"q2","skipped":false,"pass_or_fail":false,"passed":0,"total":2,"cases":[{"case_id":"c2","passed":false,"error":"AssertionError: "},{"case_id":"c3","passed":false,"error":"NotImplementedError: "}]}}
+```
+
+#### 3. Park a broken quiz
+
+`c3` fails with `NotImplementedError` — the learner never attempted it. Skip
+`q2` for now so lesson status reflects attempted work only; skipped items are
+excluded from status derivation.
+
+```sh
+carpenter -c ds skip q2 --scope quiz
+```
+```json
+{"status":"ok","message":"skip set: quiz q2","data":{"scope":"quiz","id":"q2","skip":true}}
+```
+
+Later, `--off` re-includes it:
+
+```sh
+carpenter -c ds skip q2 --scope quiz --off
+```
+```json
+{"status":"ok","message":"skip cleared: quiz q2","data":{"scope":"quiz","id":"q2","skip":false}}
+```
+
+#### 4. Record the gap
+
+`notes add` captures what the tutor observed, linked to the failing quiz
+(`related_open` surfaces recurring gaps on future notes).
+
+```sh
+carpenter -c ds notes add --spec <note-spec>.yaml
+```
+
+`<note-spec>.yaml`:
+```yaml
+kind: gap
+tags:
+  - base-cases
+recurrence: new
+related: q2
+text: Learner attempts recursion but leaves the base case unimplemented under time pressure.
+```
+```json
+{"status":"ok","message":"note added: n1","data":{"id":"n1","kind":"gap","tags":["base-cases"],"status":"open","recurrence":"new","related":"q2","text":"Learner attempts recursion but leaves the base case unimplemented under time pressure.","related_open":[]}}
+```
+
+```sh
+carpenter -c ds notes list
+```
+```json
+{"status":"ok","message":"notes listed","data":{"notes":[{"id":"n1","kind":"gap","tags":["base-cases"],"status":"open","recurrence":"new","related":"q2","text":"…","related_open":[]}],"errors":[]}}
+```
+
+#### 5. Roll up progress
+
+```sh
+carpenter -c ds progress show
+```
+```json
+{"status":"ok","message":"progress shown","data":{"lessons":[{"id":"arrays-101","title":"Arrays 101","status":"in_progress","skip":false,"passing":1,"total":2}]}}
+```
+
+```sh
+carpenter -c ds progress summary
+```
+```json
+{"status":"ok","message":"progress summarized","data":{"lessons":{"total":1,"complete":0,"in_progress":1,"skipped":0},"quizzes":{"passing":1,"total":2},"goals":{"total":1,"achieved":0},"notes":{"total":1,"open":1,"recurring":0,"by_kind":{"gap":1,"mistake":0,"strength":0,"pattern":0,"progress":0}}}}
+```
+
+#### Conventions (tutor discipline)
+
+- Resolve the note when the gap closes (`notes resolve n1`) — `progress
+  summary` counts open notes by kind.
+- A goal derives `achieved` only when every `covered_by` lesson is `complete`;
+  skipping is the honest way to let a blocked lesson stop counting.
+

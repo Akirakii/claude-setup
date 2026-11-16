@@ -1,0 +1,456 @@
+<title>Cheap Games That Paid</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~72ch) with wide bands for tables and the chart; co-op = ember, single player = teal throughout. */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --ink: #16202c;
+  --muted: #586577;
+  --line: #d9e0e8;
+  --coop: #c64a12;
+  --solo: #0a7c76;
+  --accent: #3550c8;
+  --good: #2f7d32;
+  --warn: #a86400;
+  --bad: #b3261e;
+  --chip-good: #e3f1e3;
+  --chip-warn: #f8ecd6;
+  --chip-bad: #f7e1df;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10151c; --surface: #17202a; --ink: #e5eaf0; --muted: #98a5b5; --line: #2a3644;
+    --coop: #ff8a4f; --solo: #3fc8bd; --accent: #8ea3ff;
+    --good: #7cc97f; --warn: #f0b04a; --bad: #ff8a80;
+    --chip-good: #1d3322; --chip-warn: #3a2d14; --chip-bad: #3d1f1d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10151c; --surface: #17202a; --ink: #e5eaf0; --muted: #98a5b5; --line: #2a3644;
+  --coop: #ff8a4f; --solo: #3fc8bd; --accent: #8ea3ff;
+  --good: #7cc97f; --warn: #f0b04a; --bad: #ff8a80;
+  --chip-good: #1d3322; --chip-warn: #3a2d14; --chip-bad: #3d1f1d;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+main { max-width: 1040px; margin: 0 auto; display: grid; gap: 56px; }
+.prose { max-width: 72ch; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font: 500 0.75rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 64ch; }
+section { display: grid; gap: 18px; }
+.stack { display: grid; gap: 10px; }
+.note { font-size: 0.9rem; color: var(--muted); }
+.coop { color: var(--coop); font-weight: 600; }
+.solo { color: var(--solo); font-weight: 600; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+header { display: grid; gap: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font: 400 0.85rem var(--f-mono); color: var(--muted); }
+
+.findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.findings li { display: grid; grid-template-columns: 2.2rem 1fr; gap: 12px; align-items: baseline; }
+.findings li > span { font: 600 0.9rem var(--f-mono); color: var(--muted); }
+.findings b { font-weight: 600; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 4px; align-content: start; }
+.stat strong { font: 800 1.9rem/1.1 var(--f-display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.9rem; color: var(--muted); }
+
+.chart-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; }
+.chart-wrap svg { display: block; width: 100%; min-width: 600px; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.9rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .axis-label { fill: var(--muted); font: 400 11px var(--f-mono); }
+svg .axis-title { fill: var(--muted); font: 500 12px var(--f-body); }
+svg .pt-coop { fill: var(--coop); }
+svg .pt-solo { fill: var(--solo); }
+svg .pt-label { fill: var(--ink); font: 500 11px var(--f-body); }
+svg .zone { fill: var(--solo); opacity: 0.07; }
+svg .zone-label { fill: var(--solo); font: 600 11px var(--f-mono); letter-spacing: 0.06em; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 0.75rem var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td:first-child { font-weight: 600; white-space: nowrap; }
+.dev { font-size: 0.75rem; font-family: var(--f-mono); color: var(--muted); font-weight: 400; }
+
+.chip { display: inline-block; font: 500 0.75rem/1 var(--f-mono); padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+.chip.good { background: var(--chip-good); color: var(--good); }
+.chip.warn { background: var(--chip-warn); color: var(--warn); }
+.chip.bad { background: var(--chip-bad); color: var(--bad); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.card.c { border-top: 3px solid var(--coop); }
+.card.s { border-top: 3px solid var(--solo); }
+.card .figs { font: 400 0.8rem var(--f-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 0.9rem; }
+.card dt { font: 500 0.72rem/1.9 var(--f-mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.card dd { margin: 0; min-width: 0; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.panel ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; }
+
+.lessons { margin: 0; padding-left: 1.4rem; display: grid; gap: 10px; max-width: 72ch; }
+.pick { border-left: 3px solid var(--solo); padding-left: 14px; }
+.sources { columns: 2 320px; column-gap: 32px; font-size: 0.85rem; }
+.sources h3 { font-size: 0.95rem; margin: 12px 0 4px; break-after: avoid; }
+.sources ul { margin: 0; padding-left: 1rem; }
+.sources li { break-inside: avoid; }
+@media (prefers-reduced-motion: no-preference) { a { transition: color .15s; } }
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Market research · solo dev · ship in under a year</span>
+    <h1>Cheap games that paid</h1>
+    <p class="lede">Which indie games made money without years of work, what they had in common, and what that means for the next project. Compares recent <span class="coop">co-op</span> and <span class="solo">single-player</span> hits and ranks 14 genres by return against effort and risk.</p>
+    <div class="meta"><span>2026-11-01</span><span>27 games · 14 genres</span><span>5 research passes</span></div>
+    <p class="note">Sales are mostly third-party estimates (Gamalytic, Raijin, VG Insights, AppMagic, Sensor Tower) and can be off by 2× or more; developer-announced figures are marked “dev”. Every game here is a survivor, so read the base rates before the hits.</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">Summary</span>
+    <h2>Five findings</h2>
+    <ol class="findings">
+      <li><span>1</span><p><b>The usual outcome is near zero.</b> About 20,000 games came out on Steam in 2025; about two thirds earned under $1,000 and about 3% reached 1,000 reviews.</p></li>
+      <li><span>2</span><p><b><span class="coop">Co-op</span> hits are the fastest to build (2–5 months) but almost never by a solo first-timer.</b> They come from 2–10 person teams with earlier games, reused netcode or an audience. The one solo co-op hit, Lethal Company, came after 19 earlier games.</p></li>
+      <li><span>3</span><p><b><span class="solo">Single-player</span> quick hits are often solo</b> (2 weeks to 13 months) and share one formula: a proven loop plus one twist a 5-second clip can show, cheap stylized art, a $3–10 price, and a demo or itch build before launch.</p></li>
+      <li><span>4</span><p><b>Copies without a twist flop.</b> Only one survivors-like reached 1,000 reviews in 2024. Bramble Royale made $8,000 in its first week: “no marketable hook”.</p></li>
+      <li><span>5</span><p><b>Practice is the hidden ingredient.</b> Almost every quick hit came after many earlier games. What repeats is a series of small games, each kept or dropped on demo response, not one big bet.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="eyebrow">Base rates</span>
+    <h2>What usually happens</h2>
+    <div class="stats">
+      <div class="stat"><strong>20,282</strong><span>Steam releases in 2025</span></div>
+      <div class="stat"><strong>~66%</strong><span>earned under $1,000</span></div>
+      <div class="stat"><strong>~3%</strong><span>reached 1,000 reviews (≈ $150k gross)</span></div>
+      <div class="stat"><strong>3.5× vs 2.5×</strong><span>year-one copies over week one, co-op vs non-co-op</span></div>
+    </div>
+    <p class="note">Median Steam game revenue: about $250 for 2025 releases, about $1,100 lifetime for the 2019 cohort. Co-op party games keep players poorly: about 3% still play after 30 days (Content Warning).</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Dev time vs copies sold</span>
+    <h2>Fast co-op hits sit top-left, but look at who made them</h2>
+    <div class="legend"><span><i style="background:var(--coop)"></i>Co-op</span><span><i style="background:var(--solo)"></i>Single player</span><span>Both axes are logarithmic</span></div>
+    <div class="chart-wrap"><svg id="chart" viewBox="0 0 760 440" role="img" aria-label="Scatter chart of development months against copies sold for 22 indie games"></svg></div>
+    <p class="note">Only games with a known dev time are plotted. Copies use the lower or dev-announced figure where sources disagree. The median Steam game would sit far below the bottom edge (a few hundred copies).</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Head to head</span>
+    <h2>Co-op vs single player for a solo dev</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th class="coop">Co-op (friendslop)</th><th class="solo">Single player (short dev)</th></tr></thead>
+      <tbody>
+        <tr><td>Dev time of hits</td><td>2–5 months</td><td>2 weeks – 13 months</td></tr>
+        <tr><td>Team of hits</td><td>2–10, rarely solo</td><td>often solo or 2</td></tr>
+        <tr><td>Size of a hit</td><td>1M–20M copies</td><td>0.5M–8M copies</td></tr>
+        <tr><td>Price</td><td>$5–10</td><td>$3–14</td></tr>
+        <tr><td>Long tail</td><td>stronger (3.5× week one)</td><td>weaker (2.5×), ports and DLC help</td></tr>
+        <tr><td>Retention</td><td><span class="chip bad">very poor</span> −90% in months</td><td><span class="chip good">good</span> for roguelikes; story games are one-and-done</td></tr>
+        <tr><td>Extra work</td><td>netcode, multiplayer QA, griefing, hackers</td><td>none</td></tr>
+        <tr><td>Solo-friendly</td><td><span class="chip bad">low</span></td><td><span class="chip good">high</span></td></tr>
+        <tr><td>Switch / gamepad</td><td><span class="chip bad">poor</span> PC + Discord</td><td><span class="chip good">excellent</span></td></tr>
+        <tr><td>Marketing engine</td><td>streamers, voice-chat clips</td><td>streamers, clips, demo, Next Fest</td></tr>
+      </tbody>
+    </table></div>
+    <p class="prose">For a solo dev, single player has the better effort-to-risk ratio. Co-op’s speed comes from teams and reused tech. The solo dev of Garden Wars said multiplayer “makes everything take 5 times as long”, and every co-op hit needed launch-week fixes for griefing or hackers. Co-op stays an option only as a tiny jam-sized game built on a Steam P2P template (GodotSteam or Photon) from day one.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Co-op · 13 games</span>
+    <h2>Co-op games</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Game</th><th>Team</th><th>Dev time</th><th>Price</th><th>Result</th><th>Head start</th></tr></thead>
+      <tbody>
+        <tr><td>MECCHA CHAMELEON</td><td>2</td><td class="num">2 mo (4–5 with reuse)</td><td class="num">$5.99</td><td class="num">20M in 63 days (dev)</td><td>~30 earlier UEFN games, reused assets and backend</td></tr>
+        <tr><td>PEAK</td><td>7</td><td class="num">~1 mo jam + months</td><td class="num">$8</td><td class="num">10M+ (dev)</td><td>two known studios, reused netcode and ragdolls</td></tr>
+        <tr><td>RV There Yet?</td><td>small studio</td><td class="num">8–9 weeks</td><td class="num">$7.99</td><td class="num">4.5M</td><td>studio team, jam origin</td></tr>
+        <tr><td>Content Warning</td><td>5</td><td class="num">~2 mo</td><td class="num">free day, $7.99</td><td class="num">2.2M paid + 6.2M free</td><td>Landfall’s audience</td></tr>
+        <tr><td>Lethal Company</td><td>1</td><td class="num">~17 mo</td><td class="num">$9.99</td><td class="num">10–19M (est.)</td><td>19 earlier games made for streamers</td></tr>
+        <tr><td>Schedule I</td><td>1 + art help</td><td class="num">~3 yr</td><td class="num">$19.99</td><td class="num">~8M (est.)</td><td>ex-Roblox dev, deep sim</td></tr>
+        <tr><td>R.E.P.O.</td><td>~7</td><td class="num">short</td><td class="num">~$10</td><td class="num">3–13M (est.)</td><td>second game, Photon netcode</td></tr>
+        <tr><td>YAPYAP</td><td>~10</td><td class="num">&lt;1 yr</td><td class="num">$10</td><td class="num">1.15M (est.)</td><td>studio, 900k wishlists</td></tr>
+        <tr><td>How to Fish</td><td>2</td><td class="num">~1 yr</td><td class="num">€7.49</td><td class="num">1M in 2 days (dev)</td><td>second co-op game</td></tr>
+        <tr><td>Gamble With Your Friends</td><td>~9</td><td class="num">?</td><td class="num">$7.99</td><td class="num">2M in ~5 weeks</td><td>team</td></tr>
+        <tr><td>WEBFISHING</td><td>1 (likely)</td><td class="num">~5 mo</td><td class="num">$4.99</td><td class="num">1.3–5M (est.)</td><td>8-day jam origin, Godot</td></tr>
+        <tr><td>Liar’s Bar</td><td>animation studio</td><td class="num">?</td><td class="num">$6.99</td><td class="num">~2.2M (est.)</td><td>pro character animators</td></tr>
+        <tr><td>Chained Together</td><td>debut team</td><td class="num">?</td><td class="num">$5</td><td class="num">10M claimed</td><td>proven Only Up! format</td></tr>
+      </tbody>
+    </table></div>
+    <div class="cards">
+      <article class="card c"><h3>MECCHA CHAMELEON</h3><p class="figs">UE5 · peak 340k CCU</p><dl><dt>Works</dt><dd>A visual hook you get at one glance: paint yourself to hide. Very cheap.</dd><dt>Doesn’t</dt><dd>Workshop malware, Windows only.</dd><dt>Lesson</dt><dd>“Make it exist first, perfect it later”, plus reuse.</dd></dl></article>
+      <article class="card c"><h3>PEAK</h3><p class="figs">170k peak CCU · 29k wishlists at launch</p><dl><dt>Works</dt><dd>Streamers after launch; store page up only 4 days before release; $5 launch week.</dd><dt>Doesn’t</dt><dd>Share fell from ~50% to ~10% of the genre within months; no live service by choice.</dd></dl></article>
+      <article class="card c"><h3>RV There Yet?</h3><p class="figs">Unreal · Metacritic 72</p><dl><dt>Works</dt><dd>Absurd premise; physics failures make clips.</dd><dt>Doesn’t</dt><dd>“No clear objective”.</dd></dl></article>
+      <article class="card c"><h3>Content Warning</h3><p class="figs">204k peak CCU → 46k within days</p><dl><dt>Works</dt><dd>The free day pushed it to the top of the charts.</dd><dt>Doesn’t</dt><dd>Traded revenue for reach; D30 retention about 3%.</dd></dl></article>
+      <article class="card c"><h3>Lethal Company</h3><p class="figs">CCU 611 → 3.2k → 12k → 43k week by week</p><dl><dt>Works</dt><dd>Proximity voice turns deaths into clips; growth from streamers, no launch event.</dd><dt>Doesn’t</dt><dd>One dev couldn’t keep up updates; clone wave followed.</dd></dl></article>
+      <article class="card c"><h3>Schedule I</h3><p class="figs">459k peak CCU, biggest solo launch</p><dl><dt>Works</dt><dd>A taboo power fantasy with a real management loop, so it keeps players.</dd><dt>Doesn’t</dt><dd>About 3 years of work: not a short-dev game.</dd></dl></article>
+      <article class="card c"><h3>R.E.P.O.</h3><p class="figs">Unity + Photon · ~230k peak CCU</p><dl><dt>Works</dt><dd>“Let’s just fail quickly this time” after a 6-year flop; physics hauling.</dd><dt>Doesn’t</dt><dd>Hackers at scale.</dd></dl></article>
+      <article class="card c"><h3>YAPYAP</h3><p class="figs">84% positive</p><dl><dt>Works</dt><dd>Spells cast by voice; marketed on TikTok before the mechanics existed.</dd><dt>Doesn’t</dt><dd>“Needs more content”; shallow spells.</dd></dl></article>
+      <article class="card c"><h3>How to Fish</h3><p class="figs">374k peak CCU · 95% positive</p><dl><dt>Works</dt><dd>Game feel, physics chaos, low price.</dd><dt>Doesn’t</dt><dd>Daily peak fell ~94% in a month; urgent anti-griefing patches.</dd></dl></article>
+      <article class="card c"><h3>Gamble With Your Friends</h3><p class="figs">42.8k peak CCU · 89% positive</p><dl><dt>Works</dt><dd>Shared bank account means shared debt, which creates drama between friends. Sold as “a finished game, not a live service”.</dd></dl></article>
+      <article class="card c"><h3>WEBFISHING</h3><p class="figs">Godot · 97% positive</p><dl><dt>Works</dt><dd>Cozy social space; solo; jam scope.</dd><dt>Doesn’t</dt><dd>Lobby griefing; ~99% fall from peak.</dd></dl></article>
+      <article class="card c"><h3>Liar’s Bar</h3><p class="figs">2k → 114k CCU from streamers</p><dl><dt>Works</dt><dd>Expressive characters and a bluffing loop that needs almost no content.</dd><dt>Doesn’t</dt><dd>Depended on studio-grade animation.</dd></dl></article>
+      <article class="card c"><h3>Chained Together</h3><p class="figs">85.6k peak CCU</p><dl><dt>Works</dt><dd>A proven rage format plus a chain that makes friends blame each other.</dd><dt>Doesn’t</dt><dd>Support handed to a publisher.</dd></dl></article>
+    </div>
+    <div class="panel"><h3>Co-op flops</h3><ul>
+      <li>“Dozens” of Lethal Company clones; only R.E.P.O. broke out.</li>
+      <li>Overthrown, a complex $25 co-op city builder, peaked at 350 players. The same studio’s simple $8 Super Battle Golf sold about 800k.</li>
+      <li>A developer quoted by GameSpot: “for every successful friendslop game there are 10 no one has heard of.”</li>
+    </ul></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Single player · 14 games</span>
+    <h2>Single-player games</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Game</th><th>Team</th><th>Dev time</th><th>Price</th><th>Result</th><th>Head start</th></tr></thead>
+      <tbody>
+        <tr><td>A Game About Digging a Hole</td><td>1</td><td class="num">2–3 weeks</td><td class="num">€4.99</td><td class="num">1.2M+ (dev)</td><td>licensed assets, publisher, 100k wishlists</td></tr>
+        <tr><td>Buckshot Roulette</td><td>1</td><td class="num">4–7 mo</td><td class="num">$2.99</td><td class="num">8M+ (dev)</td><td>many 1–2 month itch horror games</td></tr>
+        <tr><td>Rusty’s Retirement</td><td>1</td><td class="num">~6–9 mo</td><td class="num">$6.99</td><td class="num">550k (dev)</td><td>shipped Haiku the Robot before</td></tr>
+        <tr><td>A Short Hike</td><td>1 + composer</td><td class="num">~7–8 mo</td><td class="num">~$8</td><td class="num">~430k Steam (est.)</td><td>years of skill; Humble funded it</td></tr>
+        <tr><td>Vampire Survivors</td><td>1 + friends</td><td class="num">~1 yr to EA</td><td class="num">$2.99</td><td class="num">6–10M Steam (est.)</td><td>first mover; £1,100 spent</td></tr>
+        <tr><td>Megabonk</td><td>1</td><td class="num">~13 mo</td><td class="num">$9.99</td><td class="num">1M in 2 weeks (dev)</td><td>earlier games under other names</td></tr>
+        <tr><td>Nubby’s Number Factory</td><td>1</td><td class="num">~1.5 yr</td><td class="num">~$5</td><td class="num">~480k (est., sources conflict)</td><td>daily TikTok clips for months</td></tr>
+        <tr><td>CloverPit</td><td>2</td><td class="num">≤18 mo</td><td class="num">$9.99</td><td class="num">1M+ (dev)</td><td>prior game, publisher Future Friends</td></tr>
+        <tr><td>Brotato</td><td>1</td><td class="num">?</td><td class="num">~$4.99</td><td class="num">2M+ at 1.0 (dev)</td><td>4th game, earlier potato games</td></tr>
+        <tr><td>Mouthwashing</td><td>5–7</td><td class="num">~15 mo</td><td class="num">~$13</td><td class="num">800k+ (dev)</td><td>publisher; parts of a cancelled project reused</td></tr>
+        <tr><td>The Operator</td><td>1 + audio</td><td class="num">~2.5 yr (est.)</td><td class="num">$13.99</td><td class="num">~158k (est.)</td><td>4 years at a studio</td></tr>
+        <tr><td>Peglin</td><td>4 part-time</td><td class="num">~2.5 yr</td><td class="num">$17.99</td><td class="num">400k EA year one (dev)</td><td>jam origin, long demo</td></tr>
+        <tr><td>Balatro</td><td>1</td><td class="num">~2+ yr part-time</td><td class="num">$14.99</td><td class="num">5M+ (dev)</td><td>none: the outlier</td></tr>
+        <tr><td>Bongo Cat</td><td>2</td><td class="num">weeks</td><td class="num">free</td><td class="num">$2–4k/month</td><td>an internet meme</td></tr>
+      </tbody>
+    </table></div>
+    <div class="cards">
+      <article class="card s"><h3>A Game About Digging a Hole</h3><p class="figs">UE5 · 52% OpenCritic</p><dl><dt>Works</dt><dd>The title is the pitch; satisfying loop; impulse price.</dd><dt>Doesn’t</dt><dd>No longevity; a lottery ticket.</dd></dl></article>
+      <article class="card s"><h3>Buckshot Roulette</h3><p class="figs">Godot · Metacritic 85</p><dl><dt>Works</dt><dd>Premise you get instantly, tension streamers react to, $3, itch proved demand first.</dd><dt>Doesn’t</dt><dd>Thin content until a free multiplayer update.</dd></dl></article>
+      <article class="card s"><h3>Rusty’s Retirement</h3><p class="figs">140k wishlists · China 26% of sales</p><dl><dt>Works</dt><dd>A new form factor (sits at the bottom of the screen) in a proven genre; Farming Fest launch; 11 languages.</dd><dt>Doesn’t</dt><dd>Low revenue per unit; sales fall fast.</dd></dl></article>
+      <article class="card s"><h3>A Short Hike</h3><p class="figs">99% positive · IGF Grand Prize</p><dl><dt>Works</dt><dd>A complete cozy experience at a tiny scope; Switch gave it a long tail.</dd><dt>Doesn’t</dt><dd>Depends on craft that’s hard to repeat by formula.</dd></dl></article>
+      <article class="card s"><h3>Vampire Survivors</h3><p class="figs">BAFTA Best Game 2023</p><dl><dt>Works</dt><dd>Invented the feel: almost no input, huge power, $3.</dd><dt>Doesn’t apply now</dt><dd>The first-mover advantage is gone.</dd></dl></article>
+      <article class="card s"><h3>Megabonk</h3><p class="figs">117k peak CCU · 95% positive</p><dl><dt>Works</dt><dd>Proven genre plus 3D movement and meme humor; builds that “break” the game for streamers.</dd><dt>Doesn’t</dt><dd>Only 2 maps, repetitive.</dd></dl></article>
+      <article class="card s"><h3>Nubby’s Number Factory</h3><p class="figs">GameMaker · 97% positive</p><dl><dt>Works</dt><dd>Daily 7–10 s clips; kept the “broken” builds players loved.</dd><dt>Doesn’t</dt><dd>Only ~1k sold in week one before streamers found it; the dev burned out.</dd></dl></article>
+      <article class="card s"><h3>CloverPit</h3><p class="figs">refund rate 6.4% vs 9.5% median</p><dl><dt>Works</dt><dd>A familiar object (slot machine); “Balatro meets Buckshot” pitch; viral demo (+100k wishlists in a week); VTubers.</dd><dt>Doesn’t</dt><dd>Luck feels like low agency.</dd></dl></article>
+      <article class="card s"><h3>Brotato</h3><p class="figs">Godot · 10M players across platforms</p><dl><dt>Works</dt><dd>Short dense runs and a shop phase add decisions.</dd><dt>Doesn’t</dt><dd>Post-launch work handed to another studio.</dd></dl></article>
+      <article class="card s"><h3>Mouthwashing</h3><p class="figs">95% positive · Metacritic 88</p><dl><dt>Works</dt><dd>A shocking story built for YouTube theories.</dd><dt>Doesn’t</dt><dd>Rests on writing, the least predictable input.</dd></dl></article>
+      <article class="card s"><h3>The Operator</h3><p class="figs">92% positive</p><dl><dt>Works</dt><dd>All-UI art for a dev who can’t draw; a proven deduction niche.</dd><dt>Doesn’t</dt><dd>Content is costly; no replay.</dd></dl></article>
+      <article class="card s"><h3>Bongo Cat</h3><p class="figs">huge CCU, about half bots</p><dl><dt>Lesson</dt><dd>Popular is not the same as paid. Worked as a funnel: about 50k wishlists for the studio’s next game.</dd></dl></article>
+    </div>
+    <div class="panel"><h3>Single-player flops</h3><ul>
+      <li>Survivors-likes reaching 1,000 reviews: 10 in 2022, 17 in 2023, 1 in 2024. Only big twists broke through in 2025.</li>
+      <li>Bramble Royale (deckbuilder): $8,049 in week one from 4,117 wishlists. “No marketable hook”, “people are fatigued on deckbuilders”.</li>
+      <li>JokerJack: reviewed as a “derivative, barely functional copycat”.</li>
+      <li>Archetype: Portal to Hell (solo, under a year): 24 copies. No hook; store page up only weeks before launch.</li>
+    </ul></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Genres</span>
+    <h2>Genres ranked for a solo dev with under a year</h2>
+    <p class="note">Hit rate is the share of recent releases that reached 1,000 reviews, from two sources that disagree (Steam Page Analyzer, How To Market A Game), so read it as a range. Effort, risk and Switch fit are judgments, not measurements.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>#</th><th>Genre</th><th>Hit rate</th><th>Effort</th><th>Risk</th><th>Switch</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Survivors-like</td><td class="num">high (new tag)</td><td><span class="chip good">low–med</span></td><td><span class="chip warn">med</span></td><td><span class="chip good">excellent</span></td><td>Plain clones are dead; needs a big twist (Megabonk, Ball x Pit)</td></tr>
+        <tr><td>2</td><td>Balatro-like / toy roguelike</td><td class="num">5–8%</td><td><span class="chip warn">art low, design high</span></td><td><span class="chip warn">med</span></td><td><span class="chip good">excellent</span></td><td>Needs a fresh “toy”: slots, dice, pachinko</td></tr>
+        <tr><td>3</td><td>Short horror / anomaly</td><td class="num">5–6%</td><td><span class="chip good">low</span></td><td><span class="chip warn">med</span></td><td><span class="chip good">good</span></td><td>Cheapest; streamer magnet; The Exit 8 sold 3M+</td></tr>
+        <tr><td>4</td><td>Job / shopkeeper / physics sim</td><td class="num">4–13%</td><td><span class="chip warn">med</span></td><td><span class="chip warn">med</span></td><td><span class="chip warn">ok</span></td><td>The theme is everything; clone flood</td></tr>
+        <tr><td>5</td><td>Idle / incremental</td><td class="num">3–6%</td><td><span class="chip good">low</span></td><td><span class="chip bad">med–high</span></td><td><span class="chip bad">weak</span></td><td>Supply up 5× in 2 years</td></tr>
+        <tr><td>6</td><td>Cozy / farming / life sim</td><td class="num">8–11%</td><td><span class="chip bad">high</span></td><td><span class="chip warn">med</span></td><td><span class="chip good">excellent</span></td><td>Players expect 30+ hours of content</td></tr>
+        <tr><td>7</td><td>Deduction / detective</td><td class="num">n/a</td><td><span class="chip warn">med (writing)</span></td><td><span class="chip warn">med</span></td><td><span class="chip good">good</span></td><td>Narrative had the most hits in 2025</td></tr>
+        <tr><td>8</td><td>Auto-battler</td><td class="num">n/a</td><td><span class="chip warn">med</span></td><td><span class="chip bad">med–high</span></td><td><span class="chip good">good</span></td><td>Async PvP needs a backend and constant balancing</td></tr>
+        <tr><td>9</td><td>Co-op party (friendslop)</td><td class="num">huge ceiling</td><td><span class="chip bad">med–high</span></td><td><span class="chip bad">high</span></td><td><span class="chip bad">poor</span></td><td>Netcode; all-or-nothing outcomes</td></tr>
+        <tr><td>10</td><td>Narrative / visual novel</td><td class="num">~4%</td><td><span class="chip warn">med</span></td><td><span class="chip bad">med–high</span></td><td><span class="chip good">good</span></td><td>Median $10–40k gross</td></tr>
+        <tr><td>11</td><td>Tower defense</td><td class="num">2–3.5%</td><td><span class="chip warn">med</span></td><td><span class="chip bad">high</span></td><td><span class="chip good">good</span></td><td>Median game under 10 reviews</td></tr>
+        <tr><td>12</td><td>Extraction</td><td class="num">winner takes all</td><td><span class="chip bad">high</span></td><td><span class="chip bad">very high</span></td><td><span class="chip bad">poor</span></td><td>Avoid</td></tr>
+        <tr><td>13</td><td>Puzzle</td><td class="num">0.3%</td><td><span class="chip good">low–med</span></td><td><span class="chip bad">very high</span></td><td><span class="chip good">good</span></td><td>Avoid</td></tr>
+        <tr><td>14</td><td>Platformer / fighter</td><td class="num">0.2–1.4%</td><td><span class="chip bad">med–high</span></td><td><span class="chip bad">very high</span></td><td><span class="chip good">good</span></td><td>Avoid</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Across all games</span>
+    <h2>Six lessons</h2>
+    <ol class="lessons">
+      <li><b>One proven loop plus one twist.</b> Peggle became Peglin and Nubby’s; Balatro became CloverPit; Vampire Survivors became Megabonk; Motherload became Digging a Hole; idle plus farm became Rusty’s. Only Vampire Survivors invented a genre.</li>
+      <li><b>The 5-second clip test.</b> If a short clip doesn’t explain the game and show a funny, tense or “broken” moment, streamers won’t pick it up. Games that look hard to learn die.</li>
+      <li><b>Cheap stylized art and a $3–10 price.</b> PS1 low-poly, pixel, UI-only or licensed assets. A low price excuses a short game.</li>
+      <li><b>Prove demand before finishing.</b> An itch build, a demo, Next Fest, daily short clips. Weak demo numbers are the cheapest signal to stop.</li>
+      <li><b>Expect a spike, then a drop.</b> Revenue comes up front. Plan a finished game, not a live service.</li>
+      <li><b>Practice is the hidden ingredient.</b> Almost every quick hit followed many earlier games. The repeatable strategy is several small games.</li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="eyebrow">For the next project</span>
+    <h2>Shortlist</h2>
+    <p class="prose">Single player, 3–6 months of planned scope (which tends to become about a year), priced $5–10.</p>
+    <div class="two">
+      <div class="panel pick"><h3>1 · Survivors-like with a big twist</h3><p>Natural on a gamepad, fits the Switch, clips well. Could reuse the Automate swarm from Assemblia. Plain clones flop, so the twist must be large.</p></div>
+      <div class="panel pick"><h3>2 · Toy roguelike around a familiar object</h3><p>A Balatro-like built on something everyone knows (CloverPit used a slot machine). Cheap art; the risk is design and balance, not content.</p></div>
+      <div class="panel pick"><h3>3 · Short anomaly or one-room horror</h3><p>The cheapest (3–4 months), and a PS1 look suits Meshy output. Streamers love it, but the typical game earns little. Works as a first release before a bigger game.</p></div>
+    </div>
+    <p class="prose"><b>Recommendation:</b> treat this as a series of small bets. Start with the cheapest option you’d enjoy making, prove the clip and the demo within a few weeks, and keep going only if the demo pulls players.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Sources</span>
+    <h2>Where the numbers come from</h2>
+    <div class="sources">
+      <h3>Market and base rates</h3>
+      <ul>
+        <li><a href="https://howtomarketagame.com/2026/01/27/what-the-hell-happened-in-2025/">How To Market A Game: 2025 review</a></li>
+        <li><a href="https://www.steampageanalyzer.com/niches">Steam Page Analyzer: niches</a></li>
+        <li><a href="https://80.lv/articles/analysts-report-drop-in-game-revenue-on-steam-despite-growing-number-of-releases">80.lv: Steam revenue per game</a></li>
+        <li><a href="https://gamedevreports.substack.com/p/gamediscoverco-the-long-tail-of-steam">GameDiscoverCo: long tail 2026</a></li>
+        <li><a href="https://appmagic.rocks/blog/friendslop-steam-games-2025">AppMagic: friendslop 2025</a></li>
+        <li><a href="https://sensortower.com/blog/indie-and-new-ip-break-out-without-denting-aaa">Sensor Tower: indie breakouts 2026</a></li>
+        <li><a href="https://howtomarketagame.com/2026/07/30/is-friendslop-saturated">Is friendslop saturated?</a></li>
+      </ul>
+      <h3>Co-op</h3>
+      <ul>
+        <li><a href="https://www.unrealengine.com/developer-interviews/meccha-chameleon-how-two-devs-built-the-indie-smash-hit-of-the-summer">MECCHA CHAMELEON interview</a></li>
+        <li><a href="https://automaton-media.com/en/news/meccha-chameleon-developers-say-the-secret-behind-their-2-month-dev-cycle-is-asset-reuse-and-a-make-it-exist-first-perfect-it-later-approach/">MECCHA CHAMELEON dev cycle</a></li>
+        <li><a href="https://newsletter.gamediscover.co/p/how-peak-sold-45m-copies-in-less">How PEAK sold 4.5M</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/RV_There_Yet%3F">RV There Yet?</a></li>
+        <li><a href="https://gameworldobserver.com/2024/04/02/content-warning-140k-ccu-4-5-million-downloads-landfall">Content Warning launch</a></li>
+        <li><a href="https://www.pushtotalk.gg/p/how-lethal-company-sold-10-million-copies">How Lethal Company sold 10M</a></li>
+        <li><a href="https://gamedevreports.substack.com/p/alinea-analytics-top-steam-games">Alinea: top Steam games (Schedule I)</a></li>
+        <li><a href="https://tech.yahoo.com/gaming/articles/lets-just-fail-quickly-repo-142853084.html">R.E.P.O.: “let’s just fail quickly”</a></li>
+        <li><a href="https://newsletter.gamediscover.co/p/how-yapyap-jammed-its-way-to-1-million">How YAPYAP jammed to 1M</a></li>
+        <li><a href="https://game8.co/articles/latest/how-to-fish-catches-10-million-players-and-teases-whats-next">How to Fish at 10M players</a></li>
+        <li><a href="https://wnhub.io/news/finance/item-51060">Gamble With Your Friends sales</a></li>
+        <li><a href="https://raijin.gg/app/3146520/WEBFISHING">WEBFISHING stats</a></li>
+        <li><a href="https://gameworldobserver.com/2024/10/21/liars-bar-100k-ccu-steam-curve-animation-turkey-success">Liar’s Bar at 100k CCU</a></li>
+        <li><a href="https://gameworldobserver.com/2024/06/25/chained-together-85k-concurrent-players-launch-steam">Chained Together launch</a></li>
+        <li><a href="https://newsletter.gamediscover.co/p/how-two-friendslop-hits-got-the-audience">Overthrown vs Super Battle Golf</a></li>
+        <li><a href="https://www.gamedeveloper.com/design/valuable-but-not-profitable-garden-wars-postmortem">Garden Wars postmortem (multiplayer cost)</a></li>
+        <li><a href="https://blog.photonengine.com/r-e-p-o-multiplayer-success-powered-by-photon/">Photon: R.E.P.O. case study</a></li>
+      </ul>
+      <h3>Single player</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Megabonk">Megabonk</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Vampire_Survivors">Vampire Survivors</a></li>
+        <li><a href="https://www.gamespress.com/Brotato-10-Release">Brotato 1.0</a></li>
+        <li><a href="https://www.kitguru.net/gaming/joao-silva/buckshot-roulette-hits-8-million-sales-console-port-gets-delayed/">Buckshot Roulette at 8M</a></li>
+        <li><a href="https://newsletter.gamediscover.co/p/real-data-how-cloverpit-hit-750k">How CloverPit hit 750k</a></li>
+        <li><a href="https://www.nintendolife.com/news/2025/03/i-felt-totally-overwhelmed-balatro-dev-releases-development-timeline">Balatro timeline</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/A_Short_Hike">A Short Hike</a></li>
+        <li><a href="https://www.gamesradar.com/games/horror/this-is-incredibly-rare-how-mouthwashing-quietly-became-2024s-breakout-horror-hit/">Mouthwashing</a></li>
+        <li><a href="https://www.gamesradar.com/games/puzzle/in-a-huge-win-for-niche-games-this-solo-devs-4-hour-software-adventure-has-racked-up-usd1-million-in-revenue/">The Operator</a></li>
+        <li><a href="https://gamemaker.io/en/blog/following-the-fun-nubbys-number-factory">Nubby’s Number Factory</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/A_Game_About_Digging_a_Hole">A Game About Digging a Hole</a></li>
+        <li><a href="https://wnhub.io/news/stores-and-publishing/item-48117">Bongo Cat revenue</a></li>
+        <li><a href="https://newsletter.gamediscover.co/p/how-rustys-retirement-idle-farmed">How Rusty’s Retirement idle-farmed</a></li>
+        <li><a href="https://howtomarketagame.com/2022/05/04/how-peglin-made-1049413-in-1-week/">Peglin’s first week</a></li>
+        <li><a href="https://newsletter.gamediscover.co/i/160824287">Bramble Royale flop</a></li>
+        <li><a href="https://serfofcinder.itch.io/archetype-portal-to-hell/devlog/866477/a-retrospective">Archetype retrospective</a></li>
+      </ul>
+      <h3>Genres</h3>
+      <ul>
+        <li><a href="https://howtomarketagame.com/?p=5658">Survivors-like decline</a></li>
+        <li><a href="https://howtomarketagame.com/2025/04/11/the-hit-games-of-early-2025/">Hit games of early 2025</a></li>
+        <li><a href="https://www.gematsu.com/2026/09/the-exit-8-sales-top-three-million">The Exit 8 at 3M</a></li>
+        <li><a href="https://www.pushsquare.com/news/2026/08/devolvers-brilliant-roguelite-dopamine-factory-ball-x-pit-is-a-smash-hit-at-2-million-sales">Ball x Pit at 2M</a></li>
+        <li><a href="https://www.steampageanalyzer.com/niches/cozy">Cozy niche data</a></li>
+        <li><a href="https://www.steampageanalyzer.com/blog/steam-revenue-by-genre">Steam revenue by genre</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  // [name, dev months, copies in millions, "c" co-op | "s" single, label dx, label dy]
+  const pts = [
+    ["MECCHA CHAMELEON", 4.5, 20, "c", 8, 4],
+    ["PEAK", 4, 10, "c", 8, 4],
+    ["RV There Yet?", 2.5, 4.5, "c", -8, -8],
+    ["Content Warning", 2, 2.2, "c", -8, 4],
+    ["Lethal Company", 17, 10, "c", 8, -6],
+    ["Schedule I", 36, 8, "c", -8, -10],
+    ["YAPYAP", 6, 1.15, "c", 8, -8],
+    ["How to Fish", 12, 7.9, "c", 8, 12],
+    ["WEBFISHING", 5, 1.3, "c", -8, 14],
+    ["Digging a Hole", 0.75, 1.2, "s", 8, 4],
+    ["Buckshot Roulette", 5, 8, "s", -8, 4],
+    ["Rusty’s Retirement", 7.5, 0.55, "s", 8, -4],
+    ["A Short Hike", 7.5, 0.43, "s", 8, 10],
+    ["Vampire Survivors", 12, 6, "s", 8, 14],
+    ["Megabonk", 13, 1, "s", 8, 4],
+    ["Nubby’s", 18, 0.48, "s", 8, 4],
+    ["Mouthwashing", 15, 0.8, "s", 8, 4],
+    ["The Operator", 30, 0.158, "s", -8, 4],
+    ["Peglin", 30, 0.4, "s", -8, 4],
+    ["Balatro", 26, 5, "s", -8, 14]
+  ];
+  const W = 760, H = 440, L = 64, R = 24, T = 20, B = 52;
+  const xMin = Math.log10(0.5), xMax = Math.log10(48);
+  const yMin = Math.log10(0.1), yMax = Math.log10(30);
+  const X = v => L + (Math.log10(v) - xMin) / (xMax - xMin) * (W - L - R);
+  const Y = v => H - B - (Math.log10(v) - yMin) / (yMax - yMin) * (H - T - B);
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.getElementById("chart");
+  const el = (tag, attrs, text) => {
+    const n = document.createElementNS(ns, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    svg.appendChild(n);
+    return n;
+  };
+  // "Under a year" band
+  el("rect", { class: "zone", x: X(0.5), y: T, width: X(12) - X(0.5), height: H - T - B });
+  el("text", { class: "zone-label", x: X(0.5) + 8, y: T + 14 }, "UNDER A YEAR");
+  [0.5, 1, 2, 4, 8, 12, 24, 48].forEach(v => {
+    el("line", { class: "grid", x1: X(v), x2: X(v), y1: T, y2: H - B });
+    el("text", { class: "axis-label", x: X(v), y: H - B + 16, "text-anchor": "middle" }, v < 1 ? "2 wk" : v + " mo");
+  });
+  [[0.1, "100k"], [0.3, "300k"], [1, "1M"], [3, "3M"], [10, "10M"], [30, "30M"]].forEach(([v, t]) => {
+    el("line", { class: "grid", x1: L, x2: W - R, y1: Y(v), y2: Y(v) });
+    el("text", { class: "axis-label", x: L - 8, y: Y(v) + 4, "text-anchor": "end" }, t);
+  });
+  el("text", { class: "axis-title", x: (L + W - R) / 2, y: H - 10, "text-anchor": "middle" }, "Development time (log scale)");
+  el("text", { class: "axis-title", x: 16, y: (T + H - B) / 2, "text-anchor": "middle", transform: `rotate(-90 16 ${(T + H - B) / 2})` }, "Copies sold (log scale)");
+  pts.forEach(([name, m, c, kind, dx, dy]) => {
+    const cx = X(m), cy = Y(c);
+    const dot = el("circle", { class: kind === "c" ? "pt-coop" : "pt-solo", cx, cy, r: 5.5 });
+    const tip = document.createElementNS(ns, "title");
+    tip.textContent = `${name}: ~${m < 1 ? "3 weeks" : m + " months"}, ${c >= 1 ? c + "M" : Math.round(c * 1000) + "k"} copies`;
+    dot.appendChild(tip);
+    el("text", { class: "pt-label", x: cx + dx, y: cy + dy, "text-anchor": dx < 0 ? "end" : "start" }, name);
+  });
+})();
+</script>
