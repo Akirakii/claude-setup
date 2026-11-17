@@ -45,3 +45,9 @@ Nothing here points down into a project; a project's index points up to the shar
 | Doc | What it holds | Read when |
 |---|---|---|
 | `godot-traps.md` | traps in navigation, multiplayer, GUT tests, rendering, UI and input, GDScript | before touching that area in a Godot game |
+
+## `fun-with-friends-critic/`: the comparing critic for co-op game ideas
+| Doc | What it holds | Read when |
+|---|---|---|
+| `INDEX.md`, `brief.md`, `ladder.md`, `sheets/`, `key.md` | the judge's brief, ten shipped co-op games in tiers, their rule sheets under made-up names, the template for a new idea's sheet, and the key | judging whether a co-op idea is fun with friends; writing an idea sheet |
+

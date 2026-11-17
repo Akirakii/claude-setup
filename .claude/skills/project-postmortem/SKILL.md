@@ -1,6 +1,6 @@
 ---
 name: project-postmortem
-description: Find why a project or design failed, from its past sessions and docs, judging each decision by what was known then. Use whenever the user says "what happened in these sessions", "why did X fail", "extract the problem from my sessions", "postmortem", "detailed analysis of the sessions", "what went wrong", or a project is dropped or redone from scratch.
+description: Find why a project or design failed, from its past sessions and docs, judging each decision by what was known then. Use whenever the user says "why did X fail", "extract the problem from my sessions", "postmortem", "detailed analysis of the sessions", "what went wrong", or a project is dropped or redone from scratch. Not for a plain telling of what happened in a session (that is tell-what-happened).
 ---
 
 # Judge each decision by what was known then
