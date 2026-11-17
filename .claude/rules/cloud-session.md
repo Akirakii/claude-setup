@@ -21,4 +21,4 @@ Design work on paper needs none of them.
 
 Two folders were left out because they are personal: `projects/mom-trip/` and `projects/qv/`.
 
-Last hand-off: `domain-knowledge/projects/game-design-research/fantasy-marathon-2026-11-17/HANDOFF_fantasy-marathon.md` (start with the summary at its top).
+Last hand-off: `domain-knowledge/projects/game-design-research/critic-calibration-2026-11-18/HANDOFF_critic-calibration.md` (start with the summary at its top).

@@ -26,6 +26,7 @@ The worktree `moonsick-hands` still holds old copies of 27 docs on its branch; t
 | `similar-games-research/` | 19 similar games, the shared formula, 10 ranked recommendations | deciding what the main event is; scope, price, lobby and round length |
 | `postmortem/` | the postmortem of versions 1–4, the chain model that came out of it, and the lessons talk | judging a new core idea; picking up the lessons talk |
 | `fantasy-first/` | defining the fantasy, its feelings and the core choice for the cooperative redo; the ways thrown out and why | any work on the core, the werewolf or what turning means |
+| `friendslop-sheets-2026-11-18/` | Moonsick as a friendslop in two versions (A: a beam starts a fit and friends hold me; B: the wolf we need), each judged for fun with friends: both "maybe" | picking Moonsick up again; before any new Moonsick core |
 
 ## True for all of Moonsick
 - Decided (user, 2026-11-16): Moonsick goes back to a cooperative friendslop where failure is fun, with the twist of running from a converted ally. Next step: the user writes the core choice in one line, and Claude builds only that on the existing base, adding no rules of its own (the loop change agreed after the comparison across games).
