@@ -29,7 +29,16 @@ Related: `projects/projects.md`.
 - Progress file: `docs/TODO_*.md` or `HANDOFF_*.md` in the project, in case the PC shuts down.
   Turn every single thing the user asked for into a task row.
 
-**Diagrams:** draw SVG, render it with `magick` (no matplotlib or rsvg-convert here, checked), and show it in qimgv (below).
+**Diagrams (the user called the first way ugly and this way nice, 2026-11-19):** write one SVG from a small Python script and render it with Chrome: `google-chrome --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=W,H --screenshot=out.png file://in.svg`, then show it in qimgv (below).
+`magick` renders SVG text badly (no real fonts, no text anchors); no d2, graphviz or mermaid is installed (checked).
+How it's drawn:
+- Only the mechanism goes in the picture: boxes, arrows and a few words each. Lists and explanations stay in the note or the reply.
+- Every box comes from one grid computed in the script: same size, same gaps, text centered with `text-anchor`.
+- Font Inter; a title, one muted line under it, then the picture.
+- Near-white page, white boxes with thin grey borders, soft tinted bands for groups, dark ink only for the arrows the picture is about.
+- Every arrow has a short label; arrowheads are SVG markers.
+- Look at the PNG before showing it.
+- Don't `pkill -f` a pattern that also appears in the same shell command: it kills the shell (exit 144).
 
 **Showing the user an image: always in qimgv (user, 2026-11-19),** never in the terminal: `setsid -f qimgv <file> >/dev/null 2>&1`.
 Older ways, kept only in case qimgv is missing: the image-pane mod's `show_image` tool (source `~/.claude/dev-mods/f62bc6a8-8e60-424c-afba-528cabcffa7e/image-pane/`), or a kitty split: `kitty @ --to "$KITTY_LISTEN_ON" launch --type=window --location=vsplit --keep-focus --hold --title <name> kitten icat --align left <file>`.
