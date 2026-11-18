@@ -29,13 +29,10 @@ Related: `projects/projects.md`.
 - Progress file: `docs/TODO_*.md` or `HANDOFF_*.md` in the project, in case the PC shuts down.
   Turn every single thing the user asked for into a task row.
 
-**Diagrams:** draw SVG, render it with `magick` (no matplotlib or rsvg-convert here, checked), and show it with the image-pane mod's `show_image` tool.
-The mod's source: `~/.claude/dev-mods/f62bc6a8-8e60-424c-afba-528cabcffa7e/image-pane/`; a new session may need it loaded with `claude --plugin-dir`.
-If the tool isn't loaded, show the PNG in a kitty split (below) instead of drawing ASCII.
+**Diagrams:** draw SVG, render it with `magick` (no matplotlib or rsvg-convert here, checked), and show it in qimgv (below).
 
-**Showing the user an image (user OK):** Claude's shell has no terminal, so `kitten icat` alone fails ("open /dev/tty").
-Open a kitty split that runs it instead: `kitty @ --to "$KITTY_LISTEN_ON" launch --type=window --location=vsplit --keep-focus --hold --title <name> kitten icat --align left <file>`.
-Focus stays on the user's window; they close it with ctrl+shift+w (or `kitty @ close-window --match id:<id>`, the id it prints).
+**Showing the user an image: always in qimgv (user, 2026-11-19),** never in the terminal: `setsid -f qimgv <file> >/dev/null 2>&1`.
+Older ways, kept only in case qimgv is missing: the image-pane mod's `show_image` tool (source `~/.claude/dev-mods/f62bc6a8-8e60-424c-afba-528cabcffa7e/image-pane/`), or a kitty split: `kitty @ --to "$KITTY_LISTEN_ON" launch --type=window --location=vsplit --keep-focus --hold --title <name> kitten icat --align left <file>`.
 
 **Meshy:** the API key is in `~/.config/meshy/api_key` (MCP launcher `~/.config/meshy/run-mcp.sh`); never print it.
 Costs: image-to-3D 15 credits, rigging 5.

@@ -89,3 +89,8 @@ Still open:
 - A rule that applies to every reply still turns red from one slip in a session.
 - A worktree counts as its own project (a folder named `<project>-something` beside `<project>`).
 - Saved cases replayed on an edit; notes found by reading a file alone.
+
+## Added 2026-11-18 (in the repo, not released)
+- **Tile rows** (user): a long row slides with press and drag, no wheel, and fades on the side that has more. Older wordings sit behind a thin line with dimmed tiles, and the line's hover card says "before <date>". The word "latest" stays, and a row with marks only on older wordings says "no data on latest".
+- **Unused rules** (user): the report ends with the rules that have no mark on any wording, one line per file, and the `fix` skill's last step finds why each never came up and whether to keep, reword, merge or remove it. The list of reasons is Claude's own, not researched.
+- **Login** (a guess, not confirmed): on a private Claude network the judge run couldn't log in. Likely cause: the run skips the user's settings, which is where a gateway, Bedrock or a key helper is set. The run now hands over the login settings by name, `HARNESS_DOCTOR_MODEL` picks the model, and the page shows Claude Code's own error. Checked only that settings passed this way take effect; the user's fix on that network wasn't seen.

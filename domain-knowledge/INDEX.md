@@ -23,7 +23,7 @@ Write with the `update-domain-knowledge` skill, clean with `refactor-domain-know
 ## Notes at the top level
 | Note | Domain | What it holds | Read when |
 |---|---|---|---|
-| `machine-setup.md` | everything | paths, scripts and flags: ai_run.sh, AFK keep-awake, diagrams, showing images (kitty split), Meshy, RunPod | running a game, an AFK job, Meshy, RunPod, or drawing a diagram |
+| `machine-setup.md` | everything | paths, scripts and flags: ai_run.sh, AFK keep-awake, diagrams, showing images (always qimgv), Meshy, RunPod | running a game, an AFK job, Meshy, RunPod, or drawing a diagram |
 | `explain-concepts-plainly.md` | everything | plain words and a real example, no analogies, the user's own words, no made-up labels | the user asks what something means or asks to hear it again ("what does X mean", "could you elaborate", "I didn't understand", "explain again", "how does X work") |
 | `chat-style.md` | everything | research behind the `coworker` output style | changing how replies are written |
 | `visual-teaching-weakness.md` | everything | Claude's drawn teaching pictures aren't readable; copy airline-card/IKEA formats and let a human glance at it | making any picture, board or icon meant to teach |
@@ -31,6 +31,7 @@ Write with the `update-domain-knowledge` skill, clean with `refactor-domain-know
 | `game-scope-lessons.md` | games | ship in under a year, ~3–4 months of scope, prove the fun in days; co-op chosen | scoping a game or a feature |
 | `design-anti-patterns.md` | games | the design failures that repeated across projects, and the co-op check | before showing any game-design sketch (the `game-dev` skill) |
 | `critic-anti-patterns.md` | games | what critic agents keep catching in Claude's design proposals | before writing a design proposal; after each critic merge (add or count) |
+| `critic-baseline.md` | games | what the critics for co-op ideas are measured against: shipped games as the examples of fun, the seven things the judge looks for, how it was checked, and the problems a hit has too | before a critic round on a game idea, or when reading a critic's verdict |
 | `idea-search-loop.md` | games | the user's directions for the idea search (the method is the `generate-ideas` skill) | running the idea search |
 | `postmortem-rows.md` | games | one tagged row per problem or success from each game, and the comparison across the eight games (three sets of rules, eight themes) | running a postmortem, comparing why projects failed, or starting a new game from a dropped one |
 | `music-setup.md` | music | MuseScore + Muse Sounds chosen; REAPER/BBC installed, pipeline dropped | music work |

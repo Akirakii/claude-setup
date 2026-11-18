@@ -45,3 +45,15 @@ Nothing here points down into a project; a project's index points up to the shar
 | Doc | What it holds | Read when |
 |---|---|---|
 | `godot-traps.md` | traps in navigation, multiplayer, GUT tests, rendering, UI and input, GDScript | before touching that area in a Godot game |
+
+## `creativity/`: research on how ideas are found
+| Doc | What it holds | Read when |
+|---|---|---|
+| `conscious-unconscious-model.md` (+ `.png`, `.svg`) | the user's model of thinking: the orchestrator interface, the raw power, the two dbs, what goes wrong, the AI-loop comparison | talking about intuition, creativity, being stuck, overthinking, or comparing a mind to an AI loop |
+| `breaks-vs-more-work.md` | whether a break or more work produces ideas, what a break does, and which claims failed replication, with sources | the user is stuck on ideas, asks about breaks, intuition or creativity, or plans how to run an idea search |
+
+## `fun-with-friends-critic/`: the comparing critic for co-op game ideas
+| Doc | What it holds | Read when |
+|---|---|---|
+| `INDEX.md`, `brief.md`, `ladder.md`, `sheets/`, `key.md` | the judge's brief, ten shipped co-op games in tiers, their rule sheets under made-up names, the template for a new idea's sheet, and the key | judging whether a co-op idea is fun with friends; writing an idea sheet |
+

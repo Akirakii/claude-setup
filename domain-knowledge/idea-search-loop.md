@@ -27,5 +27,12 @@ The user says the pool feels like Mario Party minigames, not a full game; Claude
 Next: sketch a between-rounds step for the skill before editing it (the skill has none yet, checked).
 An AFK run on 2026-11-17 tried a different order (fantasy, feelings, research on shipped games, choices) with Claude writing the fantasies: nine ideas, four isolated critic rounds, none passed.
 The pool's top-ranked core (Storm Sailors) was sent to an isolated critic for the first time in that run and failed on six severe findings, so the pool's ranking rests on Claude's own inline checks only.
+A second run the same day put the need between friends inside the fantasy line and made every feeling about a friend (user): every choice line then had a friend in it, and the failures moved later, to one routine or one safe spot; none passed, on the author's marks only.
 What the critics found in common: a crew with one interest and the same facts has one answer, one end of each choice only obeyed, and a perfect crew's round was one where the idea didn't happen.
+On 2026-11-18 the critic was re-aimed (user): it only says whether an idea is fun with friends, by comparing it to shipped co-op games; date and novelty are reported beside the verdict; fantasy, feelings and choices are checked by Claude itself.
+Five friendslop sheets went through it: Hold On and Gold Fever came out "yes" on paper, Moonsick A and B "maybe", Piggyback dropped.
+What ended most versions: a danger that moves only as fast as the crew chooses, so the crew counts and stops short; the hits' danger comes to the crew.
+On 2026-11-19 the user chose a test (user): take a break and see if the next idea makes a big jump; Claude added writing down first how the last idea failed, so the next one is compared to that line.
+Claude's reading of the history that day (no verdict yet): the checking side grew with every failure while Claude wrote most first rules, so the user should write the first rules and the skill should mutate and check them; the user asked "should i drop my rules and start fresh?" and Claude said to keep the setup and carry no game rules over.
+The research on breaks, more work and the kinds of stuck is in the shared creativity folder.
 

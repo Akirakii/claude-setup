@@ -1,6 +1,6 @@
 ---
 name: explain-simple
-description: Report how a session, run or piece of work went, or explain a result or idea, at a high level in simple, concise words. Use whenever the user asks "how did the X session go" (or "went"), "report me how it went", "what was designed last session", "explain simpler", "in simple terms", "I don't understand X", "short version", "tl;dr", or when reporting the outcome of a long run. Load it first, before reading the logs or docs.
+description: Explain a result or idea at a high level in simple, concise words. Use whenever the user asks "explain simpler", "in simple terms", "I don't understand X", "short version", "tl;dr", or when reporting the outcome of a long run the user watched. Not for telling what happened in work the user didn't watch (that is tell-what-happened).
 ---
 
 # Explain at a high level, in few words

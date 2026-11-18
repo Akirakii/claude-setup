@@ -285,3 +285,26 @@ The stories behind them are in each project's critic and merge files (Deathly Re
   Fix: put the slow, stealable resource in a sightline from the main room.
 - **Judging a design with a test crew that never plays one side** ×1 (bots never sabotage, so the potion was free at 2:14).
   Fix: give the bots each side's key move before using them to judge balance.
+
+## Added 2026-11-17, critic round on Imps (`projects/game-design-research/fantasy-coop-2026-11-17/critic-imps-r1.md`)
+- A help priced as a share of a pile the helped friend can empty first: the help is free at the empty moment (×2).
+- A dealt list of small rules read as "no plan card": the list is a lookup table, one row per card (×2).
+- A wish that "names a friend" where the friend does nothing: it wants something from me, measured against a friend (×1).
+- A pair "that can't both be met" that is met by standing side by side, and is gone after one redeal (×2).
+- Author's stage 1 passed eight rows the critic failed; its kills held, its passes didn't (×1).
+- Wishes written as distances or places: a crew that walks together meets them for free (×1, second round on Imps, measured against the baseline).
+- A help that also deals a new card: repeated for free until a cheap card comes up (×1).
+- A harm that is certain and agreed read as "sorry": in the cited games the harm is an accident under pressure (×1).
+
+## Added 2026-11-18, the comparing critic on five friendslop sheets (three rounds)
+- A danger that moves only as fast as the crew chooses: the crew counts and stops short (×4: gold loaded onto a ship, fur under a cloak, a fever on a clock, a wolf's hunger).
+  Fix: something that arrives by itself (a beam, a tide), written into the fantasy.
+- A failure state that is on the crew's side tames itself (×1: the wolf-friend steered into the shade and lapped safely).
+  Fix: the place it can go is the place the work is.
+- A rescue that leaves the rescued better off than before the failure: failing on purpose becomes the best move (×2: a caught wolf back with no fur; a bite that reset the wolf's hunger).
+  Fix: the rescued friend comes back no better than just before they failed.
+- A help that works against the target it is paid from (×1: a cure flask that lowered the cauldron the night is measured on).
+- One friend made the sink for everyone's harm (×2: the gold dump; the doorway guide).
+- A full shield that costs nothing to hold (×1: any small piece of silver stopped a bite).
+- A listed choice whose two ends lead to the same place, or with nothing at risk (×2).
+

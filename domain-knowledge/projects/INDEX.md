@@ -17,8 +17,9 @@ A project gets a folder here the first time a task writes a note for it (`update
 | `mustache-madness/` | Mustache Madness (core dropped): its docs, sorted by task | looking back at it |
 | `game-design-research/` | the market and idea research: the idea search, the Full Moon design history, gameplay verbs and coupling | market questions, the idea search, Moonsick's history before its repo |
 | `carpenter/` | Carpenter's docs: ADRs, specs, design, data model, examples | work on Carpenter |
+| `qv/` | qv's notes | work on qv |
 | `harness-doctor/` | Harness Doctor's design and judge research | work on Harness Doctor |
-| `claude-code-reaper/` | the reaper session notes | work on it |
+| `mom-trip/`, `claude-code-reaper/` | one note each: the trip plan, the reaper session notes | those two |
 
 This folder is the source of truth for every project's docs; a copy left in a repo is the stale one (user).
 Docs that hold for more than one project live in `../shared/` (its `INDEX.md`).

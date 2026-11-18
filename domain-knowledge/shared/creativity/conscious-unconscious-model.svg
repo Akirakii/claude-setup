@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1190" viewBox="0 0 1600 1190">
+<rect x="0" y="0" width="1600" height="1190" fill="#ffffff"/>
+<text x="40" y="52" font-family="DejaVu Sans" font-size="30" font-weight="bold" fill="#1b1b1b">Your model: conscious and unconscious thinking</text>
+<rect x="40" y="90" width="600" height="300" rx="14" ry="14" fill="#E8F0FE" stroke="#3B6FD4" stroke-width="2.5"/>
+<text x="60" y="128" font-family="DejaVu Sans" font-size="22" font-weight="bold" fill="#1f4aa8">CONSCIOUS: the orchestrator interface</text>
+<text x="60" y="154" font-family="DejaVu Sans" font-size="16" fill="#1f4aa8">the steering</text>
+<text x="60" y="200" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">• holds the goal</text>
+<text x="60" y="230" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">• works one idea out step by step</text>
+<text x="60" y="260" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">• checks it, rejects what fails</text>
+<text x="60" y="290" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">• one step at a time</text>
+<rect x="350" y="185" width="270" height="130" rx="10" ry="10" fill="#ffffff" stroke="#3B6FD4" stroke-width="2"/>
+<text x="366" y="215" font-family="DejaVu Sans" font-size="17" font-weight="bold" fill="#1b1b1b">Working memory (RAM)</text>
+<text x="366" y="245" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">a few items, for seconds</text>
+<text x="366" y="271" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">where the steps are lined up</text>
+<rect x="760" y="120" width="250" height="230" rx="14" ry="14" fill="#FFF4D6" stroke="#C9962B" stroke-width="2.5"/>
+<text x="780" y="158" font-family="DejaVu Sans" font-size="21" font-weight="bold" fill="#8a6410">Shaped db</text>
+<text x="780" y="182" font-family="DejaVu Sans" font-size="15" fill="#8a6410">(explicit memory)</text>
+<text x="780" y="222" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">facts and events</text>
+<text x="780" y="252" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">you can recall it</text>
+<text x="780" y="282" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">and work on it</text>
+<line x1="652" y1="240" x2="748" y2="240" stroke="#333" stroke-width="4"/>
+<polygon points="760,240 744,230 744,250" fill="#333"/>
+<polygon points="640,240 656,230 656,250" fill="#333"/>
+<text x="655" y="222" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">recall, store</text>
+<line x1="200" y1="390" x2="200" y2="548" stroke="#3B6FD4" stroke-width="4"/>
+<polygon points="200,560 190,544 210,544" fill="#3B6FD4"/>
+<text x="218" y="448" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">request:</text>
+<text x="218" y="472" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">the goal and the</text>
+<text x="218" y="496" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">approach it is holding</text>
+<line x1="440" y1="560" x2="440" y2="402" stroke="#3E9B57" stroke-width="4"/>
+<polygon points="440,390 430,406 450,406" fill="#3E9B57"/>
+<text x="458" y="448" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">results only:</text>
+<text x="458" y="472" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">ideas, "this follows",</text>
+<text x="458" y="496" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">"this is off"</text>
+<rect x="40" y="560" width="600" height="300" rx="14" ry="14" fill="#E9F7EC" stroke="#3E9B57" stroke-width="2.5"/>
+<text x="60" y="598" font-family="DejaVu Sans" font-size="22" font-weight="bold" fill="#226b38">UNCONSCIOUS: the raw power</text>
+<text x="60" y="645" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">• produces the ideas</text>
+<text x="60" y="675" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">• points at where to look</text>
+<text x="60" y="705" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">• runs in the background,</text>
+<text x="60" y="735" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">   many things at once</text>
+<text x="60" y="765" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">• every conscious step</text>
+<text x="60" y="795" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">   is handed up from here</text>
+<rect x="350" y="640" width="270" height="150" rx="10" ry="10" fill="#ffffff" stroke="#3E9B57" stroke-width="2"/>
+<text x="366" y="670" font-family="DejaVu Sans" font-size="17" font-weight="bold" fill="#1b1b1b">Unconscious RAM</text>
+<text x="366" y="700" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">temporary state, short-lived</text>
+<text x="366" y="726" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">shapes its next result</text>
+<text x="366" y="752" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">can't be read from above</text>
+<rect x="760" y="590" width="250" height="240" rx="14" ry="14" fill="#FFF4D6" stroke="#C9962B" stroke-width="2.5"/>
+<text x="780" y="628" font-family="DejaVu Sans" font-size="21" font-weight="bold" fill="#8a6410">Unconscious db</text>
+<text x="780" y="652" font-family="DejaVu Sans" font-size="15" fill="#8a6410">(implicit memory)</text>
+<text x="780" y="692" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">skills and patterns</text>
+<text x="780" y="722" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">that behave like rules</text>
+<text x="780" y="752" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">shapeless to the interface:</text>
+<text x="780" y="782" font-family="DejaVu Sans" font-size="16" fill="#1b1b1b">you only see its results</text>
+<line x1="652" y1="710" x2="748" y2="710" stroke="#333" stroke-width="4"/>
+<polygon points="760,710 744,700 744,720" fill="#333"/>
+<polygon points="640,710 656,700 656,720" fill="#333"/>
+<text x="668" y="692" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">matches</text>
+<line x1="885" y1="350" x2="885" y2="578" stroke="#C9962B" stroke-width="4"/>
+<polygon points="885,590 875,574 895,574" fill="#C9962B"/>
+<text x="700" y="456" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">practice moves</text>
+<text x="700" y="480" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">a skill down</text>
+<rect x="40" y="905" width="970" height="90" rx="14" ry="14" fill="#F3F3F3" stroke="#888888" stroke-width="2.5"/>
+<text x="60" y="940" font-family="DejaVu Sans" font-size="18" font-weight="bold" fill="#1b1b1b">THE WORLD: playing, testing, feedback</text>
+<text x="60" y="970" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">It tunes the unconscious db. A hunch is only good where feedback was fast and clear.</text>
+<line x1="885" y1="905" x2="885" y2="842" stroke="#888888" stroke-width="4"/>
+<polygon points="885,830 875,846 895,846" fill="#888888"/>
+<text x="900" y="876" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">feedback</text>
+<rect x="40" y="1020" width="970" height="140" rx="14" ry="14" fill="#FFFFFF" stroke="#555555" stroke-width="2.5"/>
+<text x="60" y="1054" font-family="DejaVu Sans" font-size="18" font-weight="bold" fill="#1b1b1b">Creativity, in order</text>
+<text x="60" y="1084" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">1 load the problem with hard work, 2 the idea arrives, 3 work it out and check it</text>
+<text x="60" y="1114" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">Stuck, kind 1: not enough work yet, so keep working.</text>
+<text x="60" y="1140" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">Stuck, kind 2: repeating, so take a short easy break or force a different start.</text>
+<rect x="1060" y="90" width="500" height="345" rx="14" ry="14" fill="#FDECEC" stroke="#C0504D" stroke-width="2.5"/>
+<text x="1080" y="126" font-family="DejaVu Sans" font-size="20" font-weight="bold" fill="#9b2f2c">What goes wrong</text>
+<text x="1080" y="160" font-family="DejaVu Sans" font-size="16" font-weight="bold" fill="#1b1b1b">Fixation</text>
+<text x="1080" y="182" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">the orchestrator holds one approach, so every</text>
+<text x="1080" y="202" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">request brings back ideas near it</text>
+<text x="1080" y="230" font-family="DejaVu Sans" font-size="16" font-weight="bold" fill="#1b1b1b">Made-up story</text>
+<text x="1080" y="252" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">the interface can't read how a result was made,</text>
+<text x="1080" y="272" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">so the explanation gets written afterwards</text>
+<text x="1080" y="300" font-family="DejaVu Sans" font-size="16" font-weight="bold" fill="#1b1b1b">Overthinking</text>
+<text x="1080" y="322" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">the orchestrator keeps running after it stopped</text>
+<text x="1080" y="342" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">improving the result</text>
+<text x="1080" y="370" font-family="DejaVu Sans" font-size="16" font-weight="bold" fill="#1b1b1b">Choking</text>
+<text x="1080" y="392" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">the orchestrator steers a skill the unconscious</text>
+<text x="1080" y="412" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">runs better alone</text>
+<rect x="1060" y="460" width="500" height="245" rx="14" ry="14" fill="#F1ECFA" stroke="#7B5BB5" stroke-width="2.5"/>
+<text x="1080" y="496" font-family="DejaVu Sans" font-size="20" font-weight="bold" fill="#57398f">The same shape in an AI loop</text>
+<text x="1080" y="532" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1b1b1b">unconscious thinking</text>
+<text x="1300" y="532" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">the model writing its output</text>
+<text x="1080" y="560" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1b1b1b">unconscious db</text>
+<text x="1300" y="560" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">the model's weights</text>
+<text x="1080" y="588" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1b1b1b">working memory</text>
+<text x="1300" y="588" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">the context window</text>
+<text x="1080" y="616" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1b1b1b">conscious thinking</text>
+<text x="1300" y="616" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">the orchestrator loop</text>
+<text x="1080" y="644" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1b1b1b">learned methods</text>
+<text x="1300" y="644" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">the harness (rules, skills)</text>
+<text x="1080" y="672" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1b1b1b">thinking about thinking</text>
+<text x="1300" y="672" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">the harness improving itself</text>
+<rect x="1060" y="730" width="500" height="430" rx="14" ry="14" fill="#EEF7F7" stroke="#4A9A9A" stroke-width="2.5"/>
+<text x="1080" y="766" font-family="DejaVu Sans" font-size="20" font-weight="bold" fill="#2b6e6e">Checked by research (2026-11-19)</text>
+<text x="1080" y="802" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1e7a34">YES</text>
+<text x="1130" y="802" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">a break helps when you're repeating</text>
+<text x="1080" y="836" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1e7a34">YES</text>
+<text x="1130" y="836" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">more work before the break makes it help more</text>
+<text x="1080" y="870" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1e7a34">YES</text>
+<text x="1130" y="870" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">people stop too early; later ideas are as good</text>
+<text x="1080" y="904" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#1e7a34">YES</text>
+<text x="1130" y="904" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">most ideas come while working</text>
+<text x="1080" y="938" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#b3261e">NO</text>
+<text x="1130" y="938" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">the unconscious works a new problem alone</text>
+<text x="1130" y="960" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">in the background</text>
+<text x="1080" y="994" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#b3261e">NO</text>
+<text x="1130" y="994" font-family="DejaVu Sans" font-size="15" fill="#1b1b1b">you can feel from the inside that you're repeating</text>
+<text x="1080" y="1042" font-family="DejaVu Sans" font-size="16" font-weight="bold" fill="#1b1b1b">Your next test</text>
+<text x="1080" y="1068" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">write down how the last idea failed, take a break,</text>
+<text x="1080" y="1090" font-family="DejaVu Sans" font-size="14" fill="#1b1b1b">then see if the next idea fails differently</text>
+</svg>
