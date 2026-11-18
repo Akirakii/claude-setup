@@ -15,6 +15,8 @@ Write with the `update-domain-knowledge` skill, clean with `refactor-domain-know
 | one task | `projects/<project>/<task>/` | listed in the project's index |
 | shared: long docs promoted out of projects | `shared/<subject>/` | `shared/INDEX.md` |
 
+The shared docs are researched, so they come before any design, review or build in a subject they cover (game patterns, the market, Meshy, Godot, creativity): open `shared/INDEX.md` and read the docs its "read when" names.
+
 ## Domain skills (load first when work enters the domain, CLAUDE.md rule 28)
 | Domain | Skill | Work that enters it |
 |---|---|---|
@@ -25,7 +27,7 @@ Write with the `update-domain-knowledge` skill, clean with `refactor-domain-know
 |---|---|---|---|
 | `machine-setup.md` | everything | paths, scripts and flags: ai_run.sh, AFK keep-awake, diagrams, showing images (always qimgv), Meshy, RunPod | running a game, an AFK job, Meshy, RunPod, or drawing a diagram |
 | `explain-concepts-plainly.md` | everything | plain words and a real example, no analogies, the user's own words, no made-up labels | the user asks what something means or asks to hear it again ("what does X mean", "could you elaborate", "I didn't understand", "explain again", "how does X work") |
-| `chat-style.md` | everything | research behind the `coworker` output style | changing how replies are written |
+| `chat-style.md` | everything | research behind the `coworker` output style | adding or rewording a reply rule whose wording the user didn't give (a change the user dictated needs no research) |
 | `visual-teaching-weakness.md` | everything | Claude's drawn teaching pictures aren't readable; copy airline-card/IKEA formats and let a human glance at it | making any picture, board or icon meant to teach |
 | `game-idea-triad.md` | games | the user's model: fantasy, logic, aesthetic, aligned; their creativity block; advice they turned down | discussing game ideas or how to find them; before giving lessons or a process for making games |
 | `game-scope-lessons.md` | games | ship in under a year, ~3–4 months of scope, prove the fun in days; co-op chosen | scoping a game or a feature |

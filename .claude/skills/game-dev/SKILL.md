@@ -35,6 +35,8 @@ The researched docs for games (patterns, the market, Meshy, Godot) are listed in
 - Why: generations cost credits, and the user wants to see each change before it runs.
 
 ## Design sketches
+- **Before designing, reviewing or building** a mechanic, a reward, an item, a menu, a HUD, anything the player reads on screen, or spoken lines, open `~/.claude/domain-knowledge/shared/INDEX.md` and read every doc whose "read when" matches.
+  Why: mechanics, screens and narrator lines were made many times while the researched docs on them went unread.
 - **Before showing any game-design sketch** (mechanic, rule, flow, item, path), or a list of what's designed so far, read `~/.claude/domain-knowledge/design-anti-patterns.md` and check it against it.
 - In a list, every part Claude picked keeps its "(Claude)" tag, so the user sees what they never chose.
 - Every sketch, even a one-line "I'd add X" in a quick back-and-forth, first gets one scene played in my head: each player's choice, and what the best play turns into.

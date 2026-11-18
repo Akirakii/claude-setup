@@ -1,6 +1,6 @@
 ---
 name: update-domain-knowledge
-description: Write what was learned into ~/.claude/domain-knowledge/ at the right level (task, project, every project, everything), and move the general part of a note up one level. Use whenever the user says "file it", "file this session", "save what we learned", a scoped task starts ("new task", a brief, a hand-off) or ends, a finding, decision or lesson should outlive the session, the user says "save this to the domain knowledge", "promote this", "where does this note go", or update-harness hands over a domain fact. Load it before writing any note.
+description: Write what was learned into ~/.claude/domain-knowledge/ at the right level (task, project, every project, everything), and move the general part of a note up one level. Use whenever the user says "file it", "file this session", "save what we learned", a scoped task starts ("new task", a brief, a hand-off) or ends, a finding, decision or lesson should outlive the session, the user says "save this to the domain knowledge", "promote this", "where does this note go", or update-harness hands over a domain fact. Load it before writing, appending to or moving any file in ~/.claude/domain-knowledge/, however small the change and even in the middle of other work.
 ---
 
 # Notes start in the task and move up as they prove general

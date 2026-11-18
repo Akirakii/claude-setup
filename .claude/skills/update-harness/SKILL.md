@@ -1,6 +1,6 @@
 ---
 name: update-harness
-description: Save a lesson, rule, preference or correction so later sessions follow it - decide whether it belongs in CLAUDE.md, the output style, a skill or the domain knowledge, then write it there or hand it on. Also cleans CLAUDE.md and the output style. Use whenever the user says how Claude should work from now on ("always ...", "never ...", "dont ...", "tell me always ...", "note it", "remember", "save this", "don't do that again"), after a correction worth keeping, or says "review my rules", "clean claude md". Not for recalling things ("I remember..."). Load it before editing CLAUDE.md or the output style.
+description: Save a lesson, rule, preference or correction so later sessions follow it - decide whether it belongs in CLAUDE.md, the output style, a skill or the domain knowledge, then write it there or hand it on. Also cleans CLAUDE.md and the output style. Use whenever the user says how Claude should work from now on ("always ...", "never ...", "dont ...", "tell me always ...", "note it", "remember", "save this", "don't do that again"), after a correction worth keeping, or says "review my rules", "clean claude md". Not for recalling things ("I remember..."). Load it before editing CLAUDE.md or the output style, or before saving a correction into a skill.
 ---
 
 # Put each lesson in the one place that will load it
@@ -32,6 +32,7 @@ CLAUDE.md names no domain: a rule that only holds for games goes in the `game-de
 3. **Show it:**
    - The user asked for it: write it, then show the file and the exact lines.
    - Claude's own idea: show the file and the exact lines first, and write after the user's OK.
+     This holds when the edit is a side effect of a bigger job the user asked for, too.
 4. **Report in one line:** what was saved, and where.
 
 ## Cleaning CLAUDE.md and the output style

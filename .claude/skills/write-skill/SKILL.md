@@ -25,6 +25,7 @@ The way of writing comes from the user's own skills (design-research, generate-i
 1. **Check it's new:** search existing skills (`~/.claude/skills/`, the skill list, plugins); extend one if it fits.
 2. **Sketch first:** show the name, the description and the step titles in a few lines, and write after the user's OK (rule 5).
    Skip this only when the user already gave the content.
+   A one-line change to an existing skill gets shown first too.
 3. **Write** `~/.claude/skills/<name>/SKILL.md` the way the table says.
    For a living skill, copy it to `history/` first.
 4. **Test triggers only when it matters** (several similar skills, or it must fire reliably): use `skill-creator` for that part.

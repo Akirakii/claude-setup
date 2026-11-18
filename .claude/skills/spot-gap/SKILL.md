@@ -1,6 +1,6 @@
 ---
 name: spot-gap
-description: Stop and research when something keeps failing or Claude's understanding has a gap, and close the gap before going on. Use whenever the user says "this isn't working", "everything is wrong", "something is wrong", "clearly X isn't working", "why didn't X trigger", "really? no X?", "should I start from scratch?", when the user corrects the same thing twice, when a fix keeps failing, or when Claude is about to state something it can't back up.
+description: Stop and research when something keeps failing or Claude's understanding has a gap, and close the gap before going on. Use whenever the user says "this isn't working", "everything is wrong", "something is wrong", "clearly X isn't working", "why didn't X trigger", "really? no X?", "should I start from scratch?", when the user corrects the same thing twice or turns down the same kind of idea twice, when a fix keeps failing, or when Claude is about to state something it can't back up.
 ---
 
 # Spot the gap, then learn
@@ -13,6 +13,7 @@ When something keeps failing, stop and learn why before trying again.
 |---|---|
 | The user corrects the same thing twice | reply style rewritten 5 times in one evening |
 | A fix keeps failing | the third tweak of the same number or rule |
+| The user turns down the same kind of idea twice | a new version of an idea, rejected for the reason the last one was |
 | The user doesn't understand Claude's words | "what does this even mean?" |
 | Claude can't say why something works | a rule written from habit, with no source |
 | A new topic for this user or project | a tool, a field, a design area never researched |

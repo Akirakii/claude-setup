@@ -20,7 +20,8 @@ Sources: RB = `~/Playground/red-button-experiment/CLAUDE.md`, RBD = `.../red-but
 6. **Deciding for the user.** Making up pillars, deciding while the user is away, tagging Claude's pick "(user)".
    Fix: draft pillars for the user to confirm; tag picks "(Claude)" unless the user's own words chose them. (DM, MM, RBD round 2)
 7. **Asking in the middle of designing.**
-   Fix: recommend inline, and put open choices in the questions file. (RB, P)
+   Fix: recommend inline, and put open choices in the questions file.
+   One line asking what an ambiguous request meant, with Claude's pick, is not this. (RB, P)
 8. **A question taken as a pick.** "What about X" is the user thinking out loud.
    Fix: make the case against it first. (DD)
 9. **Arguing with a playtest.**

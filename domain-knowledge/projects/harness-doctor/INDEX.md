@@ -9,3 +9,4 @@ Its skills were not copied.
 |---|---|---|
 | `design-2.0.md` | the 2.0 design | changing the plugin |
 | `judge-research.md` | research on judging sessions | changing how sessions are judged |
+| `judge-rules-and-turned-off-marks/` | the task that let the fix skill change the judge's rules and turn off wrong marks, and put the judge and the plugin's skills on the page: proposal, critic round, hand-off | changing how wrong marks or the judge's rules work |

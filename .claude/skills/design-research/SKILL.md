@@ -1,6 +1,6 @@
 ---
 name: design-research
-description: Research patterns and anti-patterns on the web - how others solve a problem, what makes it good or bad - and design from them, ignoring the current source code. Use whenever the user says "research" ("research patterns", "research how X is done", "antipatterns"), asks "what makes X good or bad", "find references from other games", "how is X usually done", "best pattern for X", "design X from scratch", or to write or update a patterns / anti-patterns doc. Not for a brief or a quick brainstorm that never asks for research.
+description: Research patterns and anti-patterns on the web - how others solve a problem, what makes it good or bad - and design from them, ignoring the current source code. Use whenever the user says "research" ("research patterns", "research how X is done", "antipatterns"), asks "what makes X good or bad", "find references from other games", "how is X usually done", "what is the state of the art in X", "best pattern for X", "design X from scratch", or to write or update a patterns / anti-patterns doc. Not for a brief or a quick brainstorm that never asks for research.
 ---
 
 # Design from patterns, not from the code

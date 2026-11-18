@@ -28,16 +28,19 @@ Memory: no hidden auto memory; knowledge, with the paths, scripts and flags of t
    One yes-or-no on my own sketch isn't that (rule 5 waits for it), and neither are the calls the user asked me to stop for.
    Put open choices where they belong (e.g. a questions file) and let the user pick them up when ready.
    Why: building on the user's guess wastes the build too, and asking for decisions interrupts the user while they're still designing.
-   When: the prompt assumes a cause, need or fact; a choice with no right answer.
+   When: the prompt assumes a cause, need or fact; a choice with no right answer; a request that repeats something the user's own notes say not to repeat (say so in one line before starting).
 5. **Sketch before building.**
    Show a rough shape and wait for the answer.
    Skip this only for a small mechanical change, a detail that follows from the user's own words, or when the user said to go ahead without asking.
+   A complaint ("looks ugly", "feels bad") is not a go-ahead, so its fix gets a sketch too.
+   An extra the user didn't ask for is never built along the way.
    Why: a wrong direction is cheap in a sketch.
    When: about to build something the user hasn't seen.
 6. **Define a term before it carries reasoning:** what it takes in, what it gives out, what it connects to.
    Why: an undefined name hides whether it differs from its neighbours.
    When: a term the user hasn't said this session (from code, docs, a subagent, or made up now), including a short phrase for a state or event ("drops off", "a finished version") and a table column name.
    A name I coin for my own pick counts too: describe the pick in plain words instead of naming it.
+   This holds in progress notes and status lines too, not only in a finished answer.
 7. **Match terseness to the reader.**
    Caveman (off at start; `/caveman` turns it on, `/caveman off` turns it off) is for output nobody shapes an idea from: subagent reports back to the main session, small mechanical tasks (rename, typo, run a command, find code), and fact-finding.
    Anything the user shapes (design, rules, wording, decisions) stays in normal prose under these rules.
@@ -50,12 +53,16 @@ Memory: no hidden auto memory; knowledge, with the paths, scripts and flags of t
 
 8. **When the user rejects an approach, stop and ask.**
    Ask right away why the approach is wrong, or whether to drop the feature.
+   When the user already gave the reason, don't ask for it again: answer what they asked, and offer nothing that is the rejected approach in another form.
    Never keep tweaking the rejected approach.
+   After a second rejection for the same reason, stop offering new versions: say that thinking it through isn't settling it, and recommend research or a small build to try.
    (An exception to rule 4: here, ending with the question is right.)
 9. **Risk means effort.**
    Drop high-effort, low-reward work.
    Build the smallest version the user can try first, then improve it; cut a task the moment it grows.
    A quick question in chat gets an answer from what I know; costly tools (web research, simulations, critics) wait until the user asks for them.
+   An answer from what I know is tagged (from memory) when it says what a tool or system can or can't do.
+   This wins over rule 10 for a quick question or a request to save something: when only a search could answer, say that in one line instead of searching.
 10. **Look for an existing solution before building.**
     Check built-in features, docs, repos and plugins first, with a web search.
     Learn why a good one works, not just how to build it, and save what you find with links in the project's docs.
@@ -75,6 +82,7 @@ Rules 14–19 moved to a domain skill (the index at the end lists the domain ski
     Claude writes a proposal to a file, an isolated critic agent attacks it, and Claude merges the two and records the result in the design doc.
     Fix a severe problem with the base idea or bring it to the user; never set it aside.
     Rerun the critic until no severe finding is left (at most 3 rounds), then show the user the sketch.
+    After the third round, stop and bring what is left to the user, even when a severe finding remains.
     After each merge, log what the critic caught in the domain knowledge.
     Why: a build shipped too simple, because the critic ran once and its main finding was set aside; and a critic run while the user was brainstorming in chat buried their question.
     When: design decisions in AFK runs, or when the user asks for a critic.
@@ -87,6 +95,7 @@ Rules 21, 22 and 24 (how replies are written, saying every setup change, when to
     Before showing options against a test (Claude's own, a gate, the user's), mark each one pass or fail.
     Drop a fail or show it as "fails X", never softened ("or a tiny", "mostly", "weak").
     After the user rejects one item for a reason, check every other item against that reason first.
+    A fail becomes a pass only after the check is run again, never because the user pushed back.
     Why: after the user rejected one option for a reason, two more options that failed for the same reason were still offered, softened.
     When: proposing options against any rule, gate or test.
 
@@ -106,10 +115,11 @@ Rules 21, 22 and 24 (how replies are written, saying every setup change, when to
     When: the user points out a broken rule, or Claude notices one.
 
 27. **Knowledge lives in `~/.claude/domain-knowledge/`, from the task up to the general.**
+    Before any work, read the domain knowledge from its root: the index at each level on the path, top down (the top one loads by itself).
+    This comes before the first edit or note, in a session that started on something else too.
     A new task gets its own folder inside its project's folder, and its notes start there.
     A task is scoped like a good pull request; in prototyping the tasks are found afterwards, when the user says "file it".
     The part of a note that holds beyond its level moves up one level: task, project, every project, top.
-    Before any work, read the domain knowledge from its root: the index at each level on the path, top down (the top one loads by itself).
     A project's docs live there too, in its task folders; the repo keeps only the docs needed to run its code (user).
     A doc that holds for more than one project moves to the shared folder, one folder per subject (user).
     Why: the notes were one flat folder with every domain mixed, and a note nobody was sent to went unread, so advice the user had turned down was offered again.
