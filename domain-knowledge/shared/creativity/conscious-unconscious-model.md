@@ -82,6 +82,16 @@ The three disputed boxes are the clean two-way split, the two separate dbs and t
 11. https://pubmed.ncbi.nlm.nih.gov/26553223/
 12. https://www.apa.org/monitor/jan05/choking
 
+## To investigate later (user, 2026-11-19: "record this for future investigation")
+The user's question: "there is a possibility that there are no separated systems but grays in between? one axis".
+- Claude's answer, not researched beyond the sources above: grays yes, but several axes, not one.
+  A process has separate properties that don't move together: how fast it is, whether you're aware of it, whether you started it on purpose, how much effort it costs.
+  A practiced skill is fast and effortless but started on purpose and watchable; a worry that keeps coming back is slow and in awareness but not chosen.
+- For memory the one-db view does have one axis: how strong the memory is, with recall needing more strength than a skill.
+- The two bands of the picture would then be the two far corners, still useful because fixation, made-up stories and practice sit near one corner or the other.
+- Open: which axes the research agrees on, whether the picture should be redrawn on axes, and whether the two dbs should become one db read in two ways.
+- Start from sources 3 and 6 above (Melnikoff & Bargh 2018; Berry, Shanks et al. 2014).
+
 ## Not settled
 - Left and right brain: not this split. IQ: one, mostly the conscious side. (Claude, from memory)
 - Whether the unconscious has two memories of its own (short-lived and retained): the user's idea, half taken.
